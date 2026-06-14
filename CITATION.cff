@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "ChatGeo-Magi: A Retrieval-Augmented and Tool-Using Language Model for Geomagnetic Data Access and User Support"
+type: software
+authors:
+  - given-names: Milan
+    family-names: Nair
+    affiliation: "CIRES, University of Colorado Boulder"
+  - given-names: Manoj
+    family-names: Nair
+    affiliation: "CIRES, University of Colorado Boulder; NOAA National Centers for Environmental Information"
+  - given-names: Arnaud
+    family-names: Chulliat
+    affiliation: "CIRES, University of Colorado Boulder; NOAA National Centers for Environmental Information"
+  - given-names: Rob
+    family-names: Redmon
+    affiliation: "NOAA National Centers for Environmental Information; NOAA Center for Artificial Intelligence"
+license: MIT
+repository-code: "https://github.com/mm-nair/ChatGeo-Magi"
+url: "https://github.com/mm-nair/ChatGeo-Magi"
+version: 1.0.0
+date-released: 2026-06-13
