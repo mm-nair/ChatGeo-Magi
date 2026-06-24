@@ -38,6 +38,12 @@ Evaluation is done in 4 steps.
 3. Run the Opik evaluation on the inference results, and the "golden" answers
 4. Download from Opik (or if done locally, move files) and run plotting scripts
 ```
+mv evaluation/goldens.py agentic/goldens.py
+cd agentic
+python goldens.py
+
+cd ..
+
 mv evaulation/eval_inference.py agentic/eval_inference.py
 cd agentic
 python eval_inference.py
@@ -55,3 +61,6 @@ python plots_2.py
 
 # resulting plots are now in evaluation/plot_outputs/
 ```
+
+## Notes
+- The hallucination metric is included in the plotting and evaluation, but insignificant and thus omitted from the paper.

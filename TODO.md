@@ -1,4 +1,1 @@
 - Update ORCiDs
-- Mention hallucination
-- Upload corrected plots to paper
-- README

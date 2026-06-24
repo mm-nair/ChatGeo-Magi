@@ -5,12 +5,15 @@ authors:
   - given-names: Milan
     family-names: Nair
     affiliation: "CIRES, University of Colorado Boulder"
+    orcid: "https://orcid.org/0009-0005-5814-1265"
   - given-names: Manoj
     family-names: Nair
     affiliation: "CIRES, University of Colorado Boulder; NOAA National Centers for Environmental Information"
+    orcid: "https://orcid.org/0000-0002-0541-0127"
   - given-names: Arnaud
     family-names: Chulliat
     affiliation: "CIRES, University of Colorado Boulder; NOAA National Centers for Environmental Information"
+    orcid: "https://orcid.org/0000-0001-7414-9631"
   - given-names: Rob
     family-names: Redmon
     affiliation: "NOAA National Centers for Environmental Information; NOAA Center for Artificial Intelligence"
