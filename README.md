@@ -1,5 +1,7 @@
 # ChatGeo-Magi
 
+[![DOI](https://zenodo.org/badge/1268798117.svg)](https://doi.org/10.5281/zenodo.20821922)
+
 This repository contains all the code of ChatGeo-Magi, including the agentic approach, two-LLM approach, evaluation, plotting, and the testing website.
 
 ChatGeo-Magi is an AI agent for natural-language access to NOAA/CIRES geomagnetic data, models, and resources. It combines RAG with structured tool calling to answer questions, run API calculations, and generate visualizations.
