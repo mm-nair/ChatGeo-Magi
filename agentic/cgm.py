@@ -14,7 +14,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import TextLoader
 from langchain_chroma import Chroma
 
-from langchain.tools.retriever import create_retriever_tool
+from langchain_core.tools import create_retriever_tool
 from langchain_core.messages import SystemMessage
 
 from langgraph.checkpoint.memory import MemorySaver
