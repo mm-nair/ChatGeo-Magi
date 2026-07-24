@@ -1,6 +1,6 @@
 # ChatGeo-Magi
 
-[![DOI](https://zenodo.org/badge/1268798117.svg)](https://doi.org/10.5281/zenodo.20821922)
+<a href="https://doi.org/10.5281/zenodo.21535623"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21535623.svg" alt="DOI"></a>
 
 This repository contains all the code of ChatGeo-Magi, including the agentic approach, two-LLM approach, evaluation, plotting, and the testing website.
 
