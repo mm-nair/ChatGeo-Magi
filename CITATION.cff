@@ -14,9 +14,10 @@ authors:
     family-names: Chulliat
     affiliation: "CIRES, University of Colorado Boulder; NOAA National Centers for Environmental Information"
     orcid: "https://orcid.org/0000-0001-7414-9631"
-  - given-names: Rob
+  - given-names: Robert
     family-names: Redmon
     affiliation: "NOAA National Centers for Environmental Information; NOAA Center for Artificial Intelligence"
+    orcid: "https://orcid.org/0000-0001-5585-2719"
 license: MIT
 repository-code: "https://github.com/mm-nair/ChatGeo-Magi"
 url: "https://github.com/mm-nair/ChatGeo-Magi"
