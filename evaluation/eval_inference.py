@@ -9,11 +9,17 @@ in between models/configurations.
 
 import csv
 import os
+import argparse
+from pathlib import Path
+from uuid import uuid4
+from datasets import load_goldens as read_goldens
 from datetime import datetime
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "agentic"))
 from config import SystemConfig
 from cgm import ChatGeoMagi
 
-DATA_DIR = "inference_results"
+DATA_DIR = str(Path(__file__).resolve().parents[1] / "revision_workspace/rag_ablation/legacy_inference")
 BASE_MODELS = [
     "gpt-oss:20b",
     "mistral-nemo:12b",
@@ -23,22 +29,13 @@ BASE_MODELS = [
 def run_cmd(cmd):
     os.system(cmd)
 
-def load_goldens(path="goldens.csv"):
-    goldens = []
-    with open(path, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            goldens.append({
-                "id": len(goldens) + 1,
-                "question": row["question"],
-                "answer": row["answer"]
-            })
-    return goldens
+def load_goldens(path=Path(__file__).with_name("goldens.csv")):
+    return [{"id": index, "question": question, "answer": answer}
+            for index, (question, answer) in enumerate(read_goldens(path).items(), 1)]
 
 
-def run_model(model_name, goldens):
-    print(f"\n=== Pulling model: {model_name} ===")
-    run_cmd(f"ollama pull {model_name}")
+def run_model(model_name, goldens, isolated_sessions=True):
+    run_id = uuid4().hex
 
     config = SystemConfig()
     config.model_name = model_name
@@ -51,13 +48,12 @@ def run_model(model_name, goldens):
 
     for g in goldens:
         print("Golden", g)
-        result = model.invoke(g["question"])
+        result = model.invoke(g["question"], thread_id=f"{run_id}-{g['id']}" if isolated_sessions else "1")
         messages = result["messages"]
         assistant = messages[-1].content if hasattr(messages[-1], "content") else str(messages[-1])
         outputs.append((g["id"], assistant))
 
-    print(f"\n=== Removing model: {model_name} ===")
-    run_cmd(f"ollama rm {model_name}")
+
 
     return outputs
 
@@ -97,13 +93,17 @@ def write_output_final(goldens, results_per_model, ts):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--shared-session", action="store_true")
+    args = parser.parse_args()
+    os.makedirs(DATA_DIR, exist_ok=True)
     ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     goldens = load_goldens()
     results_per_model = {}
 
     for m in BASE_MODELS:
-        results_per_model[m] = run_model(m, goldens)
+        results_per_model[m] = run_model(m, goldens, isolated_sessions=not args.shared_session)
         write_output_incremental(goldens, results_per_model, ts)
 
     write_output_final(goldens, results_per_model, ts)

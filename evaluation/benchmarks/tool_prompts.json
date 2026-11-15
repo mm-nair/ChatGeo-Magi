@@ -1,0 +1,82 @@
+[
+  {
+    "id": "T01",
+    "prompt": "Give declination in London on 2026-01-01."
+  },
+  {
+    "id": "T02",
+    "prompt": "Give inclination in London on 2026-01-01."
+  },
+  {
+    "id": "T03",
+    "prompt": "Give total intensity at 51.5,-0.12 on 2026-01-01."
+  },
+  {
+    "id": "T04",
+    "prompt": "Give declination at 0,0 in 1900."
+  },
+  {
+    "id": "T05",
+    "prompt": "Give total intensity in London in 1999."
+  },
+  {
+    "id": "T06",
+    "prompt": "Give inclination at -33.9,151.2 on 2024-02-29."
+  },
+  {
+    "id": "T07",
+    "prompt": "Give total intensity in London annually from 1999 to 2026 and identify the model."
+  },
+  {
+    "id": "T08",
+    "prompt": "Give declination in London from 2025 to 2029."
+  },
+  {
+    "id": "T09",
+    "prompt": "Give total intensity at 40,-105 from 2024 to 2025."
+  },
+  {
+    "id": "T10",
+    "prompt": "Give the north component at 40,-105 in 2026."
+  },
+  {
+    "id": "T11",
+    "prompt": "Give the east component at 40,-105 in 2026."
+  },
+  {
+    "id": "T12",
+    "prompt": "Give the vertical component at 40,-105 in 2026."
+  },
+  {
+    "id": "T13",
+    "prompt": "Give horizontal intensity at 40,-105 in 2026."
+  },
+  {
+    "id": "T14",
+    "prompt": "Give total-intensity secular variation in London in 2026."
+  },
+  {
+    "id": "T15",
+    "prompt": "Plot total intensity in London annually from 1999 to 2026."
+  },
+  {
+    "id": "T16",
+    "prompt": "Give declination and inclination at 51.5,-0.12 in 2026, in that order."
+  },
+  {
+    "id": "T17",
+    "prompt": "Calculate total intensity in London in 1800."
+  },
+  {
+    "id": "T18",
+    "prompt": "Calculate declination in London in 2035."
+  },
+  {
+    "id": "T19",
+    "prompt": "Calculate inclination at 95,0 in 2026."
+  },
+  {
+    "id": "T20",
+    "prompt": "Calculate total intensity in London on 2025-02-29."
+  }
+]

@@ -2,7 +2,7 @@ from typing import Dict, Tuple, Optional, Union, List
 from matplotlib.figure import Figure
 
 from langchain_core.tools import tool
-from dateutil.parser import parse
+from .scientific import parse_date as scientific_date, select_model, coordinates, provenance, summarize_component
 from datetime import date
 
 from PIL import Image
@@ -22,16 +22,16 @@ BASE_URLS = {
     "mapbox": "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static"
 }
 
-GEOCODE_API_KEY = "REDACTED"
-MAPBOX_API_KEY = "REDACTED"
-CALC_API_KEY = "REDACTED"
-GRID_CALC_API_KEY = "REDACTED"
+GEOCODE_API_KEY = os.getenv("GEOCODE_API_KEY", "")
+MAPBOX_API_KEY = os.getenv("MAPBOX_API_KEY", "")
+CALC_API_KEY = os.getenv("CALC_API_KEY", "")
+GRID_CALC_API_KEY = os.getenv("CALC_API_KEY", "")
 
 valid_components = ["declination", "inclination", "totalintensity", "horintensity", "xcomponent", "ycomponent", "zcomponent", "declination_sv", "inclination_sv", "totalintensity_sv", "horintensity_sv", "xcomponent_sv", "ycomponent_sv", "zcomponent_sv"]
 components_string = ', '.join(valid_components)
 
 def save_figure_to_temp(fig):
-    output_dir = "tempimages"
+    output_dir = os.getenv("CGM_IMAGE_DIR", "tempimages")
     os.makedirs(output_dir, exist_ok=True)
 
     filename = f"{uuid.uuid4().hex}.png"
@@ -44,101 +44,96 @@ def save_figure_to_temp(fig):
     return path
 
 def parse_date(time_str: Optional[str] = None) -> Tuple[int, int, int]:
-    """Convert date string to (year, month, day) tuple."""
-    if not time_str or time_str.lower() in ["now", "no", ""]:
-        today = date.today()
-        return today.year, today.month, today.day
-    
-    parsed = parse(time_str, fuzzy=True)
+    """Parse an unambiguous date, using January 1 for year-only requests."""
+    parsed = scientific_date(time_str)
     return parsed.year, parsed.month, parsed.day
+
+
+def resolve_coordinates(location):
+    explicit = coordinates(location)
+    if explicit is not None:
+        return explicit
+    if not GEOCODE_API_KEY:
+        raise ValueError("Place-name lookup is unavailable; provide latitude,longitude")
+    response = requests.get(BASE_URLS["geocode"], params={"q": location, "api_key": GEOCODE_API_KEY}, timeout=30)
+    response.raise_for_status()
+    data = response.json()
+    if not isinstance(data, list) or not data:
+        raise ValueError("Location not found")
+    return coordinates(f"{data[0]['lat']},{data[0]['lon']}")
+
 
 @tool
 def get_coordinates(location: str) -> Tuple[bool, Union[Tuple[float, float], str]]:
-    """Get coordinates for a location using the geocoding API"""
-    params = {"q": location, "api_key": GEOCODE_API_KEY}
-    response = requests.get(BASE_URLS["geocode"], params=params)
-    data = response.json()
-    
-    if not data:
-        return False, "Location not found"
-    
-    return True, (float(data[0]["lat"]), float(data[0]["lon"]))
+    """Resolve place names or explicit latitude,longitude decimal coordinates."""
+    try:
+        return True, resolve_coordinates(location)
+    except (requests.RequestException, ValueError, KeyError, TypeError):
+        return False, "Coordinate lookup failed; check location or supply coordinates"
+
 
 def get_model_type(year: int) -> str:
-    """Determine appropriate model type based on year."""
-    if year < 1590:
-        raise ValueError("Date must be after 1590 for IGRF calculations")
-    return "IGRF" if year < 2025 else "WMM"
+    """Select the supported model family for a single year."""
+    return select_model(str(year))[0]
 
-def fetch_field_data(location: str, start_time: Optional[str] = None, 
-                    end_time: Optional[str] = None) -> Tuple[bool, Union[Dict, str]]:
-    """Fetch geomagnetic field data from NOAA API."""
-    success, coords = get_coordinates(location)
-    
-    if not success:
-        return False, coords
 
-    lat, lon = coords
-    start_year, start_month, start_day = parse_date(start_time)
-    
+def fetch_field_data(location: str, start_time: Optional[str] = None,
+                     end_time: Optional[str] = None) -> Tuple[bool, Union[Dict, str]]:
+    """Fetch a validated range with explicit requested and returned provenance."""
     try:
-        model_type = get_model_type(start_year)
-    except ValueError as e:
-        return False, str(e)
+        model_type, start_date, end_date = select_model(start_time, end_time)
+        if not CALC_API_KEY:
+            return False, "Calculator credentials are not configured"
+        lat, lon = resolve_coordinates(location)
+        params = {
+            "lat1": lat, "lon1": lon, "model": model_type,
+            "startYear": start_date.year, "startMonth": start_date.month, "startDay": start_date.day,
+            "endYear": end_date.year, "endMonth": end_date.month, "endDay": end_date.day,
+            "elevation": 0, "elevationUnits": "K", "coordinateSystem": "M",
+            "dateStepSize": 1, "key": CALC_API_KEY, "resultFormat": "json"
+        }
+        response = requests.get(BASE_URLS["calculator"], params=params, timeout=30)
+        response.raise_for_status()
+        payload = response.json()
+        payload_provenance = provenance(payload, model_type, start_date, end_date, lat, lon)
+        payload_provenance["calculator_url"] = BASE_URLS["calculator"]
+        payload["provenance"] = payload_provenance
+        return True, payload
+    except requests.RequestException:
+        return False, "NOAA request failed (HTTP or transport error)"
+    except (ValueError, KeyError, TypeError) as error:
+        return False, "Invalid date, location, or calculator response: " + (str(error) if isinstance(error, ValueError) and not isinstance(error, requests.RequestException) else type(error).__name__)
 
-    params = {
-        "lat1": lat,
-        "lon1": lon,
-        "model": model_type,
-        "startYear": start_year,
-        "startMonth": start_month,
-        "startDay": start_day,
-        "key": CALC_API_KEY,
-        "resultFormat": "json"
-    }
 
-    if end_time:
-        end_year, end_month, end_day = parse_date(end_time)
-        params.update({
-            "endYear": end_year,
-            "endMonth": end_month,
-            "endDay": end_day
-        })
-
-    response = requests.get(BASE_URLS["calculator"], params=params)
-    return True, response.json()
-
-def fetch_grid_data(location: str, component: str, bounds: float = 5.0, 
+def fetch_grid_data(location: str, component: str, bounds: float = 5.0,
                     start_time: Optional[str] = None) -> Tuple[bool, Union[Dict, str]]:
-    """Fetch grid data for contour plotting."""
-    success, coords = get_coordinates(location)
-    if not success:
-        return False, coords
-
-    lat, lon = coords
-    start_year, start_month, start_day = parse_date(start_time)
-    
+    """Fetch a grid with the same date policy and provenance as point queries."""
     try:
-        model_type = get_model_type(start_year)
-    except ValueError as e:
-        return False, str(e)
-
-    params = {
-        "lat1": lat - bounds,
-        "lon1": lon - bounds,
-        "lat2": lat + bounds,
-        "lon2": lon + bounds,
-        "magneticComponent": component,
-        "model": model_type,
-        "startYear": start_year,
-        "startMonth": start_month,
-        "startDay": start_day,
-        "key": GRID_CALC_API_KEY,
-        "resultFormat": "json"
-    }
-
-    response = requests.get(BASE_URLS["grid"], params=params)
-    return True, response.json()
+        model_type, start_date, end_date = select_model(start_time)
+        if component not in valid_components or not 0 < bounds <= 90:
+            return False, "Invalid grid component or bounds"
+        if not GRID_CALC_API_KEY:
+            return False, "Grid calculator credentials are not configured"
+        lat, lon = resolve_coordinates(location)
+        coordinates(f"{lat - bounds},{lon - bounds}")
+        coordinates(f"{lat + bounds},{lon + bounds}")
+        params = {
+            "lat1": lat - bounds, "lon1": lon - bounds,
+            "lat2": lat + bounds, "lon2": lon + bounds,
+            "magneticComponent": component, "model": model_type,
+            "startYear": start_date.year, "startMonth": start_date.month, "startDay": start_date.day,
+            "key": GRID_CALC_API_KEY, "resultFormat": "json"
+        }
+        response = requests.get(BASE_URLS["grid"], params=params, timeout=30)
+        response.raise_for_status()
+        payload = response.json()
+        payload["provenance"] = provenance(payload, model_type, start_date, end_date, lat, lon)
+        payload["provenance"]["calculator_url"] = BASE_URLS["grid"]
+        payload["provenance"]["elevation_reference"] = "server default; not specified"
+        payload["provenance"]["elevation_km"] = "server default; not specified"
+        return True, payload
+    except (requests.RequestException, ValueError, KeyError, TypeError):
+        return False, "Grid request failed or returned invalid data"
 
 def get_map_image(bounding_box: Tuple[float, float, float, float], 
                     size: str = "640x480") -> Image.Image:
@@ -159,7 +154,11 @@ def get_map_image(bounding_box: Tuple[float, float, float, float],
 @tool
 def noaa_mag_api(data_name: str, location: str, start_time: Optional[str] = None, end_time: Optional[str] = None) -> str:
     """
-    Fetch magnetic field data from NOAA Magnetic Calculator APIs, from start date (default to now) to end date (default to now).
+    Fetch magnetic field data from NOAA Magnetic Calculator APIs, from start date (default to today) to end date (default to start date).
+    Dates must be YYYY or YYYY-MM-DD. Location can be a place name or latitude,longitude.
+    Supported dates are 1900 through 2029. Historical or mixed ranges use IGRF; wholly 2025-2029 ranges use WMM.
+    Report requested and returned model identity separately; never infer a returned version.
+    The output includes units and provenance. Missing metadata is explicitly marked.
     If you want to call multiple times for different data, please do these in seperate tool steps, dont do them together.
     Please select data name from the following list:
 
@@ -177,24 +176,10 @@ def noaa_mag_api(data_name: str, location: str, start_time: Optional[str] = None
     if not success:
         return f"Could not find {data_name}: {result}"
     
-    results = result.get('result', [])
-    if not results:
-        return f"No {data_name} data found."
-
-    if len(results) == 1:
-        val = results[0][data_name]
-        units = result.get('units', {}).get(data_name, '')
-
-        return f"{val:.2f} {units}"
-    else:
-        summary = []
-        for entry in results:
-            year = entry.get('year') or entry.get('date') or 'unknown'
-            val = entry[data_name]
-            units = result.get('units', {}).get(data_name, '')
-            summary.append(f"{year}: {val:.2f} {units}")
-
-        return f"{data_name} over time:\n" + "\n".join(summary)
+    try:
+        return summarize_component(result, data_name)
+    except (ValueError, KeyError, TypeError):
+        return "Calculator response lacks valid component data"
 
 @tool
 def plot(

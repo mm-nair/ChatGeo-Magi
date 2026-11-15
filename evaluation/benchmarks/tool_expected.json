@@ -1,0 +1,332 @@
+[
+  {
+    "id": "T01",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "declination",
+          "location": "London",
+          "start_time": "2026-01-01"
+        }
+      }
+    ],
+    "expected_model": "WMM",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T02",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "inclination",
+          "location": "London",
+          "start_time": "2026-01-01"
+        }
+      }
+    ],
+    "expected_model": "WMM",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T03",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "totalintensity",
+          "location": "51.5,-0.12",
+          "start_time": "2026-01-01"
+        }
+      }
+    ],
+    "expected_model": "WMM",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T04",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "declination",
+          "location": "0,0",
+          "start_time": "1900"
+        }
+      }
+    ],
+    "expected_model": "IGRF",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T05",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "totalintensity",
+          "location": "London",
+          "start_time": "1999"
+        }
+      }
+    ],
+    "expected_model": "IGRF",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T06",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "inclination",
+          "location": "-33.9,151.2",
+          "start_time": "2024-02-29"
+        }
+      }
+    ],
+    "expected_model": "IGRF",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T07",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "totalintensity",
+          "location": "London",
+          "start_time": "1999",
+          "end_time": "2026"
+        }
+      }
+    ],
+    "expected_model": "IGRF",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T08",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "declination",
+          "location": "London",
+          "start_time": "2025",
+          "end_time": "2029"
+        }
+      }
+    ],
+    "expected_model": "WMM",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T09",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "totalintensity",
+          "location": "40,-105",
+          "start_time": "2024",
+          "end_time": "2025"
+        }
+      }
+    ],
+    "expected_model": "IGRF",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T10",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "xcomponent",
+          "location": "40,-105",
+          "start_time": "2026"
+        }
+      }
+    ],
+    "expected_model": "WMM",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T11",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "ycomponent",
+          "location": "40,-105",
+          "start_time": "2026"
+        }
+      }
+    ],
+    "expected_model": "WMM",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T12",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "zcomponent",
+          "location": "40,-105",
+          "start_time": "2026"
+        }
+      }
+    ],
+    "expected_model": "WMM",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T13",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "horintensity",
+          "location": "40,-105",
+          "start_time": "2026"
+        }
+      }
+    ],
+    "expected_model": "WMM",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T14",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "totalintensity_sv",
+          "location": "London",
+          "start_time": "2026"
+        }
+      }
+    ],
+    "expected_model": "WMM",
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T15",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "totalintensity",
+          "location": "London",
+          "start_time": "1999",
+          "end_time": "2026"
+        }
+      },
+      {
+        "name": "plot",
+        "args": {}
+      }
+    ],
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T16",
+    "calls": [
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "declination",
+          "location": "51.5,-0.12",
+          "start_time": "2026"
+        }
+      },
+      {
+        "name": "noaa_mag_api",
+        "args": {
+          "data_name": "inclination",
+          "location": "51.5,-0.12",
+          "start_time": "2026"
+        }
+      }
+    ],
+    "reference_values": [],
+    "reference_verification": "pending_authoritative_values",
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T17",
+    "calls": [],
+    "reject": true,
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T18",
+    "calls": [],
+    "reject": true,
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T19",
+    "calls": [],
+    "reject": true,
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  },
+  {
+    "id": "T20",
+    "calls": [],
+    "reject": true,
+    "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+    "verification_status": "software_policy_checked_not_human_verified"
+  }
+]

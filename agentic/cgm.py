@@ -81,7 +81,7 @@ class ChatGeoMagi:
                 persist_directory=config.chroma_db_path,
             )
         
-        vector_retriever = vector_store.as_retriever()
+        vector_retriever = vector_store.as_retriever(search_kwargs={"k": 4})
         return create_retriever_tool(
             vector_retriever,
             "retrieve_geomag_docs",
@@ -103,12 +103,14 @@ class ChatGeoMagi:
         self.memory = MemorySaver()
 
         tools = [
-            self.retriever,
             noaa_mag_api,
             plot,
             plot_many,
             contour_map,
         ]
+
+        if self.retriever is not None:
+            tools.insert(0, self.retriever)
 
         self.agent = create_react_agent(self.llm, tools, checkpointer=self.memory, prompt=SystemMessage(content=system_prompt))
 
