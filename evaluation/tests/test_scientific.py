@@ -79,6 +79,9 @@ class WrapperTests(unittest.TestCase):
             from agentic.apis import noaa_apis
             cls.api = noaa_apis
 
+    def setUp(self):
+        self.api.set_active_request_context(None)
+
     def test_request_and_single_date(self):
         response = Mock()
         response.json.return_value = {'result': [{'date': '2026-01-01', 'declination': 1.2}], 'units': {'declination': 'degrees'}, 'model': 'WMM2025'}
@@ -136,6 +139,34 @@ class WrapperTests(unittest.TestCase):
         with patch.object(self.api, 'CALC_API_KEY', ''), patch.object(self.api.requests, 'get') as request:
             self.assertFalse(self.api.fetch_field_data('0,0', '2026')[0])
             request.assert_not_called()
+
+    def test_swapped_invalid_coordinates_rejected(self):
+        # 1. Direct swap from user prompt containing invalid 95,0
+        self.api.set_active_request_context('Compute declination at latitude,longitude 95,0 for 2025-01-01.')
+        with patch.object(self.api, 'CALC_API_KEY', 'test-placeholder'), patch.object(self.api.requests, 'get') as request:
+            success, msg = self.api.fetch_field_data('0,95', '2025-01-01')
+            self.assertFalse(success)
+            self.assertIn('Refusing to swap invalid user coordinates', msg)
+            request.assert_not_called()
+
+        # 2. Retry swap after 95,0 was rejected in the same turn even without prompt text
+        self.api.set_active_request_context(None)
+        with patch.object(self.api, 'CALC_API_KEY', 'test-placeholder'), patch.object(self.api.requests, 'get') as request:
+            success1, _ = self.api.fetch_field_data('95,0', '2025-01-01')
+            self.assertFalse(success1)
+            success2, msg2 = self.api.fetch_field_data('0,95', '2025-01-01')
+            self.assertFalse(success2)
+            self.assertIn('Refusing to swap invalid user coordinates', msg2)
+            request.assert_not_called()
+
+        # 3. Legitimate request for 0,95 succeeds
+        self.api.set_active_request_context('Compute declination at latitude,longitude 0,95 for 2025-01-01.')
+        response = Mock()
+        response.json.return_value = {'result': [{'date': '2025-01-01', 'declination': 0.5}], 'units': {'declination': 'degrees'}, 'model': 'WMM-2025'}
+        with patch.object(self.api, 'CALC_API_KEY', 'test-placeholder'), patch.object(self.api.requests, 'get', return_value=response) as request:
+            success3, _ = self.api.fetch_field_data('0,95', '2025-01-01')
+            self.assertTrue(success3)
+            request.assert_called_once()
 
 
 if __name__ == '__main__':

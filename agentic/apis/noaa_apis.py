@@ -1,4 +1,7 @@
 from typing import Dict, Tuple, Optional, Union, List
+import contextvars
+import math
+import re
 from matplotlib.figure import Figure
 
 from langchain_core.tools import tool
@@ -14,6 +17,49 @@ import requests
 
 import uuid
 import os
+
+_ACTIVE_QUESTION: contextvars.ContextVar[Optional[str]] = contextvars.ContextVar(
+    "cgm_active_question", default=None
+)
+_REJECTED_COORDS: contextvars.ContextVar[Tuple[Tuple[float, float], ...]] = contextvars.ContextVar(
+    "cgm_rejected_coords", default=()
+)
+
+
+def set_active_request_context(question: Optional[str]) -> None:
+    """Record the active user prompt and reset rejected coordinates for this turn."""
+    _ACTIVE_QUESTION.set(question)
+    _REJECTED_COORDS.set(())
+
+
+def _extract_raw_pair(location: str) -> Optional[Tuple[float, float]]:
+    if not isinstance(location, str) or "," not in location:
+        return None
+    parts = location.split(",")
+    if len(parts) != 2:
+        return None
+    try:
+        lat, lon = float(parts[0].strip()), float(parts[1].strip())
+        if math.isfinite(lat) and math.isfinite(lon):
+            return lat, lon
+    except ValueError:
+        return None
+    return None
+
+
+def _out_of_range_pairs_in_question(question: Optional[str]) -> List[Tuple[float, float]]:
+    if not question:
+        return []
+    pairs = []
+    for match in re.finditer(r"([+\-]?\d+(?:\.\d+)?)\s*,\s*([+\-]?\d+(?:\.\d+)?)", question):
+        try:
+            first = float(match.group(1))
+            second = float(match.group(2))
+        except ValueError:
+            continue
+        if not (-90.0 <= first <= 90.0 and -180.0 <= second <= 180.0):
+            pairs.append((first, second))
+    return pairs
 
 BASE_URLS = {
     "calculator": "https://www.ngdc.noaa.gov/geomag-web/calculators/calculateIgrfwmm",
@@ -50,8 +96,26 @@ def parse_date(time_str: Optional[str] = None) -> Tuple[int, int, int]:
 
 
 def resolve_coordinates(location):
-    explicit = coordinates(location)
+    raw_pair = _extract_raw_pair(location)
+    try:
+        explicit = coordinates(location)
+    except ValueError as error:
+        if raw_pair is not None:
+            current = list(_REJECTED_COORDS.get())
+            if raw_pair not in current:
+                current.append(raw_pair)
+                _REJECTED_COORDS.set(tuple(current))
+        raise ValueError(
+            f"{error} (latitude must be in [-90, 90], longitude in [-180, 180]; do not swap or alter invalid user coordinates)"
+        ) from error
     if explicit is not None:
+        lat, lon = explicit
+        candidates = list(_REJECTED_COORDS.get()) + _out_of_range_pairs_in_question(_ACTIVE_QUESTION.get())
+        for bad_lat, bad_lon in candidates:
+            if math.isclose(lat, bad_lon, abs_tol=1e-6) and math.isclose(lon, bad_lat, abs_tol=1e-6):
+                raise ValueError(
+                    f"Refusing to swap invalid user coordinates ({bad_lat:g},{bad_lon:g} -> {lat:g},{lon:g}); latitude must be in [-90, 90] and longitude in [-180, 180]"
+                )
         return explicit
     if not GEOCODE_API_KEY:
         raise ValueError("Place-name lookup is unavailable; provide latitude,longitude")
@@ -155,7 +219,8 @@ def get_map_image(bounding_box: Tuple[float, float, float, float],
 def noaa_mag_api(data_name: str, location: str, start_time: Optional[str] = None, end_time: Optional[str] = None) -> str:
     """
     Fetch magnetic field data from NOAA Magnetic Calculator APIs, from start date (default to today) to end date (default to start date).
-    Dates must be YYYY or YYYY-MM-DD. Location can be a place name or latitude,longitude.
+    Dates must be YYYY or YYYY-MM-DD. Location can be a place name or latitude,longitude in decimal degrees (latitude in [-90, 90], longitude in [-180, 180]).
+    NEVER swap latitude and longitude (e.g., never change 95,0 to 0,95) or modify invalid user coordinates/dates. If coordinates or dates are invalid, report the error directly.
     Supported dates are 1900 through 2029. Historical or mixed ranges use IGRF; wholly 2025-2029 ranges use WMM.
     Report requested and returned model identity separately; never infer a returned version.
     The output includes units and provenance. Missing metadata is explicitly marked.
