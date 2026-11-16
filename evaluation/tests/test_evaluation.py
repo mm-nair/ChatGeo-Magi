@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'evaluation'))
 
 from benchmark_metrics import retrieval_metrics, tool_metrics
-from datasets import load_goldens
+from golden_dataset import load_goldens
 from revision_analysis import bootstrap
 
 
@@ -50,6 +50,20 @@ class EvaluationTests(unittest.TestCase):
         result = tool_metrics(expected, {'calls': [{'name': 'noaa_mag_api', 'args': {'start_time': '2026-01-01'}, 'success': True}]})
         self.assertTrue(result['execution'])
         self.assertIsNone(result['numerical_agreement'])
+
+    def test_equivalent_coordinate_arguments(self):
+        from benchmark_metrics import argument_matches
+        self.assertTrue(argument_matches('location', '51.500, -0.120', '51.5,-0.12'))
+        self.assertFalse(argument_matches('location', '51.5,0.12', '51.5,-0.12'))
+
+    def test_unicode_number_extraction(self):
+        from score_live_tools import numbers
+        self.assertEqual(numbers('49\u202f100.5 nT and \u201116.98374\u00b0'), [49100.5, -16.98374])
+
+    def test_corrected_summary_requires_complete_pairs(self):
+        from analyze_reference_judging import summarize
+        with self.assertRaises(ValueError):
+            summarize([{'model': 'test', 'id': 'Q01', 'condition': 'rag', 'score': 1}])
 
     def test_tool_sequence(self):
         expected = {'calls': [{'name': 'noaa_mag_api', 'args': {}}, {'name': 'plot', 'args': {}}]}

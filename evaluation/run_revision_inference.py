@@ -13,7 +13,7 @@ from uuid import uuid4
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from datasets import load_goldens
+from golden_dataset import load_goldens
 from public_retrieval import open_retriever
 
 
@@ -69,6 +69,8 @@ def main():
     output.mkdir(parents=True)
     os.environ['CGM_IMAGE_DIR'] = str(output / 'images')
     os.environ['OPIK_TRACK_DISABLE'] = 'true'
+    from vm_support import load_existing_credentials
+    load_existing_credentials()
     sys.path.insert(0, str(ROOT / 'agentic'))
     from cgm import ChatGeoMagi
     from config import SystemConfig
@@ -96,7 +98,8 @@ def main():
                 trace = extract_trace(result)
             except Exception as error:
                 trace = {'calls': [], 'final': '', 'error_type': type(error).__name__}
-            trace.update({'id': question['id'], 'condition': condition})
+            trace.update({'id': question['id'], 'condition': condition, 'question': question['prompt']})
+            print(question['id'], condition, 'calls', len(trace['calls']), 'error', trace.get('error_type'), flush=True)
             (output / f"{question['id']}_{condition}.json").write_text(json.dumps(trace, indent=2))
             if 'reference' in question:
                 judge_inputs.append({'id': question['id'], 'condition': condition, 'input': question['prompt'], 'expected_answer': question['reference'], 'model_output': trace['final']})

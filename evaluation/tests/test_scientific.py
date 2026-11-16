@@ -3,6 +3,7 @@ import sys
 import types
 import unittest
 from datetime import date
+from pathlib import Path
 from unittest.mock import patch, Mock
 
 from agentic.apis import scientific
@@ -49,6 +50,19 @@ class ScientificTests(unittest.TestCase):
         payload['result'][0]['totalintensity'] = float('nan')
         with self.assertRaises(ValueError):
             scientific.summarize_component(payload, 'totalintensity')
+
+    def test_captured_noaa_schema(self):
+        payload = json.loads((Path(__file__).parent / 'fixtures/noaa_wmm2025.json').read_text())
+        payload['provenance'] = scientific.provenance(payload, 'WMM', date(2026, 1, 1), date(2026, 1, 1), 51.5, -.12)
+        result = json.loads(scientific.summarize_component(payload, 'totalintensity_sv'))
+        self.assertEqual(result['values'][0]['value'], 36.5)
+        self.assertEqual(result['units'], 'nanoTesla (nT) per year')
+        self.assertEqual(result['reported_units'], 'nanoTesla (nT)')
+        self.assertEqual(result['provenance']['calculator_version'], '1.2.1')
+        self.assertEqual(result['provenance']['returned_model'], 'WMM-2025')
+        self.assertEqual(result['values'][0]['uncertainty_metadata']['totalintensity_uncertainty'], 138)
+        self.assertEqual(result['uncertainty_units']['totalintensity_uncertainty'], 'nanoTesla (nT)')
+        self.assertEqual(result['provenance']['uncertainty'], 'see row-level uncertainty metadata')
 
     def test_invalid_payload(self):
         for payload in [{}, {'result': []}, {'error': 'failure'}, [], {'result': [1]}]:

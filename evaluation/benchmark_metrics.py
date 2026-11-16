@@ -25,6 +25,16 @@ def argument_matches(name, actual, expected):
             return parse_date(actual) == parse_date(expected)
         except (ValueError, TypeError):
             return False
+    if name == 'location':
+        from agentic.apis.scientific import coordinates
+        try:
+            actual_coordinates = coordinates(str(actual))
+            expected_coordinates = coordinates(str(expected))
+            if actual_coordinates is not None and expected_coordinates is not None:
+                return all(math.isclose(left, right, abs_tol=1e-6) for left, right in zip(actual_coordinates, expected_coordinates))
+        except ValueError:
+            return False
+        return str(actual).strip().casefold() == str(expected).strip().casefold()
     if isinstance(expected, (float, int)):
         return isinstance(actual, (float, int)) and not isinstance(actual, bool) and math.isclose(actual, expected, abs_tol=1e-6)
     return actual == expected

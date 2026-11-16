@@ -57,8 +57,9 @@ def provenance(payload, model_type, start_date, end_date, latitude, longitude):
         'returned_model': payload.get('model', 'not supplied'),
         'returned_model_metadata': {key: value for key, value in payload.items() if any(word in key.lower() for word in ['model', 'epoch', 'valid', 'uncert'])},
         'policy_validity': ['2025-01-01' if model_type == 'WMM' else '1900-01-01', '2029-12-31'],
+        'calculator_version': payload.get('version', 'not supplied'),
         'epoch': payload.get('epoch', 'not supplied'),
-        'uncertainty': payload.get('uncertainty', 'not supplied; no uncertainty inferred'),
+        'uncertainty': payload.get('uncertainty', 'see row-level uncertainty metadata' if any(any('uncert' in key.lower() for key in row) for row in payload['result']) else 'not supplied; no uncertainty inferred'),
         'requested_start': start_date.isoformat(),
         'requested_end': end_date.isoformat(),
         'latitude': latitude,
@@ -70,7 +71,8 @@ def provenance(payload, model_type, start_date, end_date, latitude, longitude):
 
 
 def summarize_component(payload, data_name):
-    units = payload.get('units', {}).get(data_name, 'not supplied') if isinstance(payload.get('units'), dict) else 'not supplied'
+    units_metadata = payload['units'] if isinstance(payload.get('units'), dict) else {}
+    units = units_metadata.get(data_name, 'not supplied')
     rows = []
     for entry in payload['result']:
         value = entry.get(data_name)
@@ -79,7 +81,10 @@ def summarize_component(payload, data_name):
         rows.append({'date': entry.get('date', entry.get('year', 'not supplied')), 'value': value,
                      'model': entry.get('model', payload.get('model', 'not supplied')),
                      'uncertainty_metadata': {key: value for key, value in entry.items() if any(word in key.lower() for word in ['uncert', 'error', 'sigma'])}})
-    result = {'component': data_name, 'units': units, 'values': rows, 'provenance': payload['provenance']}
+    reported_units = units
+    if data_name.endswith('_sv') and units != 'not supplied' and 'year' not in units.lower():
+        units = f'{units} per year'
+    result = {'component': data_name, 'units': units, 'reported_units': reported_units, 'values': rows, 'provenance': payload['provenance'], 'uncertainty_units': {key: value for key, value in units_metadata.items() if 'uncert' in key.lower()}}
     if len(rows) > 1 and data_name == 'totalintensity':
         times = [decimal_year(row['date']) for row in rows]
         if all(value is not None for value in times) and all(b > a for a, b in zip(times, times[1:])):

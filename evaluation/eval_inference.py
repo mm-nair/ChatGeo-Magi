@@ -12,7 +12,7 @@ import os
 import argparse
 from pathlib import Path
 from uuid import uuid4
-from datasets import load_goldens as read_goldens
+from golden_dataset import load_goldens as read_goldens
 from datetime import datetime
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "agentic"))

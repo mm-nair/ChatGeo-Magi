@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 ROOT = Path(__file__).resolve().parents[1]
 
 
-from datasets import load_goldens
+from golden_dataset import load_goldens
 
 
 def bootstrap(differences, seed=20261115, resamples=100000):
