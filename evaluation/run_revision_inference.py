@@ -51,6 +51,28 @@ def extract_trace(result):
     return {"calls": calls, "final": final, "messages": messages}
 
 
+def verify_reusable_no_rag(reuse_dir: Path, args, current_source_hashes: dict):
+    meta_file = reuse_dir / "metadata.json"
+    if not meta_file.is_file():
+        raise ValueError(f"Cannot reuse no_rag from {reuse_dir}: missing metadata.json")
+    prior_meta = json.loads(meta_file.read_text())
+    prior_args = prior_meta.get("arguments", {})
+    for key in ("model", "model_digest", "temperature", "seed", "num_ctx", "num_predict"):
+        if prior_args.get(key) != getattr(args, key):
+            raise ValueError(
+                f"Cannot reuse no_rag: parameter '{key}' differs ({prior_args.get(key)!r} vs {getattr(args, key)!r})"
+            )
+    if not prior_meta.get("calculator_tools_available_in_both_conditions"):
+        raise ValueError("Cannot reuse no_rag: calculator tool availability differs")
+    prior_hashes = prior_meta.get("source_hashes", {})
+    for critical_file in ("agentic/prompts.py", "agentic/cgm.py", "agentic/config.py", "agentic/apis/noaa_apis.py"):
+        if prior_hashes.get(critical_file) != current_source_hashes.get(critical_file):
+            raise ValueError(
+                f"Cannot reuse no_rag: source hash for {critical_file} changed"
+            )
+    return prior_meta
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--experiment", choices=["ablation", "tools"], required=True)
@@ -74,6 +96,12 @@ def main():
         "--experiment-version",
         type=str,
         default="final_retrieval_revision_v1",
+    )
+    parser.add_argument(
+        "--reuse-no-rag-from",
+        type=Path,
+        default=None,
+        help="Optional path to a previous ablation run with identical model/prompt/settings from which to reuse no_rag outputs.",
     )
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
@@ -107,6 +135,16 @@ def main():
     ):
         parser.error(
             "Requested exact model digest is not installed; no model will be downloaded"
+        )
+    source_hashes = {
+        str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+        for folder in ["agentic", "evaluation"]
+        for path in (ROOT / folder).rglob("*.py")
+    }
+    reused_no_rag_meta = None
+    if args.reuse_no_rag_from is not None:
+        reused_no_rag_meta = verify_reusable_no_rag(
+            args.reuse_no_rag_from, args, source_hashes
         )
     output.mkdir(parents=True)
     os.environ["CGM_IMAGE_DIR"] = str(output / "images")
@@ -163,6 +201,8 @@ def main():
             for key, value in vars(args).items()
         },
         "index_metadata": index_metadata,
+        "reused_no_rag_from": str(args.reuse_no_rag_from) if args.reuse_no_rag_from else None,
+        "reused_no_rag_commit": reused_no_rag_meta.get("commit") if reused_no_rag_meta else None,
         "python": platform.python_version(),
         "packages": {
             distribution.metadata["Name"]: distribution.version
@@ -180,11 +220,7 @@ def main():
             {"name": row["name"], "digest": row["digest"]}
             for row in installed["models"]
         ],
-        "source_hashes": {
-            str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
-            for folder in ["agentic", "evaluation"]
-            for path in (ROOT / folder).rglob("*.py")
-        },
+        "source_hashes": source_hashes,
     }
     (output / "metadata.json").write_text(json.dumps(metadata, indent=2))
     config = SystemConfig.from_preset(
@@ -196,22 +232,31 @@ def main():
     judge_inputs = []
     for question in questions:
         for condition in conditions:
-            model = ChatGeoMagi(config)
-            model.initialize(llm, None, retriever if condition == "rag" else None)
-            try:
-                result = model.invoke(question["prompt"], thread_id=uuid4().hex)
-                trace = extract_trace(result)
-            except Exception as error:
-                trace = {"calls": [], "final": "", "error_type": type(error).__name__}
-            trace.update(
-                {
-                    "id": question["id"],
-                    "condition": condition,
-                    "question": question["prompt"],
-                    "experiment_version": args.experiment_version,
-                    "preset": args.preset if condition == "rag" else None,
-                }
-            )
+            if condition == "no_rag" and args.reuse_no_rag_from is not None:
+                prior_trace_path = args.reuse_no_rag_from / f"{question['id']}_no_rag.json"
+                if not prior_trace_path.is_file():
+                    raise FileNotFoundError(f"Missing {prior_trace_path}")
+                trace = json.loads(prior_trace_path.read_text())
+                if trace.get("question") != question["prompt"]:
+                    raise ValueError(f"Question mismatch on {question['id']} in reused no_rag")
+                trace["reused_from"] = str(prior_trace_path)
+            else:
+                model = ChatGeoMagi(config)
+                model.initialize(llm, None, retriever if condition == "rag" else None)
+                try:
+                    result = model.invoke(question["prompt"], thread_id=uuid4().hex)
+                    trace = extract_trace(result)
+                except Exception as error:
+                    trace = {"calls": [], "final": "", "error_type": type(error).__name__}
+                trace.update(
+                    {
+                        "id": question["id"],
+                        "condition": condition,
+                        "question": question["prompt"],
+                        "experiment_version": args.experiment_version,
+                        "preset": args.preset if condition == "rag" else None,
+                    }
+                )
             print(
                 question["id"],
                 condition,
@@ -219,6 +264,7 @@ def main():
                 len(trace["calls"]),
                 "error",
                 trace.get("error_type"),
+                "reused" if trace.get("reused_from") else "generated",
                 flush=True,
             )
             (output / f"{question['id']}_{condition}.json").write_text(

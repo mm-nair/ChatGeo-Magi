@@ -444,6 +444,76 @@ class EvaluationTests(unittest.TestCase):
             )
             self.assertEqual(retriever_ok["search_kwargs"], {"k": 4})
 
+    def test_openai_judge_confidentiality_and_no_rag_reuse_validation(self):
+        from openai_reference_judge import assert_public_only_input
+        from run_revision_inference import verify_reusable_no_rag
+
+        with self.assertRaises(PermissionError):
+            assert_public_only_input(
+                ROOT / "evaluation/opik_evaluation_results/gpt_emails.json", []
+            )
+        with self.assertRaises(PermissionError):
+            assert_public_only_input(
+                ROOT / "revision_workspace/test_inputs.json",
+                [{"id": "Q01", "condition": "emails"}],
+            )
+        assert_public_only_input(
+            ROOT / "revision_workspace/test_inputs.json",
+            [{"id": "Q01", "condition": "rag"}],
+        )
+
+        with tempfile.TemporaryDirectory(dir=ROOT / "revision_workspace") as tmp:
+            reuse_dir = Path(tmp)
+            hashes = {
+                "agentic/prompts.py": "h1",
+                "agentic/cgm.py": "h2",
+                "agentic/config.py": "h3",
+                "agentic/apis/noaa_apis.py": "h4",
+            }
+            (reuse_dir / "metadata.json").write_text(
+                json.dumps(
+                    {
+                        "arguments": {
+                            "model": "gpt-oss:20b",
+                            "model_digest": "d1",
+                            "temperature": 0.0,
+                            "seed": 20261115,
+                            "num_ctx": 8192,
+                            "num_predict": 2048,
+                        },
+                        "calculator_tools_available_in_both_conditions": True,
+                        "source_hashes": hashes,
+                    }
+                )
+            )
+            args_ok = type(
+                "Args",
+                (),
+                {
+                    "model": "gpt-oss:20b",
+                    "model_digest": "d1",
+                    "temperature": 0.0,
+                    "seed": 20261115,
+                    "num_ctx": 8192,
+                    "num_predict": 2048,
+                },
+            )()
+            verify_reusable_no_rag(reuse_dir, args_ok, hashes)
+            args_bad = type(
+                "Args",
+                (),
+                {
+                    "model": "gpt-oss:20b",
+                    "model_digest": "d2",
+                    "temperature": 0.0,
+                    "seed": 20261115,
+                    "num_ctx": 8192,
+                    "num_predict": 2048,
+                },
+            )()
+            with self.assertRaises(ValueError):
+                verify_reusable_no_rag(reuse_dir, args_bad, hashes)
+
 
 if __name__ == "__main__":
     unittest.main()
