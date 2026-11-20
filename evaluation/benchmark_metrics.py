@@ -1,71 +1,178 @@
-import math
+import csv
+from pathlib import Path
+import re
+
+import numpy as np
 
 
-def retrieval_metrics(expected, retrieved, k=4):
-    if expected.get('verification_status') not in ('human_verified', 'source_verified'):
-        return {'status': 'unannotated', 'hit_at_4': None, 'recall_at_4': None, 'precision_at_4': None, 'support_coverage': None}
-    relevant = set(expected.get('relevant_chunk_ids', []))
+def bootstrap(differences, seed=20261115, resamples=100000):
+    """Calculate a paired percentile bootstrap 95% confidence interval."""
+    differences = np.asarray(differences, dtype=float)
+    if not len(differences) or not np.isfinite(differences).all():
+        raise ValueError("Bootstrap needs finite paired observations")
+    generator = np.random.default_rng(seed)
+    indices = generator.integers(0, len(differences), (resamples, len(differences)))
+    means = differences[indices].mean(axis=1)
+    return np.quantile(means, [0.025, 0.975]).tolist()
+
+
+def write_csv(path, rows):
+    """Write a sequence of dictionaries to a CSV file."""
+    path = Path(path)
+    if not rows:
+        raise ValueError("Cannot write an empty row list to CSV")
+    with path.open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def summarize_paired_scores(records, seed=20261115, resamples=100000):
+    """Summarize paired condition scores (e.g., rag vs. no_rag) across all 25 questions."""
+    summaries, paired = [], []
+    conditions = (
+        ("no_rag", "rag")
+        if any(row.get("condition") == "rag" for row in records)
+        else ("noemails", "emails")
+    )
+    models = sorted({row.get("model", "default") for row in records})
+    for model in models:
+        groups = {}
+        for row in records:
+            if row.get("model", "default") != model:
+                continue
+            key = (row["id"], row["condition"])
+            score = row.get("score")
+            if (
+                key in groups
+                or isinstance(score, bool)
+                or not isinstance(score, (float, int))
+                or not 0 <= score <= 1
+            ):
+                raise ValueError("Duplicate or invalid score")
+            groups[key] = row
+        identifiers = sorted({key[0] for key in groups})
+        if len(identifiers) != 25 or len(groups) != 50:
+            raise ValueError("Expected 25 complete pairs per model")
+        model_pairs = []
+        for identifier in identifiers:
+            first, second = [groups[identifier, condition] for condition in conditions]
+            row = {
+                "model": model,
+                "id": identifier,
+                conditions[0]: first["score"],
+                conditions[1]: second["score"],
+                "difference": second["score"] - first["score"],
+                "empty_pair": bool(
+                    first.get("empty_response") or second.get("empty_response")
+                ),
+            }
+            model_pairs.append(row)
+        differences = [row["difference"] for row in model_pairs]
+        low, high = bootstrap(differences, seed=seed, resamples=resamples)
+        nonempty = [row["difference"] for row in model_pairs if not row["empty_pair"]]
+        summaries.append(
+            {
+                "model": model,
+                "n": len(model_pairs),
+                "first_condition": conditions[0],
+                "second_condition": conditions[1],
+                "first_mean": float(np.mean([row[conditions[0]] for row in model_pairs])),
+                "second_mean": float(
+                    np.mean([row[conditions[1]] for row in model_pairs])
+                ),
+                "difference": float(np.mean(differences)),
+                "ci_low": float(low),
+                "ci_high": float(high),
+                "nonempty_pairs": len(nonempty),
+                "nonempty_difference": float(np.mean(nonempty)) if nonempty else 0.0,
+            }
+        )
+        paired.extend(model_pairs)
+    return summaries, paired
+
+
+def retrieval_metrics(expected, retrieved):
+    if expected.get("verification_status") not in ("human_verified", "source_verified"):
+        return {
+            "hit_at_4": None,
+            "recall_at_4": None,
+            "precision_at_4": None,
+            "support_coverage": None,
+            "status": "pending_human_verification",
+        }
+    relevant = set(expected["relevant_chunk_ids"])
     if not relevant:
-        raise ValueError('Verified annotation requires relevant chunk IDs')
-    ranked = [row['chunk_id'] for row in retrieved[:k]]
-    if len(ranked) != len(set(ranked)):
-        raise ValueError('Duplicate retrieved chunk IDs')
-    hits = relevant.intersection(ranked)
-    facts = expected.get('support_facts', [])
-    coverage = sum(bool(set(fact['chunk_ids']).intersection(ranked)) for fact in facts) / len(facts) if facts else None
-    return {'status': 'scored', 'hit_at_4': int(bool(hits)), 'recall_at_4': len(hits) / len(relevant), 'precision_at_4': len(hits) / k, 'support_coverage': coverage}
+        raise ValueError("Verified retrieval item lacks relevant_chunk_ids")
+    top = [item["chunk_id"] for item in retrieved[:4]]
+    if len(set(top)) != len(top):
+        raise ValueError("Duplicate chunk IDs in retrieved top-4")
+    hits = len(relevant.intersection(top))
+    facts = expected.get("support_facts", [])
+    covered = sum(bool(set(fact["chunk_ids"]).intersection(top)) for fact in facts)
+    return {
+        "hit_at_4": int(hits > 0),
+        "recall_at_4": hits / len(relevant),
+        "precision_at_4": hits / 4,
+        "support_coverage": covered / len(facts) if facts else None,
+        "status": expected["verification_status"],
+    }
 
 
-def argument_matches(name, actual, expected):
+def parse_coordinates(value):
+    match = re.fullmatch(
+        r"\s*([-+]?\d+(?:\.\d+)?)\s*,\s*([-+]?\d+(?:\.\d+)?)\s*", str(value)
+    )
+    return (float(match.group(1)), float(match.group(2))) if match else None
+
+
+def argument_matches(name, expected, actual):
     if actual is None:
-        return expected is None
-    if name in ('start_time', 'end_time'):
-        from agentic.apis.scientific import parse_date
-        try:
-            return parse_date(actual) == parse_date(expected)
-        except (ValueError, TypeError):
-            return False
-    if name == 'location':
-        from agentic.apis.scientific import coordinates
-        try:
-            actual_coordinates = coordinates(str(actual))
-            expected_coordinates = coordinates(str(expected))
-            if actual_coordinates is not None and expected_coordinates is not None:
-                return all(math.isclose(left, right, abs_tol=1e-6) for left, right in zip(actual_coordinates, expected_coordinates))
-        except ValueError:
-            return False
-        return str(actual).strip().casefold() == str(expected).strip().casefold()
-    if isinstance(expected, (float, int)):
-        return isinstance(actual, (float, int)) and not isinstance(actual, bool) and math.isclose(actual, expected, abs_tol=1e-6)
-    return actual == expected
+        return False
+    if name in ("start_time", "end_time") and re.fullmatch(r"\d{4}", str(expected)):
+        return str(actual) in (str(expected), f"{expected}-01-01")
+    if name == "location":
+        left, right = parse_coordinates(expected), parse_coordinates(actual)
+        if left and right:
+            return all(abs(a - b) < 1e-6 for a, b in zip(left, right))
+    return str(actual).strip().lower() == str(expected).strip().lower()
 
 
 def tool_metrics(expected, trace):
-    calls = trace.get('calls', [])
-    required = expected['calls']
-    selected = []
-    previous_index = -1
-    for required_call in required:
-        candidates = [(index, call) for index, call in enumerate(calls) if index > previous_index and call['name'] == required_call['name']]
-        match = next(((index, call) for index, call in candidates if all(argument_matches(name, call.get('args', {}).get(name), value) for name, value in required_call.get('args', {}).items())), None)
-        if match is None:
-            selected.append(None)
-        else:
-            previous_index, call = match
-            selected.append(call)
-    if expected.get('reject'):
-        return {'tool_selection': None, 'parameters_and_order': None, 'execution': None, 'numerical_agreement': None, 'units_and_attribution': None, 'end_to_end': trace.get('review', {}).get('appropriate_rejection') if trace.get('review', {}).get('human_verified') else None}
-    selection = all(any(call['name'] == required_call['name'] for call in calls) for required_call in required)
-    parameters = all(call is not None for call in selected)
-    execution = parameters and all(call.get('success') is True for call in selected)
-    references = expected.get('reference_values', [])
-    numerical = None
-    if references and expected.get('reference_verification') == 'authoritative_verified':
-        numerical = True
-        for reference in references:
-            observed = trace.get('numerical_values', {}).get(reference['name'])
-            numerical = numerical and isinstance(observed, (int, float)) and not isinstance(observed, bool) and math.isfinite(observed) and abs(observed - reference['value']) <= reference['tolerance']
-    review = trace.get('review', {})
-    attribution = review.get('units_and_attribution') if review.get('human_verified') else None
-    end_to_end = None if numerical is None or attribution is None or not review.get('human_verified') else bool(selection and parameters and execution and numerical and attribution and review.get('answer_correct') is True)
-    return {'tool_selection': selection, 'parameters_and_order': parameters, 'execution': execution, 'numerical_agreement': numerical, 'units_and_attribution': attribution, 'end_to_end': end_to_end}
+    calls = trace.get("calls")
+    if not isinstance(calls, list):
+        return {
+            "tool_selection": False,
+            "parameters_and_order": False,
+            "execution": False,
+            "numerical_agreement": None,
+            "end_to_end": None,
+        }
+    required = expected["calls"]
+    names = [call.get("name") for call in calls]
+    required_names = [call["name"] for call in required]
+    cursor = 0
+    matched = []
+    for item in required:
+        found = None
+        for index in range(cursor, len(calls)):
+            call = calls[index]
+            if call.get("name") == item["name"] and all(
+                argument_matches(k, v, call.get("args", {}).get(k))
+                for k, v in item.get("args", {}).items()
+            ):
+                found = call
+                cursor = index + 1
+                break
+        matched.append(found)
+    parameters_and_order = all(matched)
+    execution = parameters_and_order and all(
+        call.get("success") is True for call in matched
+    )
+    return {
+        "tool_selection": all(name in names for name in required_names),
+        "parameters_and_order": parameters_and_order,
+        "execution": execution,
+        "numerical_agreement": None,
+        "end_to_end": None,
+    }

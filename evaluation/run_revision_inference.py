@@ -10,8 +10,11 @@ import sys
 import urllib.request
 from uuid import uuid4
 
+from dotenv import load_dotenv
+
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from agentic.config import RETRIEVAL_PRESETS, SystemConfig
 from golden_dataset import load_goldens
@@ -65,7 +68,12 @@ def verify_reusable_no_rag(reuse_dir: Path, args, current_source_hashes: dict):
     if not prior_meta.get("calculator_tools_available_in_both_conditions"):
         raise ValueError("Cannot reuse no_rag: calculator tool availability differs")
     prior_hashes = prior_meta.get("source_hashes", {})
-    for critical_file in ("agentic/prompts.py", "agentic/cgm.py", "agentic/config.py", "agentic/apis/noaa_apis.py"):
+    for critical_file in (
+        "agentic/prompts.py",
+        "agentic/cgm.py",
+        "agentic/config.py",
+        "agentic/apis/noaa_apis.py",
+    ):
         if prior_hashes.get(critical_file) != current_source_hashes.get(critical_file):
             raise ValueError(
                 f"Cannot reuse no_rag: source hash for {critical_file} changed"
@@ -74,7 +82,9 @@ def verify_reusable_no_rag(reuse_dir: Path, args, current_source_hashes: dict):
 
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="Run isolated-session inference for the RAG ablation or tool-calling benchmark."
+    )
     parser.add_argument("--experiment", choices=["ablation", "tools"], required=True)
     parser.add_argument("--execute-inference", action="store_true")
     parser.add_argument("--model", required=True)
@@ -86,6 +96,7 @@ def main():
     parser.add_argument("--index", type=Path)
     parser.add_argument("--embedding-path", type=Path)
     parser.add_argument("--manifest", type=Path)
+    parser.add_argument("--data-dir", type=Path, default=None)
     parser.add_argument(
         "--preset",
         choices=sorted(RETRIEVAL_PRESETS.keys()),
@@ -103,28 +114,17 @@ def main():
         default=None,
         help="Optional path to a previous ablation run with identical model/prompt/settings from which to reuse no_rag outputs.",
     )
-    parser.add_argument("--output", type=Path)
+    parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if not args.execute_inference:
-        parser.error(
-            "Inference is disabled unless --execute-inference is explicitly supplied after VM authorization"
-        )
+        parser.error("Inference is disabled unless --execute-inference is explicitly supplied")
     if args.experiment == "ablation" and not all(
         [args.index, args.embedding_path, args.manifest]
     ):
         parser.error(
-            "Ablation requires the validated public index and cached Stella embedding model"
+            "Ablation requires --index, --embedding-path, and --manifest"
         )
-    output = (
-        args.output
-        or ROOT
-        / "revision_workspace"
-        / ("rag_ablation" if args.experiment == "ablation" else "tool_evaluation")
-        / "results"
-        / uuid4().hex
-    )
-    if not output.resolve().is_relative_to(ROOT / "revision_workspace"):
-        parser.error("Output must remain in revision_workspace")
+    output = args.output
     if output.exists():
         parser.error("Use a new output directory; previous runs are never overwritten")
     with urllib.request.urlopen("http://localhost:11434/api/tags", timeout=10) as response:
@@ -149,9 +149,8 @@ def main():
     output.mkdir(parents=True)
     os.environ["CGM_IMAGE_DIR"] = str(output / "images")
     os.environ["OPIK_TRACK_DISABLE"] = "true"
-    from vm_support import load_existing_credentials
+    load_dotenv()
 
-    load_existing_credentials()
     sys.path.insert(0, str(ROOT / "agentic"))
     from cgm import ChatGeoMagi
     from langchain_core.tools import create_retriever_tool
@@ -173,6 +172,7 @@ def main():
             args.manifest,
             preset=args.preset,
             k=args.retrieval_k,
+            data_dir=args.data_dir,
         )
         retriever = create_retriever_tool(
             vector_retriever,

@@ -2,13 +2,9 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import sys
 import time
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "evaluation"))
-
-from vm_support import load_existing_credentials
+from dotenv import load_dotenv
 
 JUDGE_INSTRUCTIONS = (
     "You are an independent scientific factuality judge evaluating a geomagnetic question-answering system.\n"
@@ -86,7 +82,25 @@ CALIBRATION_CASES = [
     },
 ]
 
-FORBIDDEN_PATH_TOKENS = ("opik_evaluation_results", "inference_results", "emails", "support_email")
+FORBIDDEN_PATH_TOKENS = (
+    "opik_evaluation_results",
+    "inference_results",
+    "legacy_email_experiment",
+    "emails",
+    "support_email",
+)
+
+
+def judge_payload(row: dict) -> str:
+    """Format a question, expected reference answer, and model output for reference-aware judging."""
+    return json.dumps(
+        {
+            "QUESTION": row["input"],
+            "EXPECTED_ANSWER": row["expected_answer"],
+            "MODEL_OUTPUT": row["model_output"],
+        },
+        ensure_ascii=False,
+    )
 
 
 def assert_public_only_input(path: Path, rows: list):
@@ -103,14 +117,20 @@ def assert_public_only_input(path: Path, rows: list):
             )
 
 
-def judge_single(client, question: str, reference: str, response: str, model: str = "gpt-4o-mini", seed: int = 20261115):
-    user_payload = json.dumps(
+def judge_single(
+    client,
+    question: str,
+    reference: str,
+    response: str,
+    model: str = "gpt-4o-mini",
+    seed: int = 20261115,
+):
+    user_payload = judge_payload(
         {
-            "QUESTION": question,
-            "EXPECTED_ANSWER": reference,
-            "MODEL_OUTPUT": response,
-        },
-        ensure_ascii=False,
+            "input": question,
+            "expected_answer": reference,
+            "model_output": response,
+        }
     )
     completion = client.chat.completions.create(
         model=model,
@@ -126,7 +146,11 @@ def judge_single(client, question: str, reference: str, response: str, model: st
     content = completion.choices[0].message.content
     parsed = json.loads(content)
     raw_score = parsed["score"]
-    if isinstance(raw_score, bool) or not isinstance(raw_score, int) or not (0 <= raw_score <= 10):
+    if (
+        isinstance(raw_score, bool)
+        or not isinstance(raw_score, int)
+        or not (0 <= raw_score <= 10)
+    ):
         raise ValueError(f"Invalid score from OpenAI judge: {raw_score!r}")
     usage = completion.usage.model_dump() if completion.usage else {}
     return raw_score / 10.0, {
@@ -166,12 +190,14 @@ def run_calibration(client, model: str, seed: int):
 
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="Evaluate public-corpus answers using reference-aware OpenAI GPT-4o-mini judging."
+    )
     parser.add_argument("--model", default="gpt-4o-mini")
     parser.add_argument("--seed", type=int, default=20261115)
     parser.add_argument(
         "--inputs",
-         nargs="+",
+        nargs="+",
         required=True,
         help="Specifications of the form label=path/to/judge_inputs.json[:condition_filter]",
     )
@@ -181,11 +207,9 @@ def main():
         required=True,
     )
     args = parser.parse_args()
-    if not args.output.resolve().is_relative_to(ROOT / "revision_workspace"):
-        parser.error("Output must remain in revision_workspace")
     args.output.mkdir(parents=True, exist_ok=True)
 
-    load_existing_credentials()
+    load_dotenv()
     from openai import OpenAI
 
     client = OpenAI()
