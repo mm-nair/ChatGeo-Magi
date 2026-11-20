@@ -439,6 +439,7 @@ def plot_tool_performance(results_dir: Path = RESULTS_DIR, output_dir: Path = OU
 
     items = [
         ("Tool Selection\n(Supported Tasks)", summary["tool_selection"], COLORS["teal"]),
+        ("Tool Execution\n(Valid Returned Data)", summary["execution"], COLORS["teal"]),
         (
             "NOAA Numerical Agreement\n(Authoritative Reference)",
             summary["tool_numerical_agreement"],

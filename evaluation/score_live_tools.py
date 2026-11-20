@@ -1,5 +1,6 @@
 import argparse
 import json
+import math
 from pathlib import Path
 import re
 import sys
@@ -37,6 +38,28 @@ def numbers(text):
     ]
 
 
+def valid_calculation(call, component):
+    if call.get("name") != "noaa_mag_api" or call.get("success") is not True:
+        return False
+    try:
+        output = json.loads(call["output"])
+        values = output["values"]
+        return (
+            output["component"] == component
+            and isinstance(values, list)
+            and bool(values)
+            and all(
+                isinstance(row["value"], (int, float))
+                and not isinstance(row["value"], bool)
+                and math.isfinite(row["value"])
+                and math.isfinite(float(row["date"]))
+                for row in values
+            )
+        )
+    except (ValueError, KeyError, TypeError):
+        return False
+
+
 def score_question(expected, trace):
     structural = tool_metrics(expected, trace)
     result = {
@@ -53,14 +76,21 @@ def score_question(expected, trace):
     }
     references = expected.get("authoritative_calls", [])
     if not references:
+        if expected.get("reject"):
+            for metric in ("tool_selection", "parameters_and_order", "execution"):
+                result[metric] = None
         result["rejection_review"] = "required"
         return result
+    result["execution"] = structural["execution"] and all(
+        any(valid_calculation(call, reference["component"]) for call in trace.get("calls", []))
+        for reference in references
+    )
     successful = []
     for reference in references:
         matched = False
         for call in trace.get("calls", []):
             if (
-                call["name"] != "noaa_mag_api"
+                not valid_calculation(call, reference["component"])
                 or call.get("args", {}).get("data_name") != reference["component"]
             ):
                 continue
@@ -162,6 +192,11 @@ def main():
     summary["note"] = (
         "Automated evidence checks, not human-adjudicated scientific end-to-end accuracy. Invalid prompts require separate review."
     )
+    summary["definitions"] = {
+        "execution": "Required tools succeeded in sequence, with nonempty finite dated calculator values for every requested component; independent of strict argument matching and reference-value agreement.",
+        "parameters_and_order": "Required calls match the expected arguments in order, including the specified January 1 end-date convention.",
+        "tool_numerical_agreement": "Successful calculator outputs match independently obtained NOAA dates, component values within tolerance, and returned model identifiers.",
+    }
     (args.output / "tool_summary.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))
 

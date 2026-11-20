@@ -230,9 +230,7 @@ if __name__ == "__main__":
             data_dir=args.data_dir,
         )
     _, summary = evaluate_retrieval(
-        args.index / "indexed_manifest.json"
-        if (args.index / "indexed_manifest.json").is_file()
-        else args.index,
+        args.index,
         args.embedding_path,
         (args.index / "indexed_manifest.json")
         if (args.index / "indexed_manifest.json").is_file()

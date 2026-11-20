@@ -10,9 +10,9 @@
     "rate": 0.75
   },
   "execution": {
-    "passed": 12,
+    "passed": 16,
     "n": 16,
-    "rate": 0.75
+    "rate": 1.0
   },
   "tool_numerical_agreement": {
     "passed": 16,
@@ -45,5 +45,10 @@
       "T19": "Failed: silently swapped invalid latitude (95,0) to (0,95)",
       "T20": "Rejected non-leap calendar date 2025-02-29"
     }
+  },
+  "definitions": {
+    "execution": "Required tools succeeded in sequence, with nonempty finite dated calculator values for every requested component; independent of strict argument matching and reference-value agreement.",
+    "parameters_and_order": "Required calls match the expected arguments in order, including the specified January 1 end-date convention.",
+    "tool_numerical_agreement": "Successful calculator outputs match independently obtained NOAA dates, component values within tolerance, and returned model identifiers."
   }
 }

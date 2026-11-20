@@ -166,9 +166,18 @@ def tool_metrics(expected, trace):
                 break
         matched.append(found)
     parameters_and_order = all(matched)
-    execution = parameters_and_order and all(
-        call.get("success") is True for call in matched
-    )
+    cursor = 0
+    executed = []
+    for item in required:
+        found = None
+        for index in range(cursor, len(calls)):
+            call = calls[index]
+            if call.get("name") == item["name"] and call.get("success") is True:
+                found = call
+                cursor = index + 1
+                break
+        executed.append(found)
+    execution = bool(required) and all(executed)
     return {
         "tool_selection": all(name in names for name in required_names),
         "parameters_and_order": parameters_and_order,

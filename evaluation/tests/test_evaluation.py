@@ -34,7 +34,7 @@ from openai_reference_judge import (
 from plots import generate_plots
 from public_retrieval import chunk_identifier, open_retriever, validate_manifest
 from run_revision_inference import verify_reusable_no_rag
-from score_live_tools import numbers
+from score_live_tools import numbers, score_question
 
 
 class FakeEmbeddingFunction:
@@ -204,6 +204,126 @@ class EvaluationTests(unittest.TestCase):
             ]
         }
         self.assertFalse(tool_metrics(expected, trace)["parameters_and_order"])
+        self.assertFalse(tool_metrics(expected, trace)["execution"])
+
+    def test_tool_execution_independent_of_strict_parameters_and_numbers(self):
+        expected = json.loads(
+            (ROOT / "evaluation/benchmarks/tool_expected.json").read_text()
+        )[6]
+        reference = expected["authoritative_calls"][0]
+        trace = {"calls": [{
+            "name": "noaa_mag_api",
+            "args": {**expected["calls"][0]["args"], "end_time": "2026-12-31"},
+            "success": True,
+            "output": json.dumps({
+                "component": reference["component"],
+                "values": reference["values"],
+                "provenance": {"returned_model": reference["returned_model"]},
+            }),
+        }]}
+        result = score_question(expected, trace)
+        self.assertTrue(result["execution"])
+        self.assertFalse(result["parameters_and_order"])
+        self.assertTrue(result["tool_numerical_agreement"])
+        output = json.loads(trace["calls"][0]["output"])
+        output["values"][0]["value"] += 100
+        trace["calls"][0]["output"] = json.dumps(output)
+        result = score_question(expected, trace)
+        self.assertTrue(result["execution"])
+        self.assertFalse(result["tool_numerical_agreement"])
+        for invalid_output in ["Error: unavailable", '{"values": []}',
+                               json.dumps({**output, "values": [{"date": 2026, "value": float("nan")}]})]:
+            trace["calls"][0]["output"] = invalid_output
+            self.assertFalse(score_question(expected, trace)["execution"])
+        trace["calls"][0]["success"] = False
+        self.assertFalse(score_question(expected, trace)["execution"])
+
+    def test_documented_evaluation_arguments(self):
+        import argparse
+        import ast
+        import re
+        import shlex
+        from agentic.config import RETRIEVAL_PRESETS
+        from plots import FIGURE_BUILDERS, OUTPUT_DIR, RESULTS_DIR
+
+        commands = re.findall(r"^python (evaluation/[^\n]+)",
+                              (ROOT / "README.md").read_text().replace("\\\n", ""), re.MULTILINE)
+        self.assertGreaterEqual(len(commands), 8)
+        for command in commands:
+            arguments = shlex.split(command)
+            script = ROOT / arguments[0]
+            self.assertTrue(script.is_file(), arguments[0])
+            tree = ast.parse(script.read_text())
+            entry = next(node for node in tree.body if
+                         isinstance(node, ast.FunctionDef) and node.name == "main") if any(
+                             isinstance(node, ast.FunctionDef) and node.name == "main" for node in tree.body
+                         ) else tree.body[-1]
+            statements = []
+            for node in entry.body:
+                if isinstance(node, ast.Assign) and any(isinstance(child, ast.Call) and
+                    isinstance(child.func, ast.Attribute) and child.func.attr == "parse_args"
+                    for child in ast.walk(node)):
+                    break
+                statements.append(node)
+            namespace = {"argparse": argparse, "Path": Path, "ROOT": ROOT,
+                         "RETRIEVAL_PRESETS": RETRIEVAL_PRESETS,
+                         "FIGURE_BUILDERS": FIGURE_BUILDERS, "OUTPUT_DIR": OUTPUT_DIR,
+                         "RESULTS_DIR": RESULTS_DIR}
+            exec(compile(ast.Module(body=statements, type_ignores=[]), str(script), "exec"), namespace)
+            namespace["parser"].parse_args(arguments[1:])
+
+    def test_index_cli_passes_directory_to_retrieval(self):
+        import argparse
+        import ast
+        from unittest.mock import Mock
+        from agentic.config import RETRIEVAL_PRESETS
+
+        source = ROOT / "evaluation/build_public_index.py"
+        entry = ast.parse(source.read_text()).body[-1]
+        with tempfile.TemporaryDirectory() as directory:
+            index_path = Path(directory) / "index"
+            index_path.mkdir()
+            manifest_path = index_path / "indexed_manifest.json"
+            manifest_path.write_text('{}')
+            for skip_build in (False, True):
+                build_index = Mock()
+                evaluate_retrieval = Mock(return_value=([], {}))
+                namespace = {"argparse": argparse, "Path": Path, "ROOT": ROOT,
+                             "RETRIEVAL_PRESETS": RETRIEVAL_PRESETS, "json": json,
+                             "build_index": build_index, "evaluate_retrieval": evaluate_retrieval}
+                arguments = [str(source), "--index", str(index_path), "--embedding-path", "cached",
+                             "--output", str(Path(directory) / "results")]
+                if skip_build:
+                    arguments.append("--skip-build")
+                with patch.object(sys, "argv", arguments):
+                    exec(compile(ast.Module(body=entry.body, type_ignores=[]), str(source), "exec"), namespace)
+                self.assertEqual(build_index.call_count, int(not skip_build))
+                self.assertEqual(evaluate_retrieval.call_args.args[0], index_path)
+                self.assertEqual(evaluate_retrieval.call_args.args[2], manifest_path)
+
+    def test_judge_cli_keeps_condition_labels_separate(self):
+        import openai_reference_judge
+
+        fake_openai = types.ModuleType("openai")
+        fake_openai.OpenAI = lambda: object()
+        with tempfile.TemporaryDirectory() as directory:
+            inputs = Path(directory) / "judge_inputs.json"
+            inputs.write_text(json.dumps([
+                {"id": "Q01", "condition": condition, "input": "question",
+                 "expected_answer": "reference", "model_output": "answer"}
+                for condition in ("rag", "no_rag")
+            ]))
+            output = Path(directory) / "judging"
+            arguments = ["openai_reference_judge.py", "--inputs",
+                         f"no_rag={inputs}:no_rag", f"rag_15doc_corrected={inputs}:rag",
+                         "--output", str(output)]
+            with patch.dict(sys.modules, {"openai": fake_openai}), patch.object(sys, "argv", arguments), \
+                 patch.object(openai_reference_judge, "run_calibration", return_value=[{"passed": True}]), \
+                 patch.object(openai_reference_judge, "judge_single", return_value=(1.0, {"score": 1.0, "raw_score_0_10": 10})) as judge_single:
+                openai_reference_judge.main()
+            self.assertEqual(judge_single.call_count, 2)
+            self.assertEqual({row["condition"] for row in json.loads((output / "all_scores.json").read_text())},
+                             {"no_rag", "rag_15doc_corrected"})
 
     def test_benchmark_integrity(self):
         prompts = json.loads(
@@ -601,11 +721,19 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(tool_stats["tool_selection"]["n"], 16)
         self.assertEqual(tool_stats["tool_numerical_agreement"]["passed"], 16)
         self.assertEqual(tool_stats["parameters_and_order"]["passed"], 12)
+        self.assertEqual(tool_stats["execution"]["passed"], 16)
+        with (results_dir / "tool_per_question.csv").open() as handle:
+            tool_rows = list(csv.DictReader(handle))
+        self.assertEqual(sum(row["execution"] == "True" for row in tool_rows), 16)
+        self.assertEqual(sum(row["parameters_and_order"] == "True" for row in tool_rows), 12)
         self.assertEqual(tool_stats["invalid_request_handling"]["passed"], 3)
         self.assertEqual(tool_stats["invalid_request_handling"]["n"], 4)
 
     def test_plots_generate_offline_without_api_keys(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        import os
+
+        with tempfile.TemporaryDirectory() as tmp, patch.dict(os.environ, {}, clear=True), \
+             patch("socket.socket.connect", side_effect=AssertionError("Plotting must stay offline")):
             out_dir = Path(tmp) / "plots"
             written = generate_plots(
                 figure="all",
