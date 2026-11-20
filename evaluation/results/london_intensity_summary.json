@@ -1,0 +1,18 @@
+{
+  "label": "New live NOAA demonstration, not reconstructed historical output",
+  "returned_model": "IGRF2025",
+  "calculator_version": "1.2.1",
+  "first_year": 1999.0,
+  "last_year": 2026.0,
+  "first_intensity_nT": 48273.9,
+  "last_intensity_nT": 49094.6,
+  "net_change_nT": 820.6999999999971,
+  "endpoint_nT_per_year": 30.39629629629619,
+  "endpoint_nT_per_decade": 303.9629629629619,
+  "ols_nT_per_year": 29.559961685824387,
+  "points": 28,
+  "latitude": 51.5,
+  "longitude": -0.12,
+  "elevation_km": 0,
+  "date_note": "Annual January 1 model estimates, including 2026; not completed-calendar-year observations"
+}

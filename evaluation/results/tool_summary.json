@@ -1,0 +1,49 @@
+{
+  "tool_selection": {
+    "passed": 16,
+    "n": 16,
+    "rate": 1.0
+  },
+  "parameters_and_order": {
+    "passed": 12,
+    "n": 16,
+    "rate": 0.75
+  },
+  "execution": {
+    "passed": 12,
+    "n": 16,
+    "rate": 0.75
+  },
+  "tool_numerical_agreement": {
+    "passed": 16,
+    "n": 16,
+    "rate": 1.0
+  },
+  "final_number_presence": {
+    "passed": 15,
+    "n": 16,
+    "rate": 0.9375
+  },
+  "model_attribution_presence": {
+    "passed": 16,
+    "n": 16,
+    "rate": 1.0
+  },
+  "plot_data_agreement": {
+    "passed": 1,
+    "n": 1,
+    "rate": 1.0
+  },
+  "note": "Automated evidence checks, not human-adjudicated scientific end-to-end accuracy. Invalid prompts require separate review.",
+  "invalid_request_handling": {
+    "passed": 3,
+    "n": 4,
+    "rate": 0.75,
+    "details": {
+      "T17": "Rejected out-of-range year 1800",
+      "T18": "Rejected out-of-range year 2035",
+      "T19": "Failed: silently swapped invalid latitude (95,0) to (0,95)",
+      "T20": "Rejected non-leap calendar date 2025-02-29"
+    }
+  }
+}

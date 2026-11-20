@@ -13,9 +13,46 @@
     ],
     "expected_model": "WMM",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "declination",
+          "location": "London",
+          "start_time": "2026-01-01"
+        },
+        "query_without_key": {
+          "lat1": 51.5074456,
+          "lon1": -0.1277653,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "degrees",
+        "component": "declination",
+        "tolerance": 0.011,
+        "values": [
+          {
+            "date": 2026,
+            "value": 1.0767
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T02",
@@ -31,9 +68,46 @@
     ],
     "expected_model": "WMM",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "inclination",
+          "location": "London",
+          "start_time": "2026-01-01"
+        },
+        "query_without_key": {
+          "lat1": 51.5074456,
+          "lon1": -0.1277653,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "degrees",
+        "component": "inclination",
+        "tolerance": 0.011,
+        "values": [
+          {
+            "date": 2026,
+            "value": 66.54089
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T03",
@@ -49,9 +123,46 @@
     ],
     "expected_model": "WMM",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "totalintensity",
+          "location": "51.5,-0.12",
+          "start_time": "2026-01-01"
+        },
+        "query_without_key": {
+          "lat1": 51.5,
+          "lon1": -0.12,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "totalintensity",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 2026,
+            "value": 49100.5
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T04",
@@ -67,9 +178,46 @@
     ],
     "expected_model": "IGRF",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "declination",
+          "location": "0,0",
+          "start_time": "1900"
+        },
+        "query_without_key": {
+          "lat1": 0.0,
+          "lon1": 0.0,
+          "model": "IGRF",
+          "startYear": 1900,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 1900,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "IGRF00",
+        "calculator_version": "1.2.1",
+        "units": "degrees",
+        "component": "declination",
+        "tolerance": 0.011,
+        "values": [
+          {
+            "date": 1900,
+            "value": -16.98374
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T05",
@@ -85,9 +233,46 @@
     ],
     "expected_model": "IGRF",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "totalintensity",
+          "location": "London",
+          "start_time": "1999"
+        },
+        "query_without_key": {
+          "lat1": 51.5074456,
+          "lon1": -0.1277653,
+          "model": "IGRF",
+          "startYear": 1999,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 1999,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "DGRF95",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "totalintensity",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 1999,
+            "value": 48275.9
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T06",
@@ -103,9 +288,46 @@
     ],
     "expected_model": "IGRF",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "inclination",
+          "location": "-33.9,151.2",
+          "start_time": "2024-02-29"
+        },
+        "query_without_key": {
+          "lat1": -33.9,
+          "lon1": 151.2,
+          "model": "IGRF",
+          "startYear": 2024,
+          "startMonth": 2,
+          "startDay": 29,
+          "endYear": 2024,
+          "endMonth": 2,
+          "endDay": 29,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "DGRF2020",
+        "calculator_version": "1.2.1",
+        "units": "degrees",
+        "component": "inclination",
+        "tolerance": 0.011,
+        "values": [
+          {
+            "date": 2024.1612,
+            "value": -64.39969
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T07",
@@ -122,9 +344,155 @@
     ],
     "expected_model": "IGRF",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "totalintensity",
+          "location": "London",
+          "start_time": "1999",
+          "end_time": "2026"
+        },
+        "query_without_key": {
+          "lat1": 51.5074456,
+          "lon1": -0.1277653,
+          "model": "IGRF",
+          "startYear": 1999,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "IGRF2025",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "totalintensity",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 1999,
+            "value": 48275.9
+          },
+          {
+            "date": 2000,
+            "value": 48301.7
+          },
+          {
+            "date": 2001,
+            "value": 48332.1
+          },
+          {
+            "date": 2002,
+            "value": 48362.5
+          },
+          {
+            "date": 2003,
+            "value": 48392.9
+          },
+          {
+            "date": 2004,
+            "value": 48423.4
+          },
+          {
+            "date": 2005,
+            "value": 48454
+          },
+          {
+            "date": 2006,
+            "value": 48480.1
+          },
+          {
+            "date": 2007,
+            "value": 48506.3
+          },
+          {
+            "date": 2008,
+            "value": 48532.6
+          },
+          {
+            "date": 2009,
+            "value": 48558.9
+          },
+          {
+            "date": 2010,
+            "value": 48585.2
+          },
+          {
+            "date": 2011,
+            "value": 48608.2
+          },
+          {
+            "date": 2012,
+            "value": 48631.2
+          },
+          {
+            "date": 2013,
+            "value": 48654.2
+          },
+          {
+            "date": 2014,
+            "value": 48677.3
+          },
+          {
+            "date": 2015,
+            "value": 48700.5
+          },
+          {
+            "date": 2016,
+            "value": 48736.1
+          },
+          {
+            "date": 2017,
+            "value": 48771.7
+          },
+          {
+            "date": 2018,
+            "value": 48807.4
+          },
+          {
+            "date": 2019,
+            "value": 48843.2
+          },
+          {
+            "date": 2020,
+            "value": 48879.1
+          },
+          {
+            "date": 2021,
+            "value": 48915.9
+          },
+          {
+            "date": 2022,
+            "value": 48952.9
+          },
+          {
+            "date": 2023,
+            "value": 48989.9
+          },
+          {
+            "date": 2024,
+            "value": 49027
+          },
+          {
+            "date": 2025,
+            "value": 49064.1
+          },
+          {
+            "date": 2026,
+            "value": 49096.5
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T08",
@@ -141,9 +509,63 @@
     ],
     "expected_model": "WMM",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "declination",
+          "location": "London",
+          "start_time": "2025",
+          "end_time": "2029"
+        },
+        "query_without_key": {
+          "lat1": 51.5074456,
+          "lon1": -0.1277653,
+          "model": "WMM",
+          "startYear": 2025,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2029,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "degrees",
+        "component": "declination",
+        "tolerance": 0.011,
+        "values": [
+          {
+            "date": 2025,
+            "value": 0.90597
+          },
+          {
+            "date": 2026,
+            "value": 1.0767
+          },
+          {
+            "date": 2027,
+            "value": 1.24731
+          },
+          {
+            "date": 2028,
+            "value": 1.41781
+          },
+          {
+            "date": 2029,
+            "value": 1.58819
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T09",
@@ -160,9 +582,51 @@
     ],
     "expected_model": "IGRF",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "totalintensity",
+          "location": "40,-105",
+          "start_time": "2024",
+          "end_time": "2025"
+        },
+        "query_without_key": {
+          "lat1": 40.0,
+          "lon1": -105.0,
+          "model": "IGRF",
+          "startYear": 2024,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2025,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "IGRF2025",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "totalintensity",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 2024,
+            "value": 51457.3
+          },
+          {
+            "date": 2025,
+            "value": 51344
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T10",
@@ -178,9 +642,46 @@
     ],
     "expected_model": "WMM",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "xcomponent",
+          "location": "40,-105",
+          "start_time": "2026"
+        },
+        "query_without_key": {
+          "lat1": 40.0,
+          "lon1": -105.0,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "xcomponent",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 2026,
+            "value": 20588.6
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T11",
@@ -196,9 +697,46 @@
     ],
     "expected_model": "WMM",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "ycomponent",
+          "location": "40,-105",
+          "start_time": "2026"
+        },
+        "query_without_key": {
+          "lat1": 40.0,
+          "lon1": -105.0,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "ycomponent",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 2026,
+            "value": 2742.3
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T12",
@@ -214,9 +752,46 @@
     ],
     "expected_model": "WMM",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "zcomponent",
+          "location": "40,-105",
+          "start_time": "2026"
+        },
+        "query_without_key": {
+          "lat1": 40.0,
+          "lon1": -105.0,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "zcomponent",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 2026,
+            "value": 46834
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T13",
@@ -232,9 +807,46 @@
     ],
     "expected_model": "WMM",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "horintensity",
+          "location": "40,-105",
+          "start_time": "2026"
+        },
+        "query_without_key": {
+          "lat1": 40.0,
+          "lon1": -105.0,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "horintensity",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 2026,
+            "value": 20770.5
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T14",
@@ -250,9 +862,46 @@
     ],
     "expected_model": "WMM",
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "totalintensity_sv",
+          "location": "London",
+          "start_time": "2026"
+        },
+        "query_without_key": {
+          "lat1": 51.5074456,
+          "lon1": -0.1277653,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "totalintensity_sv",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 2026,
+            "value": 36.5
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T15",
@@ -272,9 +921,155 @@
       }
     ],
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "totalintensity",
+          "location": "London",
+          "start_time": "1999",
+          "end_time": "2026"
+        },
+        "query_without_key": {
+          "lat1": 51.5074456,
+          "lon1": -0.1277653,
+          "model": "IGRF",
+          "startYear": 1999,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "IGRF2025",
+        "calculator_version": "1.2.1",
+        "units": "nanoTesla (nT)",
+        "component": "totalintensity",
+        "tolerance": 0.11,
+        "values": [
+          {
+            "date": 1999,
+            "value": 48275.9
+          },
+          {
+            "date": 2000,
+            "value": 48301.7
+          },
+          {
+            "date": 2001,
+            "value": 48332.1
+          },
+          {
+            "date": 2002,
+            "value": 48362.5
+          },
+          {
+            "date": 2003,
+            "value": 48392.9
+          },
+          {
+            "date": 2004,
+            "value": 48423.4
+          },
+          {
+            "date": 2005,
+            "value": 48454
+          },
+          {
+            "date": 2006,
+            "value": 48480.1
+          },
+          {
+            "date": 2007,
+            "value": 48506.3
+          },
+          {
+            "date": 2008,
+            "value": 48532.6
+          },
+          {
+            "date": 2009,
+            "value": 48558.9
+          },
+          {
+            "date": 2010,
+            "value": 48585.2
+          },
+          {
+            "date": 2011,
+            "value": 48608.2
+          },
+          {
+            "date": 2012,
+            "value": 48631.2
+          },
+          {
+            "date": 2013,
+            "value": 48654.2
+          },
+          {
+            "date": 2014,
+            "value": 48677.3
+          },
+          {
+            "date": 2015,
+            "value": 48700.5
+          },
+          {
+            "date": 2016,
+            "value": 48736.1
+          },
+          {
+            "date": 2017,
+            "value": 48771.7
+          },
+          {
+            "date": 2018,
+            "value": 48807.4
+          },
+          {
+            "date": 2019,
+            "value": 48843.2
+          },
+          {
+            "date": 2020,
+            "value": 48879.1
+          },
+          {
+            "date": 2021,
+            "value": 48915.9
+          },
+          {
+            "date": 2022,
+            "value": 48952.9
+          },
+          {
+            "date": 2023,
+            "value": 48989.9
+          },
+          {
+            "date": 2024,
+            "value": 49027
+          },
+          {
+            "date": 2025,
+            "value": 49064.1
+          },
+          {
+            "date": 2026,
+            "value": 49096.5
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T16",
@@ -297,36 +1092,119 @@
       }
     ],
     "reference_values": [],
-    "reference_verification": "pending_authoritative_values",
+    "reference_verification": "authoritative_verified",
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [
+      {
+        "args": {
+          "data_name": "declination",
+          "location": "51.5,-0.12",
+          "start_time": "2026"
+        },
+        "query_without_key": {
+          "lat1": 51.5,
+          "lon1": -0.12,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "degrees",
+        "component": "declination",
+        "tolerance": 0.011,
+        "values": [
+          {
+            "date": 2026,
+            "value": 1.07977
+          }
+        ]
+      },
+      {
+        "args": {
+          "data_name": "inclination",
+          "location": "51.5,-0.12",
+          "start_time": "2026"
+        },
+        "query_without_key": {
+          "lat1": 51.5,
+          "lon1": -0.12,
+          "model": "WMM",
+          "startYear": 2026,
+          "startMonth": 1,
+          "startDay": 1,
+          "endYear": 2026,
+          "endMonth": 1,
+          "endDay": 1,
+          "elevation": 0,
+          "elevationUnits": "K",
+          "coordinateSystem": "M",
+          "dateStepSize": 1,
+          "resultFormat": "json"
+        },
+        "returned_model": "WMM-2025",
+        "calculator_version": "1.2.1",
+        "units": "degrees",
+        "component": "inclination",
+        "tolerance": 0.011,
+        "values": [
+          {
+            "date": 2026,
+            "value": 66.53515
+          }
+        ]
+      }
+    ],
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T17",
     "calls": [],
     "reject": true,
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [],
+    "reference_verification": "not_applicable",
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T18",
     "calls": [],
     "reject": true,
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [],
+    "reference_verification": "not_applicable",
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T19",
     "calls": [],
     "reject": true,
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [],
+    "reference_verification": "not_applicable",
+    "review_status": "machine_collected_not_human_verified"
   },
   {
     "id": "T20",
     "calls": [],
     "reject": true,
     "behavior_source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
-    "verification_status": "software_policy_checked_not_human_verified"
+    "verification_status": "software_policy_checked_not_human_verified",
+    "authoritative_calls": [],
+    "reference_verification": "not_applicable",
+    "review_status": "machine_collected_not_human_verified"
   }
 ]

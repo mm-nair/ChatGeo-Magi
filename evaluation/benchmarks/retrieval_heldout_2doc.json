@@ -1,0 +1,385 @@
+[
+  {
+    "id": "H01",
+    "question": "How did the Chinese emperor Hoang-Ti navigate through the dense fog raised by Tchi-Yeou in 2634 B.C.?",
+    "expected_answer": "Hoang-Ti constructed a chariot carrying a small figure of a man with an outstretched arm that revolved on a vertical axis and always pointed south, allowing him to locate the direction of the enemy's retreat.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "stood the small figure of a man with his arm outstretched\nalways pointed to the south, allowing the emperor to locate the direction of his enemy's retreat",
+    "relevant_chunk_ids": [
+      "02bbf25461942fd8f72e01e365a44028c8d671a9265fb05cdf876df884a6dac4",
+      "8557fb75394faf31fea61a2c7f19d29267e056d4782c2ec886335909cbda3f99"
+    ],
+    "support_facts": [
+      {
+        "passage": "stood the small figure of a man with his arm outstretched",
+        "page_1based": 1,
+        "chunk_ids": [
+          "02bbf25461942fd8f72e01e365a44028c8d671a9265fb05cdf876df884a6dac4",
+          "8557fb75394faf31fea61a2c7f19d29267e056d4782c2ec886335909cbda3f99"
+        ]
+      },
+      {
+        "passage": "always pointed to the south, allowing the emperor to locate the direction of his enemy's retreat",
+        "page_1based": 1,
+        "chunk_ids": [
+          "8557fb75394faf31fea61a2c7f19d29267e056d4782c2ec886335909cbda3f99"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H02",
+    "question": "Which earlier APL-built satellite launched in 1975 served as the design basis for Magsat, and what was the maximum spacecraft weight the Scout rocket could launch into Magsat's orbit?",
+    "expected_answer": "The Small Astronomical Satellite (SAS-3), designed and built by APL and launched in 1975, served as the basis for Magsat, and the maximum spacecraft weight the Scout rocket could place into the chosen orbit was 182 kg.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "The Small Astronomical Satellite (SAS-3) had been designed and built by APL\nkeep the weight down to 1 8 2 kg, the maximum that the Scout rocket",
+    "relevant_chunk_ids": [
+      "24262496082ba51f3749a23ca183c2853060972e9fdc42939c0db2a4a349b63d",
+      "60643cee41a1e4947a421ec36fe25c515c3beed8ccb67dc02fc247145030c2a9"
+    ],
+    "support_facts": [
+      {
+        "passage": "The Small Astronomical Satellite (SAS-3) had been designed and built by APL",
+        "page_1based": 4,
+        "chunk_ids": [
+          "60643cee41a1e4947a421ec36fe25c515c3beed8ccb67dc02fc247145030c2a9"
+        ]
+      },
+      {
+        "passage": "keep the weight down to 1 8 2 kg, the maximum that the Scout rocket",
+        "page_1based": 5,
+        "chunk_ids": [
+          "24262496082ba51f3749a23ca183c2853060972e9fdc42939c0db2a4a349b63d"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H03",
+    "question": "How was the Magsat magnetometer boom constructed, and how far did it deploy the sensor platform from the instrument module?",
+    "expected_answer": "The magnetometer boom was a collapsible structural element composed of seven pairs of links in a scissors or 'lazy-tongs' arrangement that deployed the sensor platform 6 meters away from the instrument module.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "Magnetometer Boom - A collapsible structural element composed of seven pairs of links\n6 meters away from the instrument module",
+    "relevant_chunk_ids": [
+      "5f1817f4cf348b597e9b46118b68436487765d20af6c390fb7e9ee2a0e7db5fb",
+      "99dc61ff0798aec71778d79759095a1258992d433e9ddf6dc598f683d0d13db0"
+    ],
+    "support_facts": [
+      {
+        "passage": "Magnetometer Boom - A collapsible structural element composed of seven pairs of links",
+        "page_1based": 7,
+        "chunk_ids": [
+          "5f1817f4cf348b597e9b46118b68436487765d20af6c390fb7e9ee2a0e7db5fb",
+          "99dc61ff0798aec71778d79759095a1258992d433e9ddf6dc598f683d0d13db0"
+        ]
+      },
+      {
+        "passage": "6 meters away from the instrument module",
+        "page_1based": 7,
+        "chunk_ids": [
+          "5f1817f4cf348b597e9b46118b68436487765d20af6c390fb7e9ee2a0e7db5fb"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H04",
+    "question": "What output frequency did Magsat's ultrastable quartz crystal oscillator generate, and how was its high thermal stability achieved?",
+    "expected_answer": "Magsat's ultrastable quartz crystal oscillator produced a 5 MHz output (used for the 162 and 324 MHz Doppler signals and synchronizing DC-DC converters), and its thermal stability was achieved by placing the crystal inside a double-oven arrangement with its turnover temperature matched to the oven temperature.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "Oscillator - An ultrastable quartz crystal oscillator producing a 5 MHz output\nproviding a high degree of thermal isolation",
+    "relevant_chunk_ids": [
+      "14212fbf249bb19a1ed79afd0a5056970b60c0d6d0042ba90843956691261110",
+      "e2e3f19bd7671d10cdc85f37dc01a7a93205a840ef1b88bb26ace213e3c031bb"
+    ],
+    "support_facts": [
+      {
+        "passage": "Oscillator - An ultrastable quartz crystal oscillator producing a 5 MHz output",
+        "page_1based": 8,
+        "chunk_ids": [
+          "e2e3f19bd7671d10cdc85f37dc01a7a93205a840ef1b88bb26ace213e3c031bb"
+        ]
+      },
+      {
+        "passage": "providing a high degree of thermal isolation",
+        "page_1based": 8,
+        "chunk_ids": [
+          "14212fbf249bb19a1ed79afd0a5056970b60c0d6d0042ba90843956691261110",
+          "e2e3f19bd7671d10cdc85f37dc01a7a93205a840ef1b88bb26ace213e3c031bb"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H05",
+    "question": "What were the four main elements of Magsat's power supply system?",
+    "expected_answer": "Magsat's power supply system consisted of solar cell arrays to generate electricity, a battery in the base module for shadowed orbit portions and peak power demands, battery voltage limiter devices to control charging, and DC-DC converter regulators to condition power.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "Power Supply - The system",
+    "relevant_chunk_ids": [
+      "14212fbf249bb19a1ed79afd0a5056970b60c0d6d0042ba90843956691261110"
+    ],
+    "support_facts": [
+      {
+        "passage": "Power Supply - The system",
+        "page_1based": 8,
+        "chunk_ids": [
+          "14212fbf249bb19a1ed79afd0a5056970b60c0d6d0042ba90843956691261110"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H06",
+    "question": "How did Magsat's star cameras detect starlight, and what angular accuracy did the precision solar aspect sensor achieve?",
+    "expected_answer": "Each of the two star cameras used a 4-inch lens to focus starlight onto an image-dissector electronic tube that emitted electrons into an electron multiplier scanned and locked by magnetic coils; the precision solar aspect sensor measured angles to the sun with an accuracy of 5 to 10 arc-seconds.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "measured the angles to the sun with an accuracy of 5 to 10 arc-seconds\nStar Cameras - Two star cameras were mounted rigidly on the optical bench",
+    "relevant_chunk_ids": [
+      "57e0cc36b7b144517281109ec98720c9e720c408d6d19883cd8849d62ea1e043"
+    ],
+    "support_facts": [
+      {
+        "passage": "measured the angles to the sun with an accuracy of 5 to 10 arc-seconds",
+        "page_1based": 9,
+        "chunk_ids": [
+          "57e0cc36b7b144517281109ec98720c9e720c408d6d19883cd8849d62ea1e043"
+        ]
+      },
+      {
+        "passage": "Star Cameras - Two star cameras were mounted rigidly on the optical bench",
+        "page_1based": 9,
+        "chunk_ids": [
+          "57e0cc36b7b144517281109ec98720c9e720c408d6d19883cd8849d62ea1e043"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H07",
+    "question": "How was Magsat clamped to the fourth-stage rocket by the vehicle adapter, and how was spacecraft separation executed?",
+    "expected_answer": "Magsat was clamped to the conically-shaped vehicle adapter on the fourth-stage rocket by a two-half clamp fastened with bolts passing through pyrotechnically operated cutters; separation was achieved by actuating the bolt cutters from the spacecraft battery via the despin/separation timers so small springs forced the spacecraft away.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "Vehicle Adapter - The\nactuating the bolt cutters by a stimulus from the spacecraft battery",
+    "relevant_chunk_ids": [
+      "6ba3655da8336bfe21b3f787c33a098045b3e83cc27725c3f99aeb0423871dcf",
+      "dc9eb1c3545204a6b0075e0de92c1760094aaafa0c24d21621a864da34d7d282"
+    ],
+    "support_facts": [
+      {
+        "passage": "Vehicle Adapter - The",
+        "page_1based": 9,
+        "chunk_ids": [
+          "6ba3655da8336bfe21b3f787c33a098045b3e83cc27725c3f99aeb0423871dcf"
+        ]
+      },
+      {
+        "passage": "actuating the bolt cutters by a stimulus from the spacecraft battery",
+        "page_1based": 9,
+        "chunk_ids": [
+          "6ba3655da8336bfe21b3f787c33a098045b3e83cc27725c3f99aeb0423871dcf",
+          "dc9eb1c3545204a6b0075e0de92c1760094aaafa0c24d21621a864da34d7d282"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H08",
+    "question": "What is the vertical validity range of the World Magnetic Model (WMM2020) relative to the WGS 84 ellipsoid surface?",
+    "expected_answer": "WMM2020 is valid from 1 km below the World Geodetic System (WGS 84) ellipsoid surface to approximately 850 km above it.",
+    "source_document": "WMM2020_Report.pdf",
+    "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
+    "supporting_passage": "from 1 km below the World Geodetic System (WGS 84) ellipsoid surface to approximately 850 km above it / from 1 km below the WGS 84 ellipsoid surface to approximately 850 km above it / from 1 km below the WGS 84 ellipsoid surface to approximately 850 km above it",
+    "relevant_chunk_ids": [
+      "15c06077f9a0671927888051965136aa29edb63e2e938f7016af267bf4f55a01",
+      "c50d4340944520b2c3d38952c0ec05f651d278053894c8bf7314da8537aecda4",
+      "dfaaccdaf816d27b27c2fe6fe3b53ef1dc8c44a81090935f9b6910077653805d"
+    ],
+    "support_facts": [
+      {
+        "passage": "from 1 km below the World Geodetic System (WGS 84) ellipsoid surface to approximately 850 km above it / from 1 km below the WGS 84 ellipsoid surface to approximately 850 km above it / from 1 km below the WGS 84 ellipsoid surface to approximately 850 km above it",
+        "page_1based": 9,
+        "chunk_ids": [
+          "15c06077f9a0671927888051965136aa29edb63e2e938f7016af267bf4f55a01",
+          "c50d4340944520b2c3d38952c0ec05f651d278053894c8bf7314da8537aecda4",
+          "dfaaccdaf816d27b27c2fe6fe3b53ef1dc8c44a81090935f9b6910077653805d"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H09",
+    "question": "What are 'disturbance fields' in the context of the World Magnetic Model, and how are they treated in WMM2020?",
+    "expected_answer": "Disturbance fields are time-varying external magnetic fields arising from electric currents in the upper atmosphere and near-Earth space (along with the secondary internal magnetic fields they induce in the Earth and oceans); they are deliberately excluded from the WMM through data selection and model co-estimation.",
+    "source_document": "WMM2020_Report.pdf",
+    "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
+    "supporting_passage": "Deliberately excluded from the WMM by the data selection process and by other means",
+    "relevant_chunk_ids": [
+      "6b83086ca1a2799527678636210dad7d572806f96c314dcae60f81eeef9fec81"
+    ],
+    "support_facts": [
+      {
+        "passage": "Deliberately excluded from the WMM by the data selection process and by other means",
+        "page_1based": 9,
+        "chunk_ids": [
+          "6b83086ca1a2799527678636210dad7d572806f96c314dcae60f81eeef9fec81"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H10",
+    "question": "According to WMM2020 at epoch 2020.0, what are the positions and predicted five-year average drift rates of the north and south magnetic dip poles?",
+    "expected_answer": "In 2020.0, the north dip pole is at 164.04\u00b0E, 86.50\u00b0N with a predicted drift of about 41 km/year, and the south dip pole is at 135.88\u00b0E, 64.07\u00b0S with a predicted average drift of about 9 km/year.",
+    "source_document": "WMM2020_Report.pdf",
+    "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
+    "supporting_passage": "In 2020.0 the north dip pole computed from WMM2020 is located at longitude 164.04\u00b0E and geodetic latitude 86.50\u00b0N",
+    "relevant_chunk_ids": [
+      "4526fe764f5df6b151969b6cf2eb279c8bc22d48890848496fa9e457bfb9d010"
+    ],
+    "support_facts": [
+      {
+        "passage": "In 2020.0 the north dip pole computed from WMM2020 is located at longitude 164.04\u00b0E and geodetic latitude 86.50\u00b0N",
+        "page_1based": 25,
+        "chunk_ids": [
+          "4526fe764f5df6b151969b6cf2eb279c8bc22d48890848496fa9e457bfb9d010"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H11",
+    "question": "What horizontal magnetic intensity (H) thresholds define the WMM2020 Blackout Zone (BoZ) and Caution Zone around the magnetic poles?",
+    "expected_answer": "The Blackout Zone (BoZ) is defined as the region where horizontal magnetic intensity H is less than 2000 nT, and the surrounding Caution Zone is where H is between 2000 nT and 6000 nT (less than 6000 nT).",
+    "source_document": "WMM2020_Report.pdf",
+    "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
+    "supporting_passage": "where the horizontal intensity (H) is less than 2000 nT. Each BoZ is surrounded by a Caution Zone where the horizontal intensity is less than 6000 nT / location is in the blackout zone around the magnetic pole as defined by the WMM military specification",
+    "relevant_chunk_ids": [
+      "073e180aea04008886894a3a535e8f2f708b6ccdfadf9eac3ce4a09789719c58",
+      "59ca077abe852131d9690b0b28f35d6887411dc0efa9e2c22c1592d06802e6ce"
+    ],
+    "support_facts": [
+      {
+        "passage": "where the horizontal intensity (H) is less than 2000 nT. Each BoZ is surrounded by a Caution Zone where the horizontal intensity is less than 6000 nT / location is in the blackout zone around the magnetic pole as defined by the WMM military specification",
+        "page_1based": 26,
+        "chunk_ids": [
+          "073e180aea04008886894a3a535e8f2f708b6ccdfadf9eac3ce4a09789719c58",
+          "59ca077abe852131d9690b0b28f35d6887411dc0efa9e2c22c1592d06802e6ce"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H12",
+    "question": "Which earlier models does WMM2020 supersede, and what is its valid date range?",
+    "expected_answer": "WMM2020 supersedes WMM2015 and WMM2015v2, and is valid for use from 1 January 2020 to 31 December 2024.",
+    "source_document": "WMM2020_Report.pdf",
+    "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
+    "supporting_passage": "supersedes WMM2015 (Chulliat et al., 2015) and WMM2015v2 (Chulliat et al., 2019)\nWMM2020 is to be used from 1 January 2020, to 31 December 2024",
+    "relevant_chunk_ids": [
+      "40dc6f293f110427539d621aa33ee05388de7ed19ada8dc1a46394be5968865f",
+      "6dc40373434445fb58d37707fd2c72ee859ffe44626992f4e6230564dfd284aa"
+    ],
+    "support_facts": [
+      {
+        "passage": "supersedes WMM2015 (Chulliat et al., 2015) and WMM2015v2 (Chulliat et al., 2019)",
+        "page_1based": 29,
+        "chunk_ids": [
+          "6dc40373434445fb58d37707fd2c72ee859ffe44626992f4e6230564dfd284aa"
+        ]
+      },
+      {
+        "passage": "WMM2020 is to be used from 1 January 2020, to 31 December 2024",
+        "page_1based": 29,
+        "chunk_ids": [
+          "40dc6f293f110427539d621aa33ee05388de7ed19ada8dc1a46394be5968865f"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H13",
+    "question": "What are the three categories of instruments at a geomagnetic observatory, and which absolute instruments are most commonly used to measure D, I, and F?",
+    "expected_answer": "The three categories are variometers (commonly tri-axial fluxgate magnetometers), absolute instruments, and semi-absolute instruments; the most common absolute instruments are the fluxgate theodolite for measuring declination (D) and inclination (I) and the proton precession magnetometer for measuring total intensity (F).",
+    "source_document": "WMM2020_Report.pdf",
+    "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
+    "supporting_passage": "common types of absolute instrument are the fluxgate theodolite, for measuring D and I, and the proton precession magnetometer for measuring F\nThe third category comprises semi-absolute instruments",
+    "relevant_chunk_ids": [
+      "1a3e5980b62881e80d0ec65a60cdc1393e22203f397cbb405ef7dbacd5679409",
+      "2abbe7355a5ddcb6ac9afa52c3cc78b2fbc2c4b2c421612ef6bacca70acc68d3",
+      "d9cd1c0e3fd233d1d98081607a6d604c5c29aa3a1c599d7f9837ed99b3b37ba6"
+    ],
+    "support_facts": [
+      {
+        "passage": "common types of absolute instrument are the fluxgate theodolite, for measuring D and I, and the proton precession magnetometer for measuring F",
+        "page_1based": 40,
+        "chunk_ids": [
+          "2abbe7355a5ddcb6ac9afa52c3cc78b2fbc2c4b2c421612ef6bacca70acc68d3",
+          "d9cd1c0e3fd233d1d98081607a6d604c5c29aa3a1c599d7f9837ed99b3b37ba6"
+        ]
+      },
+      {
+        "passage": "The third category comprises semi-absolute instruments",
+        "page_1based": 41,
+        "chunk_ids": [
+          "1a3e5980b62881e80d0ec65a60cdc1393e22203f397cbb405ef7dbacd5679409"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  },
+  {
+    "id": "H14",
+    "question": "What is the distinction between commission error and omission error in the WMM2020 uncertainty model?",
+    "expected_answer": "Commission error arises from inaccuracies in the model's main-field and predictive secular-variation coefficients, whereas omission error arises because the WMM does not account for all contributions to the observed magnetic field (such as unmodeled crustal and disturbance fields).",
+    "source_document": "WMM2020_Report.pdf",
+    "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
+    "supporting_passage": "inaccuracies in the model coefficients and is often referred to as the commission error",
+    "relevant_chunk_ids": [
+      "0eb428b33485036cc2d8538aebd6ba4386e50adbc9c213c797dcfc3ba9fa402f"
+    ],
+    "support_facts": [
+      {
+        "passage": "inaccuracies in the model coefficients and is often referred to as the commission error",
+        "page_1based": 57,
+        "chunk_ids": [
+          "0eb428b33485036cc2d8538aebd6ba4386e50adbc9c213c797dcfc3ba9fa402f"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Independently source-checked held-out evaluation question created before running retrieval configurations; not human verified."
+  }
+]

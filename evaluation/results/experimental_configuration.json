@@ -1,0 +1,127 @@
+{
+  "branch": "revision/offline-scientific-audit",
+  "git_commit": "23afc67ee20b22010f50536a213d3b0bc832a018",
+  "python_version": "3.11.2",
+  "answering_model": {
+    "name": "gpt-oss:20b",
+    "digest": "17052f91a42e97930aa6e28a6c6c06a983e6a58dbb00434885a0cf5313e376f7",
+    "temperature": 0.0,
+    "seed": 20261115,
+    "num_ctx": 8192,
+    "num_predict": 2048,
+    "session_isolation": "fresh_ChatGeoMagi_instance_and_uuid4_thread_per_question"
+  },
+  "primary_judge_model": {
+    "provider": "OpenAI API",
+    "requested_model": "gpt-4o-mini",
+    "returned_models": [
+      "gpt-4o-mini-2024-07-18"
+    ],
+    "temperature": 0,
+    "seed": 20261115,
+    "score_scale": "integer 0-10 normalized to 0.0-1.0",
+    "calibration_cases": 5,
+    "calibration_passed": true,
+    "evaluated_responses": 75,
+    "token_usage_and_cost": {
+      "calibration_prompt_tokens": 2561,
+      "calibration_completion_tokens": 279,
+      "evaluation_prompt_tokens": 68157,
+      "evaluation_completion_tokens": 5521,
+      "total_prompt_tokens": 70718,
+      "total_completion_tokens": 5800,
+      "total_tokens": 76518,
+      "estimated_cost_usd": 0.014088
+    }
+  },
+  "retrieval_configuration": {
+    "preset": "stella_s2p_cosine",
+    "embedding_model": "NovaSearch/stella_en_1.5B_v5",
+    "embedding_revision": "7817065102fd9e1b031fe874e910c01f40b2f001",
+    "embedding_dimension": 1024,
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "length_function": "len",
+    "trust_remote_code": true,
+    "normalize_embeddings": true,
+    "distance_metric": "cosine",
+    "query_instruction": "Instruct: Given a web search query, retrieve relevant passages that answer the query.\nQuery: ",
+    "retrieval_k": 4,
+    "public_only": true,
+    "chunk_count": 8863,
+    "document_hashes": {
+      "01-03-Potemra_Geomag.pdf": "bb72f79250cd07dce0a5ca311afbc111d044e3973e045aeb37194090c29b85b9",
+      "Encyclopedia_of_Geomagnetism.pdf": "299f2e721fb3d69534c60696bb2fe866c74e2dce91011d041d9b42d0080def25",
+      "GEOMAGNETISM - A BRIEF HISTORICAL REVIEW.pdf": "485ce389a505c2f1343b2483e1dc47c09aaf03ef5383cd3827a4c7eca97cb543",
+      "GeomagnetismTutorial_Reeve.pdf": "7dafed1dd56a99285d1f1798038ada9512c23928066ecbb59913bf10aeb6024d",
+      "Geomagnetism_applications_Campbell.pdf": "63c41c0d8627e19724ec7caf89fb45679167f783acf952e5318196807e84837d",
+      "Geomagnetism_history.pdf": "8947a15f5cdb83d53e8579d2e932407d399ea15cd5416123e9dfa182c4ae607c",
+      "Intro_Geomag_Campbell.pdf": "860b4425ed24b8605ad9ddc5ce74f523db2fdd0315492c6912464b6d4daa16d1",
+      "WMM2020_Report.pdf": "1198103213ff211033c84c09857184b53626a5c8b8ce59fec60d7bb2b17532ff",
+      "geomag_2020_ipgp.pdf": "640d92bb1e3b900cc4c8b0efdcc14df598d7a0896b698fd82372dec28f94d884",
+      "geomag_chap01.pdf": "3239d6d6c1e122cec023abc80850bf7c3312b0e8476b99de5b8f25d7e418522d",
+      "geomag_chap03.pdf": "6b007baff8a2e8a6ec10280328065659598b96657d08e982619d734221430e11",
+      "geomag_chap07.pdf": "7dfc8567c371be97d4339a996ed150bd4ebec0ac63a24d174399779f8fdbd451",
+      "geomagnetism_ncei.pdf": "b631023c9283f3c9c8b815a858e998beca4ee83949145f2881650617f339f368",
+      "state_report.pdf": "333360974d8669564855a68ba021e3bc6e87264f4c54bf18882e9dddf3496ee2",
+      "wmm_25.txt": "546a8ebaf2a3979810432b1f94b5c9425e3be0268544299bb35ddaee2215aca7"
+    },
+    "config_hash": "f5f9416fdc093febc22a8c9bfc453c71e5cce799b37f88a1371bf74b646e81ef",
+    "index_path": "expanded_stella_s2p_cosine",
+    "index_signature": {
+      "preset": "stella_s2p_cosine",
+      "embedding_model": "NovaSearch/stella_en_1.5B_v5",
+      "embedding_revision": "7817065102fd9e1b031fe874e910c01f40b2f001",
+      "embedding_dimension": 1024,
+      "chunk_size": 1000,
+      "chunk_overlap": 200,
+      "length_function": "len",
+      "trust_remote_code": true,
+      "normalize_embeddings": true,
+      "distance_metric": "cosine",
+      "query_instruction": "Instruct: Given a web search query, retrieve relevant passages that answer the query.\nQuery: ",
+      "public_only": true
+    },
+    "retrieval_signature": {
+      "preset": "stella_s2p_cosine",
+      "embedding_model": "NovaSearch/stella_en_1.5B_v5",
+      "embedding_revision": "7817065102fd9e1b031fe874e910c01f40b2f001",
+      "embedding_dimension": 1024,
+      "chunk_size": 1000,
+      "chunk_overlap": 200,
+      "length_function": "len",
+      "trust_remote_code": true,
+      "normalize_embeddings": true,
+      "distance_metric": "cosine",
+      "query_instruction": "Instruct: Given a web search query, retrieve relevant passages that answer the query.\nQuery: ",
+      "retrieval_k": 4,
+      "public_only": true
+    }
+  },
+  "two_document_index_configuration": {
+    "preset": "stella_s2p_cosine",
+    "embedding_model": "NovaSearch/stella_en_1.5B_v5",
+    "embedding_revision": "7817065102fd9e1b031fe874e910c01f40b2f001",
+    "embedding_dimension": 1024,
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "length_function": "len",
+    "trust_remote_code": true,
+    "normalize_embeddings": true,
+    "distance_metric": "cosine",
+    "query_instruction": "Instruct: Given a web search query, retrieve relevant passages that answer the query.\nQuery: ",
+    "retrieval_k": 4,
+    "public_only": true,
+    "chunk_count": 283,
+    "document_hashes": {
+      "01-03-Potemra_Geomag.pdf": "bb72f79250cd07dce0a5ca311afbc111d044e3973e045aeb37194090c29b85b9",
+      "WMM2020_Report.pdf": "1198103213ff211033c84c09857184b53626a5c8b8ce59fec60d7bb2b17532ff"
+    },
+    "config_hash": "4ed5f3931eb5f9015827ee932d307f4f661d2f20fae2ee29a74b05c3df5020ac"
+  },
+  "bootstrap_configuration": {
+    "seed": 20261115,
+    "resamples": 100000,
+    "method": "paired_percentile_bootstrap"
+  }
+}

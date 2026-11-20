@@ -1,0 +1,17 @@
+judge,subset,condition_code,condition_label,n,mean,sd,median,iqr,ci95_low,ci95_high,exact_1_0_count,empty_count,questions_calling_retriever,total_retriever_calls,paired_diff_vs_no_rag,paired_diff_ci95_low,paired_diff_ci95_high,improved_vs_no_rag,unchanged_vs_no_rag,worsened_vs_no_rag
+gpt-4o-mini-2024-07-18,all_25_questions,no_rag,No RAG (Parametric Baseline),25,0.668,0.2529,0.7,0.4,0.568,0.76,3,1,0,0,0.0,,,,,
+gpt-4o-mini-2024-07-18,all_25_questions,rag_2doc_corrected,Corrected 2-Doc RAG (stella_s2p_cosine),25,0.772,0.2372,0.9,0.2,0.672,0.856,4,1,21,23,0.104,0.016,0.204,14,7,4
+gpt-4o-mini-2024-07-18,all_25_questions,rag_15doc_corrected,Corrected 15-Doc Full-Corpus RAG (stella_s2p_cosine),25,0.784,0.241,0.9,0.2,0.684,0.868,6,1,21,29,0.116,0.024,0.224,13,7,5
+gpt-4o-mini-2024-07-18,sensitivity_excluding_q06_q12_n23,no_rag,No RAG (Parametric Baseline),23,0.6696,0.253,0.7,0.3,0.5652,0.7652,3,1,0,0,0.0,,,,,
+gpt-4o-mini-2024-07-18,sensitivity_excluding_q06_q12_n23,rag_2doc_corrected,Corrected 2-Doc RAG (stella_s2p_cosine),23,0.7696,0.2401,0.9,0.2,0.6652,0.8565,3,1,19,21,0.1,0.0043,0.2087,12,7,4
+gpt-4o-mini-2024-07-18,sensitivity_excluding_q06_q12_n23,rag_15doc_corrected,Corrected 15-Doc Full-Corpus RAG (stella_s2p_cosine),23,0.7957,0.2364,0.9,0.25,0.6913,0.8784,6,1,19,19,0.1261,0.0261,0.2435,13,5,5
+gpt-4o-mini-2024-07-18,in_two_doc_corpus_n22,no_rag,No RAG (Parametric Baseline),22,0.6409,0.2538,0.7,0.4,0.5318,0.7409,2,1,0,0,0.0,,,,,
+gpt-4o-mini-2024-07-18,in_two_doc_corpus_n22,rag_2doc_corrected,Corrected 2-Doc RAG (stella_s2p_cosine),22,0.7636,0.2498,0.9,0.275,0.6545,0.8545,4,1,18,18,0.1227,0.0273,0.2318,14,5,3
+gpt-4o-mini-2024-07-18,in_two_doc_corpus_n22,rag_15doc_corrected,Corrected 15-Doc Full-Corpus RAG (stella_s2p_cosine),22,0.7727,0.2548,0.9,0.275,0.6591,0.8682,6,1,18,26,0.1318,0.0318,0.2545,12,6,4
+gpt-4o-mini-2024-07-18,jacobs_biography_q22_q24_n3,no_rag,No RAG (Parametric Baseline),3,0.8667,0.1528,0.9,0.15,0.7,1.0,1,0,0,0,0.0,,,,,
+gpt-4o-mini-2024-07-18,jacobs_biography_q22_q24_n3,rag_2doc_corrected,Corrected 2-Doc RAG (stella_s2p_cosine),3,0.8333,0.1155,0.9,0.1,0.7,0.9,0,0,3,5,-0.0333,-0.1,0.0,0,2,1
+gpt-4o-mini-2024-07-18,jacobs_biography_q22_q24_n3,rag_15doc_corrected,Corrected 15-Doc Full-Corpus RAG (stella_s2p_cosine),3,0.8667,0.0577,0.9,0.05,0.8,0.9,0,0,3,3,0.0,-0.1,0.1,1,1,1
+"gpt-oss:20b (local self-judge, secondary)",all_25_questions,no_rag,No RAG (Parametric Baseline),25,0.592,0.4082,0.6,0.8,0.432,0.744,10,1,0,0,,,,,,
+"gpt-oss:20b (local self-judge, secondary)",all_25_questions,rag_broken_l2,Original Broken 2-Doc RAG (legacy_l2),25,0.648,0.4073,0.9,0.8,0.488,0.8,12,2,21,38,,,,,,
+"gpt-oss:20b (local self-judge, secondary)",all_25_questions,rag_2doc_corrected,Corrected 2-Doc RAG (stella_s2p_cosine),25,0.88,0.2814,1.0,0.0,0.76,0.976,20,1,21,23,0.288,0.16,0.428,14,11,0
+"gpt-oss:20b (local self-judge, secondary)",all_25_questions,rag_15doc_corrected,Corrected 15-Doc Full-Corpus RAG (stella_s2p_cosine),25,0.832,0.3211,1.0,0.1,0.7,0.944,18,1,21,29,0.24,0.12,0.38,12,13,0

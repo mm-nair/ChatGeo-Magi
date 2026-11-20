@@ -1,0 +1,665 @@
+[
+  {
+    "id": "Q01",
+    "question": "Who conducted the first systematic and scientific study of the Earth's magnetic field, and what was the title of his major work?",
+    "expected_answer": "William Gilbert conducted the first systematic and scientific study of the Earth's magnetic field. His major work was titled 'De Magnete,' published in 1600.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "was conducted by William Gilbert, physician (later promoted to electrician) to Queen Elizabeth, who published in 1600 his pro\nin his De Magnete. 2 This treatise was published nearly a century before Newton'",
+    "relevant_chunk_ids": [
+      "8557fb75394faf31fea61a2c7f19d29267e056d4782c2ec886335909cbda3f99"
+    ],
+    "support_facts": [
+      {
+        "passage": "was conducted by William Gilbert, physician (later promoted to electrician) to Queen Elizabeth, who published in 1600 his pro",
+        "page_1based": 1,
+        "chunk_ids": [
+          "8557fb75394faf31fea61a2c7f19d29267e056d4782c2ec886335909cbda3f99"
+        ]
+      },
+      {
+        "passage": "in his De Magnete. 2 This treatise was published nearly a century before Newton'",
+        "page_1based": 1,
+        "chunk_ids": [
+          "8557fb75394faf31fea61a2c7f19d29267e056d4782c2ec886335909cbda3f99"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q02",
+    "question": "What is the main objective of the Magsat satellite mission?",
+    "expected_answer": "The main objective of the Magsat satellite mission was to obtain precise absolute and directional values of the Earth's magnetic field on a global scale, providing the most accurate evaluation of the geomagnetic field model.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "the Magsat system to obtain precise absolute and directional values of the earth's magnetic field on a global scale are briefly described. EARLY HISTORY Th",
+    "relevant_chunk_ids": [
+      "02bbf25461942fd8f72e01e365a44028c8d671a9265fb05cdf876df884a6dac4",
+      "a7e0142e3508b408cf8ef869a8374d573204c14b37a2c5463247d2d033c44d72"
+    ],
+    "support_facts": [
+      {
+        "passage": "the Magsat system to obtain precise absolute and directional values of the earth's magnetic field on a global scale are briefly described. EARLY HISTORY Th",
+        "page_1based": 1,
+        "chunk_ids": [
+          "02bbf25461942fd8f72e01e365a44028c8d671a9265fb05cdf876df884a6dac4",
+          "a7e0142e3508b408cf8ef869a8374d573204c14b37a2c5463247d2d033c44d72"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment. Multi-passage refinement: includes additional chunks in the same source PDF that explicitly state the same supporting fact."
+  },
+  {
+    "id": "Q03",
+    "question": "How is the geomagnetic field commonly represented for practical purposes, and what mathematical tool is used for its most accurate representation?",
+    "expected_answer": "The geomagnetic field is commonly represented as a simple dipole, but its most accurate representation is provided by a series of spherical harmonic functions.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "simple dipole, but there is a significant contribution from nondipole components and from \nseries of spherical harmonic functions. -l The coefficients of such a series representatio",
+    "relevant_chunk_ids": [
+      "11a62f67261bc412a1349280c2d3c443746cc6ee809cbb42c7a5e6a8c1e32abd"
+    ],
+    "support_facts": [
+      {
+        "passage": "simple dipole, but there is a significant contribution from nondipole components and from ",
+        "page_1based": 2,
+        "chunk_ids": [
+          "11a62f67261bc412a1349280c2d3c443746cc6ee809cbb42c7a5e6a8c1e32abd"
+        ]
+      },
+      {
+        "passage": "series of spherical harmonic functions. -l The coefficients of such a series representatio",
+        "page_1based": 2,
+        "chunk_ids": [
+          "11a62f67261bc412a1349280c2d3c443746cc6ee809cbb42c7a5e6a8c1e32abd"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q04",
+    "question": "What is the SI unit of magnetic induction, and how does it relate to the tesla?",
+    "expected_answer": "The SI unit of magnetic induction is the weber per square meter (Wb/m\u00b2), and 1 Wb/m\u00b2 is equal to 1 tesla.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "This unit of induction, B, is 1 weber per square meter (1 Wb/m2); it is the magnetic induction \nIn SI units, 1 Wb/m 2 = 1 tesla. In studies of planetar",
+    "relevant_chunk_ids": [
+      "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+    ],
+    "support_facts": [
+      {
+        "passage": "This unit of induction, B, is 1 weber per square meter (1 Wb/m2); it is the magnetic induction ",
+        "page_1based": 2,
+        "chunk_ids": [
+          "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+        ]
+      },
+      {
+        "passage": "In SI units, 1 Wb/m 2 = 1 tesla. In studies of planetar",
+        "page_1based": 2,
+        "chunk_ids": [
+          "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q05",
+    "question": "What is the typical range of the intensity of the surface geomagnetic field from the equator to the magnetic poles?",
+    "expected_answer": "The intensity of the surface geomagnetic field varies from about 30,000 nanotesla (nT) at the equator to more than 50,000 nT at high latitudes near the magnetic poles.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "The intensity of the surface geomagnetic field varies from about 30,000 nT at the equator to more than 50,000 nT at high latitudes near the magnetic poles. SECULAR VARIATION I",
+    "relevant_chunk_ids": [
+      "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+    ],
+    "support_facts": [
+      {
+        "passage": "The intensity of the surface geomagnetic field varies from about 30,000 nT at the equator to more than 50,000 nT at high latitudes near the magnetic poles. SECULAR VARIATION I",
+        "page_1based": 2,
+        "chunk_ids": [
+          "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q06",
+    "question": "What are the five main features of secular variation in the geomagnetic field?",
+    "expected_answer": "The five main features of secular variation are: (1) a decrease in the moment of the dipole field by 0.05% per year, (2) a westward precessional rotation of the dipole of 0.05\u00b0 of longitude per year, (3) a rotation of the dipole toward the geographic axis of 0.02\u00b0 of latitude per year, (4) a westward drift of the nondipole field of 0.2\u00b0 of longitude per year, and (5) growth and decay of features of the nondipole field with average changes of about 10 nT per year.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "A decrease in the moment of the dipole field by 0.05070 per year, indicating that the present geomagnetic field may reve\nA westward precessional rotation of the dipole of 0.05 0 of longitude per year; 3. A rotation of the dipole to\nA rotation of the dipole toward the geographic axis of 0.020 of latitude per year; 4. A westward drift of the \nA westward drift of the nondipole field of 0.20 of longitude per year; 5. Growth and decay of features of\nGrowth and decay of features of the nondipole field with average changes of about 10 nT per year. Although these secular variation",
+    "relevant_chunk_ids": [
+      "99c16105ce0ed408d4f3e5663fecdd7cea2d3dab045d7412b67df32e0dfebdc8",
+      "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+    ],
+    "support_facts": [
+      {
+        "passage": "A decrease in the moment of the dipole field by 0.05070 per year, indicating that the present geomagnetic field may reve",
+        "page_1based": 2,
+        "chunk_ids": [
+          "99c16105ce0ed408d4f3e5663fecdd7cea2d3dab045d7412b67df32e0dfebdc8"
+        ]
+      },
+      {
+        "passage": "A westward precessional rotation of the dipole of 0.05 0 of longitude per year; 3. A rotation of the dipole to",
+        "page_1based": 2,
+        "chunk_ids": [
+          "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+        ]
+      },
+      {
+        "passage": "A rotation of the dipole toward the geographic axis of 0.020 of latitude per year; 4. A westward drift of the ",
+        "page_1based": 2,
+        "chunk_ids": [
+          "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+        ]
+      },
+      {
+        "passage": "A westward drift of the nondipole field of 0.20 of longitude per year; 5. Growth and decay of features of",
+        "page_1based": 2,
+        "chunk_ids": [
+          "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+        ]
+      },
+      {
+        "passage": "Growth and decay of features of the nondipole field with average changes of about 10 nT per year. Although these secular variation",
+        "page_1based": 2,
+        "chunk_ids": [
+          "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q07",
+    "question": "What is the presumed internal source of the Earth's geomagnetic field, and what physical state is it in?",
+    "expected_answer": "The presumed internal source of the Earth's geomagnetic field is the fluid core, which is composed mainly of iron and is in a liquid state.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "Seismological evidence reveals a fluid core for the earth that can easily experience large-scale motions, and it is presumed that the geomagnetic secular variation - and indeed the main field itself -\nmainly of iron - a good electric and magnetic conductor. Therefore, the study of the earth",
+    "relevant_chunk_ids": [
+      "76e26c1d9977986cfeb22770a15f11e1cb731a1157e6344a59abb22e8b49881a",
+      "c2b9c74b7deb80c9a94b2fb75cb02b408c19b1ff64588efb8f070643dbdbe196"
+    ],
+    "support_facts": [
+      {
+        "passage": "Seismological evidence reveals a fluid core for the earth that can easily experience large-scale motions, and it is presumed that the geomagnetic secular variation - and indeed the main field itself -",
+        "page_1based": 3,
+        "chunk_ids": [
+          "76e26c1d9977986cfeb22770a15f11e1cb731a1157e6344a59abb22e8b49881a"
+        ]
+      },
+      {
+        "passage": "mainly of iron - a good electric and magnetic conductor. Therefore, the study of the earth",
+        "page_1based": 3,
+        "chunk_ids": [
+          "76e26c1d9977986cfeb22770a15f11e1cb731a1157e6344a59abb22e8b49881a",
+          "c2b9c74b7deb80c9a94b2fb75cb02b408c19b1ff64588efb8f070643dbdbe196"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q08",
+    "question": "What is the magnetosphere, and what causes its comet-shaped distortion?",
+    "expected_answer": "The magnetosphere is the region of space around the Earth where its magnetic field is dominant. Its comet-shaped distortion is caused by the continuous flow of plasma (the solar wind) from the sun.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "but is severely distorted into a comet-shaped configuration b y the continuous flow of plasma (the solar wind) from the sun (depicted in Fig. 4). This distortio\nmagnetic field configuration called the \"magnetosphere.\" For example, the compression of the geomagnetic field",
+    "relevant_chunk_ids": [
+      "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689",
+      "5edb6768e4dbbd05eae3b24539a82b8b7063221d855d12e5421bf93246715252",
+      "d1623453a948c3666bbd48e0be3e50b1a8a627f6cef38e21d028506cda22a1b0"
+    ],
+    "support_facts": [
+      {
+        "passage": "but is severely distorted into a comet-shaped configuration b y the continuous flow of plasma (the solar wind) from the sun (depicted in Fig. 4). This distortio",
+        "page_1based": 4,
+        "chunk_ids": [
+          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689",
+          "5edb6768e4dbbd05eae3b24539a82b8b7063221d855d12e5421bf93246715252",
+          "d1623453a948c3666bbd48e0be3e50b1a8a627f6cef38e21d028506cda22a1b0"
+        ]
+      },
+      {
+        "passage": "magnetic field configuration called the \"magnetosphere.\" For example, the compression of the geomagnetic field",
+        "page_1based": 4,
+        "chunk_ids": [
+          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment. Multi-passage refinement: includes additional chunks in the same source PDF that explicitly state the same supporting fact."
+  },
+  {
+    "id": "Q09",
+    "question": "Name at least three types of large-scale current systems present in the Earth's magnetosphere.",
+    "expected_answer": "Three types of large-scale current systems in the Earth's magnetosphere are: (1) the Chapman-Ferraro (magnetopause) current, (2) Birkeland currents that flow along geomagnetic field lines into and away from the auroral regions, and (3) the ring current that flows at high altitudes around the equator.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "called the Chapman-Ferraro or magnetopause current (see Fig. 4). The magnetospheric system include s\n\"Birkeland\" currents that flow along geomagnetic field lines (see the article by Potemra in this issue) into and away from the two auroral region\nthe ring current that flows at high altitudes around the equator of the earth; and a complex system of current",
+    "relevant_chunk_ids": [
+      "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+    ],
+    "support_facts": [
+      {
+        "passage": "called the Chapman-Ferraro or magnetopause current (see Fig. 4). The magnetospheric system include s",
+        "page_1based": 4,
+        "chunk_ids": [
+          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+        ]
+      },
+      {
+        "passage": "\"Birkeland\" currents that flow along geomagnetic field lines (see the article by Potemra in this issue) into and away from the two auroral region",
+        "page_1based": 4,
+        "chunk_ids": [
+          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+        ]
+      },
+      {
+        "passage": "the ring current that flows at high altitudes around the equator of the earth; and a complex system of current",
+        "page_1based": 4,
+        "chunk_ids": [
+          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q10",
+    "question": "What is a magnetic storm, and what solar phenomena are they associated with?",
+    "expected_answer": "A magnetic storm is a widespread magnetic disturbance observed over the Earth's surface, associated with major solar eruptions that emit X-rays, ultraviolet and extreme ultraviolet radiation, and energetic particles.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "Widespread magnetic disturbances sometimes observed over the entire surface of the earth are known as magnetic storms. These storms are associated with major solar eruptions that e\nThe solar plasma accompanying solar eruptions causes a magnetic storm when it collides with the earth's magnetosphere. Minor mag- Fig. 4- The con",
+    "relevant_chunk_ids": [
+      "9f1e9543fece6b20c1f3b564527a8483a2e360b2fecacccbe016770e874063af"
+    ],
+    "support_facts": [
+      {
+        "passage": "Widespread magnetic disturbances sometimes observed over the entire surface of the earth are known as magnetic storms. These storms are associated with major solar eruptions that e",
+        "page_1based": 4,
+        "chunk_ids": [
+          "9f1e9543fece6b20c1f3b564527a8483a2e360b2fecacccbe016770e874063af"
+        ]
+      },
+      {
+        "passage": "The solar plasma accompanying solar eruptions causes a magnetic storm when it collides with the earth's magnetosphere. Minor mag- Fig. 4- The con",
+        "page_1based": 4,
+        "chunk_ids": [
+          "9f1e9543fece6b20c1f3b564527a8483a2e360b2fecacccbe016770e874063af"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q11",
+    "question": "What was a surprising discovery made from satellite data in 1972 regarding the Earth's crust?",
+    "expected_answer": "It was discovered that useful information about the structure of the Earth's crust could be derived from satellite data, which would be very difficult to detect in airplane survey data.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "satellites in 1972 that useful information about the structure of the earth's crust could be derived from satellite data - information that would be very difficult to detect in airplane survey data. Ideas for a",
+    "relevant_chunk_ids": [
+      "9619216870cbc2d2616f30ecdfb006849c1dcac52a1d98495ac3c2a1247e690c"
+    ],
+    "support_facts": [
+      {
+        "passage": "satellites in 1972 that useful information about the structure of the earth's crust could be derived from satellite data - information that would be very difficult to detect in airplane survey data. Ideas for a",
+        "page_1based": 4,
+        "chunk_ids": [
+          "9619216870cbc2d2616f30ecdfb006849c1dcac52a1d98495ac3c2a1247e690c"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q12",
+    "question": "What is a sun-synchronous orbit, and why was it chosen for Magsat?",
+    "expected_answer": "A sun-synchronous orbit is an orbit where the plane precesses at a rate that keeps it aligned with the sun, providing nearly 100% Earth coverage and many months of fully sunlit orbits. It was chosen for Magsat to maximize data collection and minimize shadowing.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "amount to make the orbit plane follow the sun. (This precession is due to the bulge in the earth's gravity field at the equator.) Thi s sun-synchronous orbit (Fig. 5) give s nearly 100 0/ 0 earth coverage and many month ",
+    "relevant_chunk_ids": [
+      "24262496082ba51f3749a23ca183c2853060972e9fdc42939c0db2a4a349b63d",
+      "e8bea3dfd06c8c311ed4627927bcffd6f7de5c6f53d0d5df35d2ee4d48b88db5",
+      "ecebb1142a17a9062a3689ff41fd0b5c21bf9eec2b79730c79660d6f5df4eb35",
+      "fdeb80353ce6b185c24c7a1a71617f5211c8ca5a4d2b5c5f49b8e16fac88f56e"
+    ],
+    "support_facts": [
+      {
+        "passage": "amount to make the orbit plane follow the sun. (This precession is due to the bulge in the earth's gravity field at the equator.) Thi s sun-synchronous orbit (Fig. 5) give s nearly 100 0/ 0 earth coverage and many month ",
+        "page_1based": 5,
+        "chunk_ids": [
+          "24262496082ba51f3749a23ca183c2853060972e9fdc42939c0db2a4a349b63d",
+          "e8bea3dfd06c8c311ed4627927bcffd6f7de5c6f53d0d5df35d2ee4d48b88db5",
+          "ecebb1142a17a9062a3689ff41fd0b5c21bf9eec2b79730c79660d6f5df4eb35",
+          "fdeb80353ce6b185c24c7a1a71617f5211c8ca5a4d2b5c5f49b8e16fac88f56e"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment. Multi-passage refinement: includes additional chunks in the same source PDF that explicitly state the same supporting fact."
+  },
+  {
+    "id": "Q13",
+    "question": "What is the function of the Attitude Transfer System (ATS) on Magsat?",
+    "expected_answer": "The Attitude Transfer System (ATS) is an electronic and optical system for measuring the orientation of the vector magnetometer sensor relative to the star cameras, ensuring accurate determination of the sensor's orientation.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "An electronic and optical system for measuring the orientation of the vector magnetometer s ensor relative to the star cameras. Two optical heads of the A TS we",
+    "relevant_chunk_ids": [
+      "88d05262611ccf9157bd03935847136cc9155eac7cdd38e56621937e77bf44e3",
+      "b1b920c68ef46ca7ef1b33cf6670b5d0f302c4e9a3a1cc020bd648115cceb987"
+    ],
+    "support_facts": [
+      {
+        "passage": "An electronic and optical system for measuring the orientation of the vector magnetometer s ensor relative to the star cameras. Two optical heads of the A TS we",
+        "page_1based": 7,
+        "chunk_ids": [
+          "88d05262611ccf9157bd03935847136cc9155eac7cdd38e56621937e77bf44e3",
+          "b1b920c68ef46ca7ef1b33cf6670b5d0f302c4e9a3a1cc020bd648115cceb987"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment. Multi-passage refinement: includes additional chunks in the same source PDF that explicitly state the same supporting fact."
+  },
+  {
+    "id": "Q14",
+    "question": "Describe the main components and function of the vector magnetometer on Magsat.",
+    "expected_answer": "The vector magnetometer on Magsat consisted of three small toroidal cores of highly permeable magnetic material with platinum wire windings, mounted on a stable ceramic block. It measured the three components of the Earth's magnetic field vector.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "The vector sensor consisted of three small toroidal cores of highly permeable magnetic material with platinum wire windings used to sense the components of the field. They were mounted on a very stable ceramic block, and the ",
+    "relevant_chunk_ids": [
+      "be3aaf12d10a69f7ff64568a913b6dae95bf0b6910fc9b5fea272e91e20b3a4e",
+      "e0f117e361285667491777c38970fec167407ee9a86203882a5230bb1fe9b0c6"
+    ],
+    "support_facts": [
+      {
+        "passage": "The vector sensor consisted of three small toroidal cores of highly permeable magnetic material with platinum wire windings used to sense the components of the field. They were mounted on a very stable ceramic block, and the ",
+        "page_1based": 6,
+        "chunk_ids": [
+          "be3aaf12d10a69f7ff64568a913b6dae95bf0b6910fc9b5fea272e91e20b3a4e",
+          "e0f117e361285667491777c38970fec167407ee9a86203882a5230bb1fe9b0c6"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment. Multi-passage refinement: includes additional chunks in the same source PDF that explicitly state the same supporting fact."
+  },
+  {
+    "id": "Q15",
+    "question": "How did the scalar magnetometer on Magsat measure the magnetic field, and what element did it use?",
+    "expected_answer": "The scalar magnetometer measured the magnitude of the magnetic field using Zeeman splitting of energy levels in cesium-133 gas.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "It used Zeeman splitting of energy levels in cesium - l33 gas as a technique for measuring the field. The scalar data provided redundancy and an indep",
+    "relevant_chunk_ids": [
+      "be3aaf12d10a69f7ff64568a913b6dae95bf0b6910fc9b5fea272e91e20b3a4e",
+      "e0f117e361285667491777c38970fec167407ee9a86203882a5230bb1fe9b0c6"
+    ],
+    "support_facts": [
+      {
+        "passage": "It used Zeeman splitting of energy levels in cesium - l33 gas as a technique for measuring the field. The scalar data provided redundancy and an indep",
+        "page_1based": 6,
+        "chunk_ids": [
+          "be3aaf12d10a69f7ff64568a913b6dae95bf0b6910fc9b5fea272e91e20b3a4e",
+          "e0f117e361285667491777c38970fec167407ee9a86203882a5230bb1fe9b0c6"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment. Multi-passage refinement: includes additional chunks in the same source PDF that explicitly state the same supporting fact."
+  },
+  {
+    "id": "Q16",
+    "question": "What was the main challenge in aligning the star cameras and ATS on Magsat, and how was it solved?",
+    "expected_answer": "The main challenge was that ground calibrations were affected by gravity (1g), which distorted the optical bench. The solution was to perform a second calibration with the satellite upside down (-1g), and assume the zero-g calibration in orbit was midway between the two results.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "satellite upside down, thereby reversing the direction of the weight force (i.e., -I g) and producing distortions equal and opposite to those of the initial calibration. We then presumed that the zero\nthe zero-g calibration must be exactly midway between the two results. This technique has been confirmed with our flight resu",
+    "relevant_chunk_ids": [
+      "478e63caa29c2fb7446ff66177dc20cf86c17a5c1734b68dbd9500d5038d9d1b"
+    ],
+    "support_facts": [
+      {
+        "passage": "satellite upside down, thereby reversing the direction of the weight force (i.e., -I g) and producing distortions equal and opposite to those of the initial calibration. We then presumed that the zero",
+        "page_1based": 6,
+        "chunk_ids": [
+          "478e63caa29c2fb7446ff66177dc20cf86c17a5c1734b68dbd9500d5038d9d1b"
+        ]
+      },
+      {
+        "passage": "the zero-g calibration must be exactly midway between the two results. This technique has been confirmed with our flight resu",
+        "page_1based": 6,
+        "chunk_ids": [
+          "478e63caa29c2fb7446ff66177dc20cf86c17a5c1734b68dbd9500d5038d9d1b"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q17",
+    "question": "What operational problems did Magsat experience in the latter part of its mission?",
+    "expected_answer": "Magsat experienced operational problems due to earth shadowing, primarily caused by an unexpected loss of battery capacity, which forced compromises in data collection. Additionally, sunshades of the star cameras showed light leaks, causing some data loss.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "We experienced some operational problems because of earth shadowing in the latter portion of Magsat's life, primarily caused by an unexpected ' loss of battery capacity that forced some compromises in data collection. The sunshades of the s\nThe sunshades of the star cameras showed light leaks, which caused the loss of some data. On the whole, howeve",
+    "relevant_chunk_ids": [
+      "c6adbc4adddcc5163a18c05a3e36f40726c14baa57bd4930d79cbe07fb75e343"
+    ],
+    "support_facts": [
+      {
+        "passage": "We experienced some operational problems because of earth shadowing in the latter portion of Magsat's life, primarily caused by an unexpected ' loss of battery capacity that forced some compromises in data collection. The sunshades of the s",
+        "page_1based": 7,
+        "chunk_ids": [
+          "c6adbc4adddcc5163a18c05a3e36f40726c14baa57bd4930d79cbe07fb75e343"
+        ]
+      },
+      {
+        "passage": "The sunshades of the star cameras showed light leaks, which caused the loss of some data. On the whole, howeve",
+        "page_1based": 7,
+        "chunk_ids": [
+          "c6adbc4adddcc5163a18c05a3e36f40726c14baa57bd4930d79cbe07fb75e343"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q18",
+    "question": "What is the purpose of the momentum wheel in Magsat's attitude control system?",
+    "expected_answer": "The momentum wheel provided angular momentum for gyroscopic attitude stability, which was a key feature of the attitude control system.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "This rotation provided angular momentum that gave the satellite a form of gyroscopic attitude stability. This was a key feature of the attitude control system_ Nutation Damper",
+    "relevant_chunk_ids": [
+      "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+    ],
+    "support_facts": [
+      {
+        "passage": "This rotation provided angular momentum that gave the satellite a form of gyroscopic attitude stability. This was a key feature of the attitude control system_ Nutation Damper",
+        "page_1based": 8,
+        "chunk_ids": [
+          "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q19",
+    "question": "What is the function of the nutation damper on Magsat?",
+    "expected_answer": "The nutation damper reduced nodding or wobbling motions (nutation) of the satellite after disturbance torques, using a pendulous mechanical damper with magnetic eddy currents and closed-loop attitude control.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "a pendulous mechanical damper that used magnetic eddy currents for damping, and by the closed-loop attitude co\nclosed-loop attitude control that modulated the momentum wheel speed to damp nutation_ Optical Bench - A struc",
+    "relevant_chunk_ids": [
+      "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+    ],
+    "support_facts": [
+      {
+        "passage": "a pendulous mechanical damper that used magnetic eddy currents for damping, and by the closed-loop attitude co",
+        "page_1based": 8,
+        "chunk_ids": [
+          "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+        ]
+      },
+      {
+        "passage": "closed-loop attitude control that modulated the momentum wheel speed to damp nutation_ Optical Bench - A struc",
+        "page_1based": 8,
+        "chunk_ids": [
+          "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q20",
+    "question": "What is the main advantage of using a graphite fiber-epoxy-laminate honeycomb for the optical bench on Magsat?",
+    "expected_answer": "The graphite fiber-epoxy-laminate honeycomb provided a very stable surface with a near-zero coefficient of thermal expansion, ensuring the exact angular relationship between the star cameras and ATS components was maintained despite temperature fluctuations.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "near-zero coefficient of thermal expansion. The bench was attached to the satellite at five points, \nOptical Bench - A structural platform constructed of a graphite fiberepoxy-laminate honeycomb that was designed to provide a very stable surface for mounting the star cameras and ATS components . The properties of the material were used to ",
+    "relevant_chunk_ids": [
+      "e2e3f19bd7671d10cdc85f37dc01a7a93205a840ef1b88bb26ace213e3c031bb",
+      "e8bea3dfd06c8c311ed4627927bcffd6f7de5c6f53d0d5df35d2ee4d48b88db5"
+    ],
+    "support_facts": [
+      {
+        "passage": "near-zero coefficient of thermal expansion. The bench was attached to the satellite at five points, ",
+        "page_1based": 5,
+        "chunk_ids": [
+          "e8bea3dfd06c8c311ed4627927bcffd6f7de5c6f53d0d5df35d2ee4d48b88db5"
+        ]
+      },
+      {
+        "passage": "Optical Bench - A structural platform constructed of a graphite fiberepoxy-laminate honeycomb that was designed to provide a very stable surface for mounting the star cameras and ATS components . The properties of the material were used to ",
+        "page_1based": 8,
+        "chunk_ids": [
+          "e2e3f19bd7671d10cdc85f37dc01a7a93205a840ef1b88bb26ace213e3c031bb"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q21",
+    "question": "What is the role of the transponder on Magsat?",
+    "expected_answer": "The transponder was a combined radio receiver and transmitter operating at S-band, used for receiving command signals from ground stations and transmitting telemetry signals from Magsat to the same stations.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "Transponder - A combined radio receiver and transmitter operating at Sband, used for receiving command sig nals transmitted from t\nfor transmitting the telemetry signals from Magsat to the same ground stations. This NASA Standard Near-Earth ",
+    "relevant_chunk_ids": [
+      "6ba3655da8336bfe21b3f787c33a098045b3e83cc27725c3f99aeb0423871dcf",
+      "f94989056747341afe599d2420012492a1c724080f070ddf3887e9077e396fc1"
+    ],
+    "support_facts": [
+      {
+        "passage": "Transponder - A combined radio receiver and transmitter operating at Sband, used for receiving command sig nals transmitted from t",
+        "page_1based": 9,
+        "chunk_ids": [
+          "f94989056747341afe599d2420012492a1c724080f070ddf3887e9077e396fc1",
+          "6ba3655da8336bfe21b3f787c33a098045b3e83cc27725c3f99aeb0423871dcf"
+        ]
+      },
+      {
+        "passage": "for transmitting the telemetry signals from Magsat to the same ground stations. This NASA Standard Near-Earth ",
+        "page_1based": 9,
+        "chunk_ids": [
+          "6ba3655da8336bfe21b3f787c33a098045b3e83cc27725c3f99aeb0423871dcf"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  },
+  {
+    "id": "Q22",
+    "question": "What is the significance of the 'frozen flux approximation' in geomagnetism?",
+    "expected_answer": "The 'frozen flux approximation' is a concept in geomagnetism stating that magnetic field lines are 'frozen' into a perfectly conducting fluid, so they move with the fluid, which is important in understanding the behavior of the Earth's core and geomagnetic field generation.",
+    "source_document": null,
+    "source_url": null,
+    "supporting_passage": null,
+    "relevant_chunk_ids": [],
+    "support_facts": [],
+    "verification_status": "pending_source_identification",
+    "annotation_note": "Outside source-checked 22-question subset; no ground truth assigned."
+  },
+  {
+    "id": "Q23",
+    "question": "Who was Jack A. Jacobs, and what were his contributions to geomagnetism?",
+    "expected_answer": "Jack A. Jacobs was a scientist who made contributions across the whole spectrum of geomagnetism and paleomagnetism, authoring books such as 'Micropulsations,' 'Geonomy,' 'The Earth's Core and Geomagnetism,' and 'Reversals of the Earth's Magnetic Field.'",
+    "source_document": null,
+    "source_url": null,
+    "supporting_passage": null,
+    "relevant_chunk_ids": [],
+    "support_facts": [],
+    "verification_status": "pending_source_identification",
+    "annotation_note": "Outside source-checked 22-question subset; no ground truth assigned."
+  },
+  {
+    "id": "Q24",
+    "question": "What is the geocentric axial dipole hypothesis?",
+    "expected_answer": "The geocentric axial dipole hypothesis is the idea that the Earth's magnetic field, averaged over time, can be represented as a dipole (bar magnet) aligned with the Earth's rotational axis and centered at the Earth's center.",
+    "source_document": null,
+    "source_url": null,
+    "supporting_passage": null,
+    "relevant_chunk_ids": [],
+    "support_facts": [],
+    "verification_status": "pending_source_identification",
+    "annotation_note": "Outside source-checked 22-question subset; no ground truth assigned."
+  },
+  {
+    "id": "Q25",
+    "question": "What is the function of the tape recorder on Magsat?",
+    "expected_answer": "The tape recorder stored telemetry data until the satellite was over or near a ground station, allowing the data to be transmitted to Earth for analysis.",
+    "source_document": "01-03-Potemra_Geomag.pdf",
+    "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
+    "supporting_passage": "Tape Recorder - A device used to store telemetry data until the satellite was over or near a ground station. The signals were recorded magnetically on",
+    "relevant_chunk_ids": [
+      "f94989056747341afe599d2420012492a1c724080f070ddf3887e9077e396fc1"
+    ],
+    "support_facts": [
+      {
+        "passage": "Tape Recorder - A device used to store telemetry data until the satellite was over or near a ground station. The signals were recorded magnetically on",
+        "page_1based": 9,
+        "chunk_ids": [
+          "f94989056747341afe599d2420012492a1c724080f070ddf3887e9077e396fc1"
+        ]
+      }
+    ],
+    "verification_status": "source_verified",
+    "annotation_note": "Machine/source checked against original public PDF before retrieving benchmark queries; not human verified. Relevant chunks contain complete annotated evidence excerpts. Coverage measures these excerpts, not exhaustive semantic answer entailment."
+  }
+]
