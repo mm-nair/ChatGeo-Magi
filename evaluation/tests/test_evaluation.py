@@ -1,3 +1,4 @@
+import csv
 import json
 from pathlib import Path
 import sys
@@ -12,22 +13,41 @@ sys.path.insert(0, str(ROOT / "evaluation"))
 
 from agentic.cgm import ChatGeoMagi
 from agentic.config import (
-    RETRIEVAL_PRESETS,
     STELLA_DEFAULT_REVISION,
     STELLA_MODEL_ID,
     STELLA_S2P_QUERY_PROMPT,
     SystemConfig,
 )
-from benchmark_metrics import retrieval_metrics, tool_metrics
+from benchmark_metrics import (
+    argument_matches,
+    bootstrap,
+    retrieval_metrics,
+    summarize_paired_scores,
+    tool_metrics,
+)
 from golden_dataset import load_goldens
+from openai_reference_judge import (
+    JUDGE_INSTRUCTIONS,
+    assert_public_only_input,
+    judge_payload,
+)
+from plots import generate_plots
 from public_retrieval import chunk_identifier, open_retriever, validate_manifest
-from revision_analysis import bootstrap
+from run_revision_inference import verify_reusable_no_rag
+from score_live_tools import numbers
 
 
 class FakeEmbeddingFunction:
     instances = []
 
-    def __init__(self, model_name, model_kwargs=None, encode_kwargs=None, query_encode_kwargs=None, dim=1024):
+    def __init__(
+        self,
+        model_name,
+        model_kwargs=None,
+        encode_kwargs=None,
+        query_encode_kwargs=None,
+        dim=1024,
+    ):
         self.model_name = model_name
         self.model_kwargs = model_kwargs or {}
         self.encode_kwargs = encode_kwargs or {}
@@ -66,7 +86,13 @@ class FakeCollection:
 class FakeChroma:
     stores = {}
 
-    def __init__(self, collection_name, embedding_function, persist_directory, collection_metadata=None):
+    def __init__(
+        self,
+        collection_name,
+        embedding_function,
+        persist_directory,
+        collection_metadata=None,
+    ):
         self.collection_name = collection_name
         self.embedding_function = embedding_function
         self.persist_directory = str(persist_directory)
@@ -97,7 +123,7 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(len(load_goldens(ROOT / "evaluation/goldens.csv")), 25)
 
     def test_duplicate_goldens_rejected(self):
-        with tempfile.TemporaryDirectory(dir=ROOT / "revision_workspace") as directory:
+        with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "goldens.csv"
             path.write_text("question,answer\nq,a\nq,b\n")
             with self.assertRaises(ValueError):
@@ -150,26 +176,27 @@ class EvaluationTests(unittest.TestCase):
         self.assertIsNone(result["numerical_agreement"])
 
     def test_equivalent_coordinate_arguments(self):
-        from benchmark_metrics import argument_matches
-
         self.assertTrue(argument_matches("location", "51.500, -0.120", "51.5,-0.12"))
         self.assertFalse(argument_matches("location", "51.5,0.12", "51.5,-0.12"))
 
     def test_unicode_number_extraction(self):
-        from score_live_tools import numbers
-
         self.assertEqual(
             numbers("49\u202f100.5 nT and \u201116.98374\u00b0"), [49100.5, -16.98374]
         )
 
     def test_corrected_summary_requires_complete_pairs(self):
-        from analyze_reference_judging import summarize
-
         with self.assertRaises(ValueError):
-            summarize([{"model": "test", "id": "Q01", "condition": "rag", "score": 1}])
+            summarize_paired_scores(
+                [{"model": "test", "id": "Q01", "condition": "rag", "score": 1}]
+            )
 
     def test_tool_sequence(self):
-        expected = {"calls": [{"name": "noaa_mag_api", "args": {}}, {"name": "plot", "args": {}}]}
+        expected = {
+            "calls": [
+                {"name": "noaa_mag_api", "args": {}},
+                {"name": "plot", "args": {}},
+            ]
+        }
         trace = {
             "calls": [
                 {"name": "plot", "args": {}, "success": True},
@@ -179,15 +206,19 @@ class EvaluationTests(unittest.TestCase):
         self.assertFalse(tool_metrics(expected, trace)["parameters_and_order"])
 
     def test_benchmark_integrity(self):
-        prompts = json.loads((ROOT / "evaluation/benchmarks/tool_prompts.json").read_text())
-        expected = json.loads((ROOT / "evaluation/benchmarks/tool_expected.json").read_text())
+        prompts = json.loads(
+            (ROOT / "evaluation/benchmarks/tool_prompts.json").read_text()
+        )
+        expected = json.loads(
+            (ROOT / "evaluation/benchmarks/tool_expected.json").read_text()
+        )
         self.assertEqual(len(prompts), 20)
-        self.assertEqual([row["id"] for row in prompts], [row["id"] for row in expected])
+        self.assertEqual(
+            [row["id"] for row in prompts], [row["id"] for row in expected]
+        )
         self.assertTrue(all(set(row) == {"id", "prompt"} for row in prompts))
 
     def test_judge_reference_payload(self):
-        from score_ablation import historical_rubric, judge_payload
-
         payload = json.loads(
             judge_payload(
                 {
@@ -205,7 +236,7 @@ class EvaluationTests(unittest.TestCase):
                 "MODEL_OUTPUT": "response",
             },
         )
-        self.assertIn("EXPECTED_ANSWER", historical_rubric())
+        self.assertIn("EXPECTED_ANSWER", JUDGE_INSTRUCTIONS)
 
     def test_chunk_identifier_stability(self):
         self.assertEqual(
@@ -217,7 +248,9 @@ class EvaluationTests(unittest.TestCase):
     def test_inference_isolation_wiring(self):
         import ast
 
-        source = (ROOT / "evaluation/eval_inference.py").read_text()
+        source = (
+            ROOT / "evaluation/legacy_email_experiment/eval_inference.py"
+        ).read_text()
         tree = ast.parse(source)
         function = next(
             node
@@ -270,7 +303,9 @@ class EvaluationTests(unittest.TestCase):
             emb_c.query_encode_kwargs,
             {"normalize_embeddings": True, "prompt": STELLA_S2P_QUERY_PROMPT},
         )
-        self.assertEqual(ChatGeoMagi.collection_metadata(cfg_c), {"hnsw:space": "cosine"})
+        self.assertEqual(
+            ChatGeoMagi.collection_metadata(cfg_c), {"hnsw:space": "cosine"}
+        )
         self.assertEqual(cfg_c.retrieval_k, 6)
 
         cfg_b = SystemConfig.from_preset("norm_cosine")
@@ -289,7 +324,7 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(ChatGeoMagi.collection_metadata(cfg_a), {"hnsw:space": "l2"})
 
     def test_public_only_rejects_support_emails(self):
-        with tempfile.TemporaryDirectory(dir=ROOT / "revision_workspace") as tmp:
+        with tempfile.TemporaryDirectory() as tmp:
             data_dir = Path(tmp) / "data"
             data_dir.mkdir()
             email_file = data_dir / "support_emails_2024.txt"
@@ -317,7 +352,7 @@ class EvaluationTests(unittest.TestCase):
                 validate_manifest(manifest_path)
 
     def test_index_validation_and_rebuild_on_config_change(self):
-        with tempfile.TemporaryDirectory(dir=ROOT / "revision_workspace") as tmp:
+        with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             data_dir = tmp_path / "data"
             data_dir.mkdir()
@@ -328,7 +363,10 @@ class EvaluationTests(unittest.TestCase):
                 (),
                 {
                     "page_content": doc_file.read_text(),
-                    "metadata": {"source": str(doc_file.resolve()), "start_index": 0},
+                    "metadata": {
+                        "source": str(doc_file.resolve()),
+                        "start_index": 0,
+                    },
                 },
             )()
             hashes = ChatGeoMagi.compute_document_hashes([doc_file], public_only=True)
@@ -392,7 +430,9 @@ class EvaluationTests(unittest.TestCase):
                 "name": name,
                 "description": desc,
             }
-            with patch.dict(sys.modules, {"langchain_core.tools": fake_tools_mod}), patch.object(
+            with patch.dict(
+                sys.modules, {"langchain_core.tools": fake_tools_mod}
+            ), patch.object(
                 ChatGeoMagi,
                 "load_and_split_documents",
                 return_value=([fake_doc], hashes),
@@ -445,24 +485,23 @@ class EvaluationTests(unittest.TestCase):
             self.assertEqual(retriever_ok["search_kwargs"], {"k": 4})
 
     def test_openai_judge_confidentiality_and_no_rag_reuse_validation(self):
-        from openai_reference_judge import assert_public_only_input
-        from run_revision_inference import verify_reusable_no_rag
-
         with self.assertRaises(PermissionError):
             assert_public_only_input(
-                ROOT / "evaluation/opik_evaluation_results/gpt_emails.json", []
+                ROOT
+                / "evaluation/legacy_email_experiment/opik_evaluation_results/gpt_emails.json",
+                [],
             )
         with self.assertRaises(PermissionError):
             assert_public_only_input(
-                ROOT / "revision_workspace/test_inputs.json",
+                ROOT / "evaluation/results/test_inputs.json",
                 [{"id": "Q01", "condition": "emails"}],
             )
         assert_public_only_input(
-            ROOT / "revision_workspace/test_inputs.json",
+            ROOT / "evaluation/results/test_inputs.json",
             [{"id": "Q01", "condition": "rag"}],
         )
 
-        with tempfile.TemporaryDirectory(dir=ROOT / "revision_workspace") as tmp:
+        with tempfile.TemporaryDirectory() as tmp:
             reuse_dir = Path(tmp)
             hashes = {
                 "agentic/prompts.py": "h1",
@@ -513,6 +552,70 @@ class EvaluationTests(unittest.TestCase):
             )()
             with self.assertRaises(ValueError):
                 verify_reusable_no_rag(reuse_dir, args_bad, hashes)
+
+    def test_published_results_match_manuscript_statistics(self):
+        results_dir = ROOT / "evaluation/results"
+
+        # 1. Retrieval summary
+        with (results_dir / "retrieval_summary.csv").open() as handle:
+            ret_rows = {r["run_id"]: r for r in csv.DictReader(handle)}
+        full_ret = ret_rows["expanded_stella_s2p_cosine_full25"]
+        self.assertEqual(int(full_ret["hits_at_4"]), 22)
+        self.assertEqual(int(full_ret["scored_questions"]), 25)
+
+        heldout_ret = ret_rows["expanded_stella_s2p_cosine_heldout14"]
+        self.assertEqual(int(heldout_ret["hits_at_4"]), 13)
+        self.assertEqual(int(heldout_ret["scored_questions"]), 14)
+
+        # 2. RAG vs. no-RAG statistical summary and per-question scores
+        rag_stats = json.loads(
+            (results_dir / "rag_statistical_summary.json").read_text()
+        )["primary_openai_judge"]["all_25_questions"]
+        self.assertAlmostEqual(rag_stats["no_rag"]["mean"], 0.668, places=6)
+        self.assertAlmostEqual(
+            rag_stats["rag_15doc_corrected"]["mean"], 0.784, places=6
+        )
+        comp = rag_stats["paired_15doc_minus_no_rag"]
+        self.assertAlmostEqual(comp["mean_diff"], 0.116, places=6)
+        self.assertEqual([comp["ci95_low"], comp["ci95_high"]], [0.024, 0.224])
+
+        # Re-verify paired bootstrap and cross-document Hit@4 directly from rag_question_scores.csv
+        with (results_dir / "rag_question_scores.csv").open() as handle:
+            q_rows = list(csv.DictReader(handle))
+        self.assertEqual(len(q_rows), 25)
+        crossdoc_hits = sum(
+            int(r["expanded_15doc_stella_s2p_crossdoc_hit4"]) for r in q_rows
+        )
+        self.assertEqual(crossdoc_hits, 24)
+        diffs = [
+            float(r["rag_15doc_score_gpt4omini"]) - float(r["no_rag_score_gpt4omini"])
+            for r in q_rows
+        ]
+        self.assertAlmostEqual(sum(diffs) / len(diffs), 0.116, places=6)
+        ci = [round(v, 3) for v in bootstrap(diffs, seed=20261115, resamples=100000)]
+        self.assertEqual(ci, [0.024, 0.224])
+
+        # 3. Tool benchmark summary
+        tool_stats = json.loads((results_dir / "tool_summary.json").read_text())
+        self.assertEqual(tool_stats["tool_selection"]["passed"], 16)
+        self.assertEqual(tool_stats["tool_selection"]["n"], 16)
+        self.assertEqual(tool_stats["tool_numerical_agreement"]["passed"], 16)
+        self.assertEqual(tool_stats["parameters_and_order"]["passed"], 12)
+        self.assertEqual(tool_stats["invalid_request_handling"]["passed"], 3)
+        self.assertEqual(tool_stats["invalid_request_handling"]["n"], 4)
+
+    def test_plots_generate_offline_without_api_keys(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out_dir = Path(tmp) / "plots"
+            written = generate_plots(
+                figure="all",
+                results_dir=ROOT / "evaluation/results",
+                output_dir=out_dir,
+            )
+            self.assertEqual(len(written), 10)
+            for path in written:
+                self.assertTrue(path.exists())
+                self.assertGreater(path.stat().st_size, 1000)
 
 
 if __name__ == "__main__":

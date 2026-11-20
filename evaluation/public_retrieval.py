@@ -161,7 +161,7 @@ def open_retriever(
         local_files_only=True,
         embedding_cls=embedding_cls,
     )
-    vector_store = ChatGeoMagi.validate_existing_index(
+    vector_store, _ = ChatGeoMagi.validate_existing_index(
         config,
         embeddings=embeddings,
         expected_hashes=expected_hashes,

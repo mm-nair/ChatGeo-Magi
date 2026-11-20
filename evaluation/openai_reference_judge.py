@@ -4,8 +4,6 @@ import json
 from pathlib import Path
 import time
 
-from dotenv import load_dotenv
-
 JUDGE_INSTRUCTIONS = (
     "You are an independent scientific factuality judge evaluating a geomagnetic question-answering system.\n"
     "You will receive a JSON object with three data fields: QUESTION, EXPECTED_ANSWER, and MODEL_OUTPUT.\n"
@@ -209,7 +207,12 @@ def main():
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
 
-    load_dotenv()
+    try:
+        from dotenv import load_dotenv
+
+        load_dotenv()
+    except ImportError:
+        pass
     from openai import OpenAI
 
     client = OpenAI()

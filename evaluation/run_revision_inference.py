@@ -10,8 +10,6 @@ import sys
 import urllib.request
 from uuid import uuid4
 
-from dotenv import load_dotenv
-
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -149,7 +147,12 @@ def main():
     output.mkdir(parents=True)
     os.environ["CGM_IMAGE_DIR"] = str(output / "images")
     os.environ["OPIK_TRACK_DISABLE"] = "true"
-    load_dotenv()
+    try:
+        from dotenv import load_dotenv
+
+        load_dotenv()
+    except ImportError:
+        pass
 
     sys.path.insert(0, str(ROOT / "agentic"))
     from cgm import ChatGeoMagi
