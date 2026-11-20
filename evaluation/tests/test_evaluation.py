@@ -1,6 +1,8 @@
 import csv
+import hashlib
 import json
 from pathlib import Path
+import sqlite3
 import sys
 import tempfile
 import types
@@ -32,7 +34,12 @@ from openai_reference_judge import (
     judge_payload,
 )
 from plots import generate_plots
-from public_retrieval import chunk_identifier, open_retriever, validate_manifest
+from public_retrieval import (
+    chunk_identifier,
+    load_public_chunks,
+    open_retriever,
+    validate_manifest,
+)
 from run_revision_inference import verify_reusable_no_rag
 from score_live_tools import numbers, score_question
 
@@ -364,6 +371,186 @@ class EvaluationTests(unittest.TestCase):
             chunk_identifier("text", {"source": "doc", "page": 1}),
         )
         self.assertNotEqual(chunk_identifier("text", {}), chunk_identifier("other", {}))
+
+    def test_retrieval_benchmark_chunk_ids_match_portable_chunker(self):
+        # 1. Confirm load_public_chunks produces identical portable chunk IDs across
+        # different absolute directory paths.
+        class FakeDoc:
+            def __init__(self, page_content, metadata):
+                self.page_content = page_content
+                self.metadata = dict(metadata)
+
+        class FakeTextLoader:
+            def __init__(self, path, encoding="utf-8", autodetect_encoding=True):
+                self.path = Path(path)
+
+            def load(self):
+                return [FakeDoc(self.path.read_text(encoding="utf-8"), {"source": str(self.path)})]
+
+        class FakeSplitter:
+            def __init__(self, chunk_size, chunk_overlap, length_function=len, add_start_index=True):
+                self.chunk_size = chunk_size
+                self.add_start_index = add_start_index
+
+            def split_documents(self, documents):
+                out = []
+                for doc in documents:
+                    meta = dict(doc.metadata)
+                    meta["start_index"] = 0
+                    out.append(FakeDoc(doc.page_content, meta))
+                return out
+
+        fake_loaders = types.ModuleType("langchain_community.document_loaders")
+        fake_loaders.PyPDFLoader = FakeTextLoader
+        fake_loaders.TextLoader = FakeTextLoader
+        fake_splitters = types.ModuleType("langchain_text_splitters")
+        fake_splitters.RecursiveCharacterTextSplitter = FakeSplitter
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            content = "The World Magnetic Model is updated every five years."
+            digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
+            manifest_path = tmp_path / "manifest.json"
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "public_only": True,
+                        "files": [
+                            {
+                                "filename": "wmm_public.txt",
+                                "source_url": "https://www.ncei.noaa.gov/products/world-magnetic-model",
+                                "sha256": digest,
+                            }
+                        ],
+                    }
+                )
+            )
+            dir_a = tmp_path / "machine_a"
+            dir_b = tmp_path / "machine_b" / "nested"
+            dir_a.mkdir(parents=True)
+            dir_b.mkdir(parents=True)
+            (dir_a / "wmm_public.txt").write_text(content, encoding="utf-8")
+            (dir_b / "wmm_public.txt").write_text(content, encoding="utf-8")
+            with patch.dict(
+                sys.modules,
+                {
+                    "langchain_community": types.ModuleType("langchain_community"),
+                    "langchain_community.document_loaders": fake_loaders,
+                    "langchain_text_splitters": fake_splitters,
+                },
+            ):
+                chunks_a = load_public_chunks(manifest_path, data_dir=dir_a)
+                chunks_b = load_public_chunks(manifest_path, data_dir=dir_b)
+            expected_id = chunk_identifier(
+                content, {"source_file": "wmm_public.txt", "page": None, "start_index": 0}
+            )
+            self.assertEqual(chunks_a[0].metadata["chunk_id"], expected_id)
+            self.assertEqual(chunks_b[0].metadata["chunk_id"], expected_id)
+
+        # 2. Structural and cross-benchmark portable ID consistency across all four files.
+        bench_dir = ROOT / "evaluation/benchmarks"
+        benchmarks = {
+            name: json.loads((bench_dir / name).read_text(encoding="utf-8"))
+            for name in (
+                "retrieval.json",
+                "retrieval_2doc.json",
+                "retrieval_heldout.json",
+                "retrieval_heldout_2doc.json",
+            )
+        }
+        for name, items in benchmarks.items():
+            for item in items:
+                rel_ids = item.get("relevant_chunk_ids", [])
+                for cid in rel_ids:
+                    self.assertEqual(len(cid), 64, f"{name}:{item['id']} invalid chunk_id")
+                    self.assertTrue(all(ch in "0123456789abcdef" for ch in cid))
+                for sf in item.get("support_facts", []):
+                    for cid in sf.get("chunk_ids", []):
+                        self.assertIn(cid, rel_ids, f"{name}:{item['id']} support_fact id not in relevant_chunk_ids")
+
+        b15 = {x["id"]: set(x["relevant_chunk_ids"]) for x in benchmarks["retrieval.json"]}
+        b2 = {x["id"]: set(x["relevant_chunk_ids"]) for x in benchmarks["retrieval_2doc.json"]}
+        for qid, ids2 in b2.items():
+            if ids2:
+                self.assertTrue(ids2.issubset(b15[qid]), f"Portable 2-doc IDs for {qid} missing from 15-doc benchmark")
+
+        h15 = {x["id"]: set(x["relevant_chunk_ids"]) for x in benchmarks["retrieval_heldout.json"]}
+        h2 = {x["id"]: set(x["relevant_chunk_ids"]) for x in benchmarks["retrieval_heldout_2doc.json"]}
+        self.assertEqual(h15, h2)
+
+        # 3. When local reconstructed corpus indexes exist, confirm 100% ID resolution
+        # and exact reproducibility of recorded 15-doc retrieval hits (22/25 and 13/14).
+        ws = ROOT / "revision_workspace/final_retrieval_revision"
+        index_specs = [
+            ("expanded_stella_s2p_cosine", ("retrieval.json", "retrieval_heldout.json")),
+            ("two_doc_stella_s2p_cosine", ("retrieval_2doc.json", "retrieval_heldout_2doc.json")),
+        ]
+        for db_name, bench_names in index_specs:
+            db_path = ws / "indexes" / db_name / "chroma.sqlite3"
+            if not db_path.is_file():
+                continue
+            con = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+            try:
+                cur = con.cursor()
+                cur.execute(
+                    "SELECT id, key, string_value, int_value, float_value, bool_value FROM embedding_metadata"
+                )
+                by_id = {}
+                for eid, key, sv, iv, fv, bv in cur.fetchall():
+                    d = by_id.setdefault(eid, {})
+                    d[key] = (
+                        sv if sv is not None else (
+                            iv if iv is not None else (
+                                fv if fv is not None else (bool(bv) if bv is not None else None)
+                            )
+                        )
+                    )
+            finally:
+                con.close()
+            portable_ids = set()
+            for meta in by_id.values():
+                text = meta.pop("chroma:document")
+                stable_meta = {
+                    "source_file": Path(meta.get("source", "")).name,
+                    "page": meta.get("page"),
+                    "start_index": meta.get("start_index"),
+                }
+                cid = chunk_identifier(text, stable_meta)
+                self.assertNotIn(cid, portable_ids)
+                portable_ids.add(cid)
+            for bname in bench_names:
+                for item in benchmarks[bname]:
+                    for cid in item.get("relevant_chunk_ids", []):
+                        self.assertIn(cid, portable_ids, f"{bname}:{item['id']} chunk_id not in {db_name}")
+                    for sf in item.get("support_facts", []):
+                        for cid in sf.get("chunk_ids", []):
+                            self.assertIn(cid, portable_ids, f"{bname}:{item['id']} support_fact id not in {db_name}")
+
+        for run_id, bname, expected_hits in (
+            ("expanded_stella_s2p_cosine_full25", "retrieval.json", 22),
+            ("expanded_stella_s2p_cosine_heldout14", "retrieval_heldout.json", 13),
+        ):
+            ret_path = ws / run_id / "retrieved.json"
+            if not ret_path.is_file():
+                continue
+            raw_retrieved = json.loads(ret_path.read_text(encoding="utf-8"))
+            hits = 0
+            for item in benchmarks[bname]:
+                docs = [
+                    {
+                        "chunk_id": chunk_identifier(
+                            doc["text"],
+                            {
+                                "source_file": Path(doc["metadata"].get("source", "")).name,
+                                "page": doc["metadata"].get("page"),
+                                "start_index": doc["metadata"].get("start_index"),
+                            },
+                        )
+                    }
+                    for doc in raw_retrieved[item["id"]]
+                ]
+                hits += retrieval_metrics(item, docs)["hit_at_4"]
+            self.assertEqual(hits, expected_hits)
 
     def test_inference_isolation_wiring(self):
         import ast

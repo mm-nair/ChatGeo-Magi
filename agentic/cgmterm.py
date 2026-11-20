@@ -3,8 +3,17 @@ This script is an example inferencing system that uses cgm.py
 and provides a simple chat interface in the terminal.
 """
 
-from cgm import ChatGeoMagi
-from config import SystemConfig
+try:
+    from config import SystemConfig, load_env_files
+except ImportError:
+    from agentic.config import SystemConfig, load_env_files
+
+load_env_files()
+
+try:
+    from cgm import ChatGeoMagi
+except ImportError:
+    from agentic.cgm import ChatGeoMagi
 
 config = SystemConfig()
 llm, embeddings, retriever = ChatGeoMagi.get_shared_resources(config)

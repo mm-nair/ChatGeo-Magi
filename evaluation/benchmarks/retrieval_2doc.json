@@ -7,21 +7,21 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "was conducted by William Gilbert, physician (later promoted to electrician) to Queen Elizabeth, who published in 1600 his pro\nin his De Magnete. 2 This treatise was published nearly a century before Newton'",
     "relevant_chunk_ids": [
-      "8557fb75394faf31fea61a2c7f19d29267e056d4782c2ec886335909cbda3f99"
+      "9cec727aef240fd8eb2eed030235aafebd65d24908afc5d6f6ab18ff577e1e4b"
     ],
     "support_facts": [
       {
         "passage": "was conducted by William Gilbert, physician (later promoted to electrician) to Queen Elizabeth, who published in 1600 his pro",
         "page_1based": 1,
         "chunk_ids": [
-          "8557fb75394faf31fea61a2c7f19d29267e056d4782c2ec886335909cbda3f99"
+          "9cec727aef240fd8eb2eed030235aafebd65d24908afc5d6f6ab18ff577e1e4b"
         ]
       },
       {
         "passage": "in his De Magnete. 2 This treatise was published nearly a century before Newton'",
         "page_1based": 1,
         "chunk_ids": [
-          "8557fb75394faf31fea61a2c7f19d29267e056d4782c2ec886335909cbda3f99"
+          "9cec727aef240fd8eb2eed030235aafebd65d24908afc5d6f6ab18ff577e1e4b"
         ]
       }
     ],
@@ -36,16 +36,16 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "the Magsat system to obtain precise absolute and directional values of the earth's magnetic field on a global scale are briefly described. EARLY HISTORY Th",
     "relevant_chunk_ids": [
-      "02bbf25461942fd8f72e01e365a44028c8d671a9265fb05cdf876df884a6dac4",
-      "a7e0142e3508b408cf8ef869a8374d573204c14b37a2c5463247d2d033c44d72"
+      "74e598b8890f24988522b5a80015e91803d93e220e98c773a3ed5b39fe84b1ae",
+      "18b3c6e8222006e3a8cf64eb548bdee94c52c5ae4e1a040f75d5af72891247cf"
     ],
     "support_facts": [
       {
         "passage": "the Magsat system to obtain precise absolute and directional values of the earth's magnetic field on a global scale are briefly described. EARLY HISTORY Th",
         "page_1based": 1,
         "chunk_ids": [
-          "02bbf25461942fd8f72e01e365a44028c8d671a9265fb05cdf876df884a6dac4",
-          "a7e0142e3508b408cf8ef869a8374d573204c14b37a2c5463247d2d033c44d72"
+          "74e598b8890f24988522b5a80015e91803d93e220e98c773a3ed5b39fe84b1ae",
+          "18b3c6e8222006e3a8cf64eb548bdee94c52c5ae4e1a040f75d5af72891247cf"
         ]
       }
     ],
@@ -60,21 +60,21 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "simple dipole, but there is a significant contribution from nondipole components and from \nseries of spherical harmonic functions. -l The coefficients of such a series representatio",
     "relevant_chunk_ids": [
-      "11a62f67261bc412a1349280c2d3c443746cc6ee809cbb42c7a5e6a8c1e32abd"
+      "649198d22b495dc9755ca603f1b8b030bf0a507a0fbec4be03c916606e112b99"
     ],
     "support_facts": [
       {
         "passage": "simple dipole, but there is a significant contribution from nondipole components and from ",
         "page_1based": 2,
         "chunk_ids": [
-          "11a62f67261bc412a1349280c2d3c443746cc6ee809cbb42c7a5e6a8c1e32abd"
+          "649198d22b495dc9755ca603f1b8b030bf0a507a0fbec4be03c916606e112b99"
         ]
       },
       {
         "passage": "series of spherical harmonic functions. -l The coefficients of such a series representatio",
         "page_1based": 2,
         "chunk_ids": [
-          "11a62f67261bc412a1349280c2d3c443746cc6ee809cbb42c7a5e6a8c1e32abd"
+          "649198d22b495dc9755ca603f1b8b030bf0a507a0fbec4be03c916606e112b99"
         ]
       }
     ],
@@ -89,21 +89,21 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "This unit of induction, B, is 1 weber per square meter (1 Wb/m2); it is the magnetic induction \nIn SI units, 1 Wb/m 2 = 1 tesla. In studies of planetar",
     "relevant_chunk_ids": [
-      "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+      "cb2631e29579f43d9d37f177a6fb05fe5e9da5dafa9eb1521af26a2859c100e8"
     ],
     "support_facts": [
       {
         "passage": "This unit of induction, B, is 1 weber per square meter (1 Wb/m2); it is the magnetic induction ",
         "page_1based": 2,
         "chunk_ids": [
-          "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+          "cb2631e29579f43d9d37f177a6fb05fe5e9da5dafa9eb1521af26a2859c100e8"
         ]
       },
       {
         "passage": "In SI units, 1 Wb/m 2 = 1 tesla. In studies of planetar",
         "page_1based": 2,
         "chunk_ids": [
-          "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+          "cb2631e29579f43d9d37f177a6fb05fe5e9da5dafa9eb1521af26a2859c100e8"
         ]
       }
     ],
@@ -118,14 +118,14 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "The intensity of the surface geomagnetic field varies from about 30,000 nT at the equator to more than 50,000 nT at high latitudes near the magnetic poles. SECULAR VARIATION I",
     "relevant_chunk_ids": [
-      "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+      "cb2631e29579f43d9d37f177a6fb05fe5e9da5dafa9eb1521af26a2859c100e8"
     ],
     "support_facts": [
       {
         "passage": "The intensity of the surface geomagnetic field varies from about 30,000 nT at the equator to more than 50,000 nT at high latitudes near the magnetic poles. SECULAR VARIATION I",
         "page_1based": 2,
         "chunk_ids": [
-          "3c6b6a77750363f6ecd01fbf602ea3a6900beb0508371b4abc7811e4c02bd821"
+          "cb2631e29579f43d9d37f177a6fb05fe5e9da5dafa9eb1521af26a2859c100e8"
         ]
       }
     ],
@@ -140,43 +140,43 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "A decrease in the moment of the dipole field by 0.05070 per year, indicating that the present geomagnetic field may reve\nA westward precessional rotation of the dipole of 0.05 0 of longitude per year; 3. A rotation of the dipole to\nA rotation of the dipole toward the geographic axis of 0.020 of latitude per year; 4. A westward drift of the \nA westward drift of the nondipole field of 0.20 of longitude per year; 5. Growth and decay of features of\nGrowth and decay of features of the nondipole field with average changes of about 10 nT per year. Although these secular variation",
     "relevant_chunk_ids": [
-      "99c16105ce0ed408d4f3e5663fecdd7cea2d3dab045d7412b67df32e0dfebdc8",
-      "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+      "678bcb5929ad3b5a71a338560cccd1a28703617e555183d197a8af6af89b9dc6",
+      "05734ccc150678d0d601782b58ac7b7397f8ef9427e07729957260a896f08f8b"
     ],
     "support_facts": [
       {
         "passage": "A decrease in the moment of the dipole field by 0.05070 per year, indicating that the present geomagnetic field may reve",
         "page_1based": 2,
         "chunk_ids": [
-          "99c16105ce0ed408d4f3e5663fecdd7cea2d3dab045d7412b67df32e0dfebdc8"
+          "678bcb5929ad3b5a71a338560cccd1a28703617e555183d197a8af6af89b9dc6"
         ]
       },
       {
         "passage": "A westward precessional rotation of the dipole of 0.05 0 of longitude per year; 3. A rotation of the dipole to",
         "page_1based": 2,
         "chunk_ids": [
-          "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+          "05734ccc150678d0d601782b58ac7b7397f8ef9427e07729957260a896f08f8b"
         ]
       },
       {
         "passage": "A rotation of the dipole toward the geographic axis of 0.020 of latitude per year; 4. A westward drift of the ",
         "page_1based": 2,
         "chunk_ids": [
-          "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+          "05734ccc150678d0d601782b58ac7b7397f8ef9427e07729957260a896f08f8b"
         ]
       },
       {
         "passage": "A westward drift of the nondipole field of 0.20 of longitude per year; 5. Growth and decay of features of",
         "page_1based": 2,
         "chunk_ids": [
-          "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+          "05734ccc150678d0d601782b58ac7b7397f8ef9427e07729957260a896f08f8b"
         ]
       },
       {
         "passage": "Growth and decay of features of the nondipole field with average changes of about 10 nT per year. Although these secular variation",
         "page_1based": 2,
         "chunk_ids": [
-          "d30417c7e8cf8fd05570ab54ce98bdc82b88daba6e489ed0d4207e1a2cc52efa"
+          "05734ccc150678d0d601782b58ac7b7397f8ef9427e07729957260a896f08f8b"
         ]
       }
     ],
@@ -191,23 +191,23 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "Seismological evidence reveals a fluid core for the earth that can easily experience large-scale motions, and it is presumed that the geomagnetic secular variation - and indeed the main field itself -\nmainly of iron - a good electric and magnetic conductor. Therefore, the study of the earth",
     "relevant_chunk_ids": [
-      "76e26c1d9977986cfeb22770a15f11e1cb731a1157e6344a59abb22e8b49881a",
-      "c2b9c74b7deb80c9a94b2fb75cb02b408c19b1ff64588efb8f070643dbdbe196"
+      "2a3ca32e3f0c59b13537ce299571bfaedd684594380bf7403c0decb79d58a3ca",
+      "6f624aafa954b19cd10f2460c4f981179bc04b33d7dd9d815211b2a314fcbe17"
     ],
     "support_facts": [
       {
         "passage": "Seismological evidence reveals a fluid core for the earth that can easily experience large-scale motions, and it is presumed that the geomagnetic secular variation - and indeed the main field itself -",
         "page_1based": 3,
         "chunk_ids": [
-          "76e26c1d9977986cfeb22770a15f11e1cb731a1157e6344a59abb22e8b49881a"
+          "2a3ca32e3f0c59b13537ce299571bfaedd684594380bf7403c0decb79d58a3ca"
         ]
       },
       {
         "passage": "mainly of iron - a good electric and magnetic conductor. Therefore, the study of the earth",
         "page_1based": 3,
         "chunk_ids": [
-          "76e26c1d9977986cfeb22770a15f11e1cb731a1157e6344a59abb22e8b49881a",
-          "c2b9c74b7deb80c9a94b2fb75cb02b408c19b1ff64588efb8f070643dbdbe196"
+          "2a3ca32e3f0c59b13537ce299571bfaedd684594380bf7403c0decb79d58a3ca",
+          "6f624aafa954b19cd10f2460c4f981179bc04b33d7dd9d815211b2a314fcbe17"
         ]
       }
     ],
@@ -222,25 +222,25 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "but is severely distorted into a comet-shaped configuration b y the continuous flow of plasma (the solar wind) from the sun (depicted in Fig. 4). This distortio\nmagnetic field configuration called the \"magnetosphere.\" For example, the compression of the geomagnetic field",
     "relevant_chunk_ids": [
-      "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689",
-      "5edb6768e4dbbd05eae3b24539a82b8b7063221d855d12e5421bf93246715252",
-      "d1623453a948c3666bbd48e0be3e50b1a8a627f6cef38e21d028506cda22a1b0"
+      "130f2227a6dd3f54d1eb0896c99f790139a0e4d3cff63f36331abcc75343b4d5",
+      "59fc777857d807e0014014d10416b1e0ee724034277f4827bc792ccb8000a3d0",
+      "68aaa12aa55cfeb6d720d3c4c3fbfb2cb6c74008412b715790b4fc317f106519"
     ],
     "support_facts": [
       {
         "passage": "but is severely distorted into a comet-shaped configuration b y the continuous flow of plasma (the solar wind) from the sun (depicted in Fig. 4). This distortio",
         "page_1based": 4,
         "chunk_ids": [
-          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689",
-          "5edb6768e4dbbd05eae3b24539a82b8b7063221d855d12e5421bf93246715252",
-          "d1623453a948c3666bbd48e0be3e50b1a8a627f6cef38e21d028506cda22a1b0"
+          "130f2227a6dd3f54d1eb0896c99f790139a0e4d3cff63f36331abcc75343b4d5",
+          "59fc777857d807e0014014d10416b1e0ee724034277f4827bc792ccb8000a3d0",
+          "68aaa12aa55cfeb6d720d3c4c3fbfb2cb6c74008412b715790b4fc317f106519"
         ]
       },
       {
         "passage": "magnetic field configuration called the \"magnetosphere.\" For example, the compression of the geomagnetic field",
         "page_1based": 4,
         "chunk_ids": [
-          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+          "130f2227a6dd3f54d1eb0896c99f790139a0e4d3cff63f36331abcc75343b4d5"
         ]
       }
     ],
@@ -255,28 +255,28 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "called the Chapman-Ferraro or magnetopause current (see Fig. 4). The magnetospheric system include s\n\"Birkeland\" currents that flow along geomagnetic field lines (see the article by Potemra in this issue) into and away from the two auroral region\nthe ring current that flows at high altitudes around the equator of the earth; and a complex system of current",
     "relevant_chunk_ids": [
-      "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+      "130f2227a6dd3f54d1eb0896c99f790139a0e4d3cff63f36331abcc75343b4d5"
     ],
     "support_facts": [
       {
         "passage": "called the Chapman-Ferraro or magnetopause current (see Fig. 4). The magnetospheric system include s",
         "page_1based": 4,
         "chunk_ids": [
-          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+          "130f2227a6dd3f54d1eb0896c99f790139a0e4d3cff63f36331abcc75343b4d5"
         ]
       },
       {
         "passage": "\"Birkeland\" currents that flow along geomagnetic field lines (see the article by Potemra in this issue) into and away from the two auroral region",
         "page_1based": 4,
         "chunk_ids": [
-          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+          "130f2227a6dd3f54d1eb0896c99f790139a0e4d3cff63f36331abcc75343b4d5"
         ]
       },
       {
         "passage": "the ring current that flows at high altitudes around the equator of the earth; and a complex system of current",
         "page_1based": 4,
         "chunk_ids": [
-          "19f4e283b0faab34b8ebf50f0b39795b0e68529aa011b47addbd4f76828b0689"
+          "130f2227a6dd3f54d1eb0896c99f790139a0e4d3cff63f36331abcc75343b4d5"
         ]
       }
     ],
@@ -291,21 +291,21 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "Widespread magnetic disturbances sometimes observed over the entire surface of the earth are known as magnetic storms. These storms are associated with major solar eruptions that e\nThe solar plasma accompanying solar eruptions causes a magnetic storm when it collides with the earth's magnetosphere. Minor mag- Fig. 4- The con",
     "relevant_chunk_ids": [
-      "9f1e9543fece6b20c1f3b564527a8483a2e360b2fecacccbe016770e874063af"
+      "0bc1350eeda9ca457243335553afef40dae1f446f2260eefeb216b2daae63a07"
     ],
     "support_facts": [
       {
         "passage": "Widespread magnetic disturbances sometimes observed over the entire surface of the earth are known as magnetic storms. These storms are associated with major solar eruptions that e",
         "page_1based": 4,
         "chunk_ids": [
-          "9f1e9543fece6b20c1f3b564527a8483a2e360b2fecacccbe016770e874063af"
+          "0bc1350eeda9ca457243335553afef40dae1f446f2260eefeb216b2daae63a07"
         ]
       },
       {
         "passage": "The solar plasma accompanying solar eruptions causes a magnetic storm when it collides with the earth's magnetosphere. Minor mag- Fig. 4- The con",
         "page_1based": 4,
         "chunk_ids": [
-          "9f1e9543fece6b20c1f3b564527a8483a2e360b2fecacccbe016770e874063af"
+          "0bc1350eeda9ca457243335553afef40dae1f446f2260eefeb216b2daae63a07"
         ]
       }
     ],
@@ -320,14 +320,14 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "satellites in 1972 that useful information about the structure of the earth's crust could be derived from satellite data - information that would be very difficult to detect in airplane survey data. Ideas for a",
     "relevant_chunk_ids": [
-      "9619216870cbc2d2616f30ecdfb006849c1dcac52a1d98495ac3c2a1247e690c"
+      "ea1da1ec4e4c8d12cc4c6db0aabf947098a4312e9e91d83b71f8ee619edc86b9"
     ],
     "support_facts": [
       {
         "passage": "satellites in 1972 that useful information about the structure of the earth's crust could be derived from satellite data - information that would be very difficult to detect in airplane survey data. Ideas for a",
         "page_1based": 4,
         "chunk_ids": [
-          "9619216870cbc2d2616f30ecdfb006849c1dcac52a1d98495ac3c2a1247e690c"
+          "ea1da1ec4e4c8d12cc4c6db0aabf947098a4312e9e91d83b71f8ee619edc86b9"
         ]
       }
     ],
@@ -342,20 +342,20 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "amount to make the orbit plane follow the sun. (This precession is due to the bulge in the earth's gravity field at the equator.) Thi s sun-synchronous orbit (Fig. 5) give s nearly 100 0/ 0 earth coverage and many month ",
     "relevant_chunk_ids": [
-      "24262496082ba51f3749a23ca183c2853060972e9fdc42939c0db2a4a349b63d",
-      "e8bea3dfd06c8c311ed4627927bcffd6f7de5c6f53d0d5df35d2ee4d48b88db5",
-      "ecebb1142a17a9062a3689ff41fd0b5c21bf9eec2b79730c79660d6f5df4eb35",
-      "fdeb80353ce6b185c24c7a1a71617f5211c8ca5a4d2b5c5f49b8e16fac88f56e"
+      "4140efa37e799a4c1db629fd8b9c3438cd811c43b30c18c9aae68b81c4f3816c",
+      "3871753c830ded8e364bcff63750ade4419baf5a6a30f58c3190a628bc3706c4",
+      "5a7f604a7f255fd7b9dba986201915f01aa61837673ef2f52bf14ebe10fcf001",
+      "b24c3dcff6da9ddb20108bdd578fcca53415640b10913492bc0ff88189e9581d"
     ],
     "support_facts": [
       {
         "passage": "amount to make the orbit plane follow the sun. (This precession is due to the bulge in the earth's gravity field at the equator.) Thi s sun-synchronous orbit (Fig. 5) give s nearly 100 0/ 0 earth coverage and many month ",
         "page_1based": 5,
         "chunk_ids": [
-          "24262496082ba51f3749a23ca183c2853060972e9fdc42939c0db2a4a349b63d",
-          "e8bea3dfd06c8c311ed4627927bcffd6f7de5c6f53d0d5df35d2ee4d48b88db5",
-          "ecebb1142a17a9062a3689ff41fd0b5c21bf9eec2b79730c79660d6f5df4eb35",
-          "fdeb80353ce6b185c24c7a1a71617f5211c8ca5a4d2b5c5f49b8e16fac88f56e"
+          "4140efa37e799a4c1db629fd8b9c3438cd811c43b30c18c9aae68b81c4f3816c",
+          "3871753c830ded8e364bcff63750ade4419baf5a6a30f58c3190a628bc3706c4",
+          "5a7f604a7f255fd7b9dba986201915f01aa61837673ef2f52bf14ebe10fcf001",
+          "b24c3dcff6da9ddb20108bdd578fcca53415640b10913492bc0ff88189e9581d"
         ]
       }
     ],
@@ -370,16 +370,16 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "An electronic and optical system for measuring the orientation of the vector magnetometer s ensor relative to the star cameras. Two optical heads of the A TS we",
     "relevant_chunk_ids": [
-      "88d05262611ccf9157bd03935847136cc9155eac7cdd38e56621937e77bf44e3",
-      "b1b920c68ef46ca7ef1b33cf6670b5d0f302c4e9a3a1cc020bd648115cceb987"
+      "6df2927b43a0a784aab1a1a37582f9882ef1ea53a309e061091d18240eeea512",
+      "0fd601fefe34e928758fa152524b3a02f69f6f0fd24d1284b05597ac7b3fb4f1"
     ],
     "support_facts": [
       {
         "passage": "An electronic and optical system for measuring the orientation of the vector magnetometer s ensor relative to the star cameras. Two optical heads of the A TS we",
         "page_1based": 7,
         "chunk_ids": [
-          "88d05262611ccf9157bd03935847136cc9155eac7cdd38e56621937e77bf44e3",
-          "b1b920c68ef46ca7ef1b33cf6670b5d0f302c4e9a3a1cc020bd648115cceb987"
+          "6df2927b43a0a784aab1a1a37582f9882ef1ea53a309e061091d18240eeea512",
+          "0fd601fefe34e928758fa152524b3a02f69f6f0fd24d1284b05597ac7b3fb4f1"
         ]
       }
     ],
@@ -394,16 +394,16 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "The vector sensor consisted of three small toroidal cores of highly permeable magnetic material with platinum wire windings used to sense the components of the field. They were mounted on a very stable ceramic block, and the ",
     "relevant_chunk_ids": [
-      "be3aaf12d10a69f7ff64568a913b6dae95bf0b6910fc9b5fea272e91e20b3a4e",
-      "e0f117e361285667491777c38970fec167407ee9a86203882a5230bb1fe9b0c6"
+      "d81fe29974f69979b3469286a6dba6386e202f9735284af0c8a3a12807605653",
+      "a683857e8ad5c0caed89c54dc1bf3715dcde303c68e7c647b905e8c4e272d4b4"
     ],
     "support_facts": [
       {
         "passage": "The vector sensor consisted of three small toroidal cores of highly permeable magnetic material with platinum wire windings used to sense the components of the field. They were mounted on a very stable ceramic block, and the ",
         "page_1based": 6,
         "chunk_ids": [
-          "be3aaf12d10a69f7ff64568a913b6dae95bf0b6910fc9b5fea272e91e20b3a4e",
-          "e0f117e361285667491777c38970fec167407ee9a86203882a5230bb1fe9b0c6"
+          "d81fe29974f69979b3469286a6dba6386e202f9735284af0c8a3a12807605653",
+          "a683857e8ad5c0caed89c54dc1bf3715dcde303c68e7c647b905e8c4e272d4b4"
         ]
       }
     ],
@@ -418,16 +418,16 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "It used Zeeman splitting of energy levels in cesium - l33 gas as a technique for measuring the field. The scalar data provided redundancy and an indep",
     "relevant_chunk_ids": [
-      "be3aaf12d10a69f7ff64568a913b6dae95bf0b6910fc9b5fea272e91e20b3a4e",
-      "e0f117e361285667491777c38970fec167407ee9a86203882a5230bb1fe9b0c6"
+      "d81fe29974f69979b3469286a6dba6386e202f9735284af0c8a3a12807605653",
+      "a683857e8ad5c0caed89c54dc1bf3715dcde303c68e7c647b905e8c4e272d4b4"
     ],
     "support_facts": [
       {
         "passage": "It used Zeeman splitting of energy levels in cesium - l33 gas as a technique for measuring the field. The scalar data provided redundancy and an indep",
         "page_1based": 6,
         "chunk_ids": [
-          "be3aaf12d10a69f7ff64568a913b6dae95bf0b6910fc9b5fea272e91e20b3a4e",
-          "e0f117e361285667491777c38970fec167407ee9a86203882a5230bb1fe9b0c6"
+          "d81fe29974f69979b3469286a6dba6386e202f9735284af0c8a3a12807605653",
+          "a683857e8ad5c0caed89c54dc1bf3715dcde303c68e7c647b905e8c4e272d4b4"
         ]
       }
     ],
@@ -442,21 +442,21 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "satellite upside down, thereby reversing the direction of the weight force (i.e., -I g) and producing distortions equal and opposite to those of the initial calibration. We then presumed that the zero\nthe zero-g calibration must be exactly midway between the two results. This technique has been confirmed with our flight resu",
     "relevant_chunk_ids": [
-      "478e63caa29c2fb7446ff66177dc20cf86c17a5c1734b68dbd9500d5038d9d1b"
+      "dcb47d2f8a2540fc3b96951e288a08bc537b5a090bb2a41bd7227c54fd35678b"
     ],
     "support_facts": [
       {
         "passage": "satellite upside down, thereby reversing the direction of the weight force (i.e., -I g) and producing distortions equal and opposite to those of the initial calibration. We then presumed that the zero",
         "page_1based": 6,
         "chunk_ids": [
-          "478e63caa29c2fb7446ff66177dc20cf86c17a5c1734b68dbd9500d5038d9d1b"
+          "dcb47d2f8a2540fc3b96951e288a08bc537b5a090bb2a41bd7227c54fd35678b"
         ]
       },
       {
         "passage": "the zero-g calibration must be exactly midway between the two results. This technique has been confirmed with our flight resu",
         "page_1based": 6,
         "chunk_ids": [
-          "478e63caa29c2fb7446ff66177dc20cf86c17a5c1734b68dbd9500d5038d9d1b"
+          "dcb47d2f8a2540fc3b96951e288a08bc537b5a090bb2a41bd7227c54fd35678b"
         ]
       }
     ],
@@ -471,21 +471,21 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "We experienced some operational problems because of earth shadowing in the latter portion of Magsat's life, primarily caused by an unexpected ' loss of battery capacity that forced some compromises in data collection. The sunshades of the s\nThe sunshades of the star cameras showed light leaks, which caused the loss of some data. On the whole, howeve",
     "relevant_chunk_ids": [
-      "c6adbc4adddcc5163a18c05a3e36f40726c14baa57bd4930d79cbe07fb75e343"
+      "a68a3fbd57cde8661eb9b2516a57ce40e95916581b251a870a3f1693bbd5fe05"
     ],
     "support_facts": [
       {
         "passage": "We experienced some operational problems because of earth shadowing in the latter portion of Magsat's life, primarily caused by an unexpected ' loss of battery capacity that forced some compromises in data collection. The sunshades of the s",
         "page_1based": 7,
         "chunk_ids": [
-          "c6adbc4adddcc5163a18c05a3e36f40726c14baa57bd4930d79cbe07fb75e343"
+          "a68a3fbd57cde8661eb9b2516a57ce40e95916581b251a870a3f1693bbd5fe05"
         ]
       },
       {
         "passage": "The sunshades of the star cameras showed light leaks, which caused the loss of some data. On the whole, howeve",
         "page_1based": 7,
         "chunk_ids": [
-          "c6adbc4adddcc5163a18c05a3e36f40726c14baa57bd4930d79cbe07fb75e343"
+          "a68a3fbd57cde8661eb9b2516a57ce40e95916581b251a870a3f1693bbd5fe05"
         ]
       }
     ],
@@ -500,14 +500,14 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "This rotation provided angular momentum that gave the satellite a form of gyroscopic attitude stability. This was a key feature of the attitude control system_ Nutation Damper",
     "relevant_chunk_ids": [
-      "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+      "f53afe257950b73b514158f9d8e0153b065bb0a5a27ad879c7d9b36e875eaa74"
     ],
     "support_facts": [
       {
         "passage": "This rotation provided angular momentum that gave the satellite a form of gyroscopic attitude stability. This was a key feature of the attitude control system_ Nutation Damper",
         "page_1based": 8,
         "chunk_ids": [
-          "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+          "f53afe257950b73b514158f9d8e0153b065bb0a5a27ad879c7d9b36e875eaa74"
         ]
       }
     ],
@@ -522,21 +522,21 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "a pendulous mechanical damper that used magnetic eddy currents for damping, and by the closed-loop attitude co\nclosed-loop attitude control that modulated the momentum wheel speed to damp nutation_ Optical Bench - A struc",
     "relevant_chunk_ids": [
-      "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+      "f53afe257950b73b514158f9d8e0153b065bb0a5a27ad879c7d9b36e875eaa74"
     ],
     "support_facts": [
       {
         "passage": "a pendulous mechanical damper that used magnetic eddy currents for damping, and by the closed-loop attitude co",
         "page_1based": 8,
         "chunk_ids": [
-          "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+          "f53afe257950b73b514158f9d8e0153b065bb0a5a27ad879c7d9b36e875eaa74"
         ]
       },
       {
         "passage": "closed-loop attitude control that modulated the momentum wheel speed to damp nutation_ Optical Bench - A struc",
         "page_1based": 8,
         "chunk_ids": [
-          "39d17bb83f35a68847602acb330a2411fbaed7acf835383de083c4cd901b8045"
+          "f53afe257950b73b514158f9d8e0153b065bb0a5a27ad879c7d9b36e875eaa74"
         ]
       }
     ],
@@ -551,22 +551,22 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "near-zero coefficient of thermal expansion. The bench was attached to the satellite at five points, \nOptical Bench - A structural platform constructed of a graphite fiberepoxy-laminate honeycomb that was designed to provide a very stable surface for mounting the star cameras and ATS components . The properties of the material were used to ",
     "relevant_chunk_ids": [
-      "e2e3f19bd7671d10cdc85f37dc01a7a93205a840ef1b88bb26ace213e3c031bb",
-      "e8bea3dfd06c8c311ed4627927bcffd6f7de5c6f53d0d5df35d2ee4d48b88db5"
+      "b31650efaae2ff33e9296a68db2e00bcab6e2d8a2f7ea19fad971a46897e1d9e",
+      "3871753c830ded8e364bcff63750ade4419baf5a6a30f58c3190a628bc3706c4"
     ],
     "support_facts": [
       {
         "passage": "near-zero coefficient of thermal expansion. The bench was attached to the satellite at five points, ",
         "page_1based": 5,
         "chunk_ids": [
-          "e8bea3dfd06c8c311ed4627927bcffd6f7de5c6f53d0d5df35d2ee4d48b88db5"
+          "3871753c830ded8e364bcff63750ade4419baf5a6a30f58c3190a628bc3706c4"
         ]
       },
       {
         "passage": "Optical Bench - A structural platform constructed of a graphite fiberepoxy-laminate honeycomb that was designed to provide a very stable surface for mounting the star cameras and ATS components . The properties of the material were used to ",
         "page_1based": 8,
         "chunk_ids": [
-          "e2e3f19bd7671d10cdc85f37dc01a7a93205a840ef1b88bb26ace213e3c031bb"
+          "b31650efaae2ff33e9296a68db2e00bcab6e2d8a2f7ea19fad971a46897e1d9e"
         ]
       }
     ],
@@ -581,23 +581,23 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "Transponder - A combined radio receiver and transmitter operating at Sband, used for receiving command sig nals transmitted from t\nfor transmitting the telemetry signals from Magsat to the same ground stations. This NASA Standard Near-Earth ",
     "relevant_chunk_ids": [
-      "6ba3655da8336bfe21b3f787c33a098045b3e83cc27725c3f99aeb0423871dcf",
-      "f94989056747341afe599d2420012492a1c724080f070ddf3887e9077e396fc1"
+      "d743c9a683f774244c67f4c3c2ac1c65478598722cd2e2b2280f4875d79504a3",
+      "a5b8baac1300281b8bbab03ed0db9e4dd0ca6d9bf5e486621e5adf4b0d78d38d"
     ],
     "support_facts": [
       {
         "passage": "Transponder - A combined radio receiver and transmitter operating at Sband, used for receiving command sig nals transmitted from t",
         "page_1based": 9,
         "chunk_ids": [
-          "f94989056747341afe599d2420012492a1c724080f070ddf3887e9077e396fc1",
-          "6ba3655da8336bfe21b3f787c33a098045b3e83cc27725c3f99aeb0423871dcf"
+          "a5b8baac1300281b8bbab03ed0db9e4dd0ca6d9bf5e486621e5adf4b0d78d38d",
+          "d743c9a683f774244c67f4c3c2ac1c65478598722cd2e2b2280f4875d79504a3"
         ]
       },
       {
         "passage": "for transmitting the telemetry signals from Magsat to the same ground stations. This NASA Standard Near-Earth ",
         "page_1based": 9,
         "chunk_ids": [
-          "6ba3655da8336bfe21b3f787c33a098045b3e83cc27725c3f99aeb0423871dcf"
+          "d743c9a683f774244c67f4c3c2ac1c65478598722cd2e2b2280f4875d79504a3"
         ]
       }
     ],
@@ -648,14 +648,14 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "Tape Recorder - A device used to store telemetry data until the satellite was over or near a ground station. The signals were recorded magnetically on",
     "relevant_chunk_ids": [
-      "f94989056747341afe599d2420012492a1c724080f070ddf3887e9077e396fc1"
+      "a5b8baac1300281b8bbab03ed0db9e4dd0ca6d9bf5e486621e5adf4b0d78d38d"
     ],
     "support_facts": [
       {
         "passage": "Tape Recorder - A device used to store telemetry data until the satellite was over or near a ground station. The signals were recorded magnetically on",
         "page_1based": 9,
         "chunk_ids": [
-          "f94989056747341afe599d2420012492a1c724080f070ddf3887e9077e396fc1"
+          "a5b8baac1300281b8bbab03ed0db9e4dd0ca6d9bf5e486621e5adf4b0d78d38d"
         ]
       }
     ],

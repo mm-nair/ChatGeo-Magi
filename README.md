@@ -22,7 +22,7 @@ cd agentic
 
 # Set API keys via environment variables or a .env file (do not hardcode keys in Python files):
 # export CALC_API_KEY="your_noaa_calc_key"
-# export GEOCODE_API_KEY="your_google_maps_key"
+# export GEOCODE_API_KEY="your_geocode_maps_co_key"  # https://geocode.maps.co
 #
 # Review model and retrieval settings in config.py and populate data/
 

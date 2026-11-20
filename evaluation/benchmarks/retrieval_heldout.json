@@ -7,23 +7,23 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "stood the small figure of a man with his arm outstretched\nalways pointed to the south, allowing the emperor to locate the direction of his enemy's retreat",
     "relevant_chunk_ids": [
-      "866ef0d7d2d41f57e04bd68e8b3782f242690bfb5e124afd286243b427228b90",
-      "8b2f83933cddc881ae288cf9bbc1a1683287f226323355ca68825493d3fef2c2"
+      "74e598b8890f24988522b5a80015e91803d93e220e98c773a3ed5b39fe84b1ae",
+      "9cec727aef240fd8eb2eed030235aafebd65d24908afc5d6f6ab18ff577e1e4b"
     ],
     "support_facts": [
       {
         "passage": "stood the small figure of a man with his arm outstretched",
         "page_1based": 1,
         "chunk_ids": [
-          "866ef0d7d2d41f57e04bd68e8b3782f242690bfb5e124afd286243b427228b90",
-          "8b2f83933cddc881ae288cf9bbc1a1683287f226323355ca68825493d3fef2c2"
+          "74e598b8890f24988522b5a80015e91803d93e220e98c773a3ed5b39fe84b1ae",
+          "9cec727aef240fd8eb2eed030235aafebd65d24908afc5d6f6ab18ff577e1e4b"
         ]
       },
       {
         "passage": "always pointed to the south, allowing the emperor to locate the direction of his enemy's retreat",
         "page_1based": 1,
         "chunk_ids": [
-          "8b2f83933cddc881ae288cf9bbc1a1683287f226323355ca68825493d3fef2c2"
+          "9cec727aef240fd8eb2eed030235aafebd65d24908afc5d6f6ab18ff577e1e4b"
         ]
       }
     ],
@@ -38,22 +38,22 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "The Small Astronomical Satellite (SAS-3) had been designed and built by APL\nkeep the weight down to 1 8 2 kg, the maximum that the Scout rocket",
     "relevant_chunk_ids": [
-      "14ef9c43c90c6378f05ebf4c2c5831f236d80e564b63cab25424453158683c06",
-      "4c3f70d14ace40a0636e9ad1694984ac339b5bcd9556199827267ecb7755b25c"
+      "4140efa37e799a4c1db629fd8b9c3438cd811c43b30c18c9aae68b81c4f3816c",
+      "b3b60e87f1e76e06e8d02ab379f013766a359622c64bc57e865ae49feee77163"
     ],
     "support_facts": [
       {
         "passage": "The Small Astronomical Satellite (SAS-3) had been designed and built by APL",
         "page_1based": 4,
         "chunk_ids": [
-          "4c3f70d14ace40a0636e9ad1694984ac339b5bcd9556199827267ecb7755b25c"
+          "b3b60e87f1e76e06e8d02ab379f013766a359622c64bc57e865ae49feee77163"
         ]
       },
       {
         "passage": "keep the weight down to 1 8 2 kg, the maximum that the Scout rocket",
         "page_1based": 5,
         "chunk_ids": [
-          "14ef9c43c90c6378f05ebf4c2c5831f236d80e564b63cab25424453158683c06"
+          "4140efa37e799a4c1db629fd8b9c3438cd811c43b30c18c9aae68b81c4f3816c"
         ]
       }
     ],
@@ -68,23 +68,23 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "Magnetometer Boom - A collapsible structural element composed of seven pairs of links\n6 meters away from the instrument module",
     "relevant_chunk_ids": [
-      "0d8e87870564a7d9da8ef2fee762d4be28f11eb6c8659f9700150fb0f18a1b3d",
-      "cf12809acee4992f6033e9bbc738626299f7714a3ade071a9a56b94dc166e8f7"
+      "f0657fd8956929339daceba200fd6dd01e5b1e508b601d62203e5305bf2aa97f",
+      "e68382efce686afcfdbed77d5f1375cae1d1673bd29aec54bf70141175c3262d"
     ],
     "support_facts": [
       {
         "passage": "Magnetometer Boom - A collapsible structural element composed of seven pairs of links",
         "page_1based": 7,
         "chunk_ids": [
-          "0d8e87870564a7d9da8ef2fee762d4be28f11eb6c8659f9700150fb0f18a1b3d",
-          "cf12809acee4992f6033e9bbc738626299f7714a3ade071a9a56b94dc166e8f7"
+          "f0657fd8956929339daceba200fd6dd01e5b1e508b601d62203e5305bf2aa97f",
+          "e68382efce686afcfdbed77d5f1375cae1d1673bd29aec54bf70141175c3262d"
         ]
       },
       {
         "passage": "6 meters away from the instrument module",
         "page_1based": 7,
         "chunk_ids": [
-          "cf12809acee4992f6033e9bbc738626299f7714a3ade071a9a56b94dc166e8f7"
+          "e68382efce686afcfdbed77d5f1375cae1d1673bd29aec54bf70141175c3262d"
         ]
       }
     ],
@@ -99,23 +99,23 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "Oscillator - An ultrastable quartz crystal oscillator producing a 5 MHz output\nproviding a high degree of thermal isolation",
     "relevant_chunk_ids": [
-      "7471f3c9bb80a01fc10b3c4d442a85209a6967ec0393be14e50114a21f94636b",
-      "da78f3078646da2b21afa6f41fde1266e20badde03b0c37042f702d04ffe0d02"
+      "b31650efaae2ff33e9296a68db2e00bcab6e2d8a2f7ea19fad971a46897e1d9e",
+      "24345e7b82e89d708b7267e39b059e1c105c7a769bb3d2920f963f19939d3f99"
     ],
     "support_facts": [
       {
         "passage": "Oscillator - An ultrastable quartz crystal oscillator producing a 5 MHz output",
         "page_1based": 8,
         "chunk_ids": [
-          "7471f3c9bb80a01fc10b3c4d442a85209a6967ec0393be14e50114a21f94636b"
+          "b31650efaae2ff33e9296a68db2e00bcab6e2d8a2f7ea19fad971a46897e1d9e"
         ]
       },
       {
         "passage": "providing a high degree of thermal isolation",
         "page_1based": 8,
         "chunk_ids": [
-          "7471f3c9bb80a01fc10b3c4d442a85209a6967ec0393be14e50114a21f94636b",
-          "da78f3078646da2b21afa6f41fde1266e20badde03b0c37042f702d04ffe0d02"
+          "b31650efaae2ff33e9296a68db2e00bcab6e2d8a2f7ea19fad971a46897e1d9e",
+          "24345e7b82e89d708b7267e39b059e1c105c7a769bb3d2920f963f19939d3f99"
         ]
       }
     ],
@@ -130,14 +130,14 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "Power Supply - The system",
     "relevant_chunk_ids": [
-      "da78f3078646da2b21afa6f41fde1266e20badde03b0c37042f702d04ffe0d02"
+      "24345e7b82e89d708b7267e39b059e1c105c7a769bb3d2920f963f19939d3f99"
     ],
     "support_facts": [
       {
         "passage": "Power Supply - The system",
         "page_1based": 8,
         "chunk_ids": [
-          "da78f3078646da2b21afa6f41fde1266e20badde03b0c37042f702d04ffe0d02"
+          "24345e7b82e89d708b7267e39b059e1c105c7a769bb3d2920f963f19939d3f99"
         ]
       }
     ],
@@ -152,21 +152,21 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "measured the angles to the sun with an accuracy of 5 to 10 arc-seconds\nStar Cameras - Two star cameras were mounted rigidly on the optical bench",
     "relevant_chunk_ids": [
-      "4df91b95c37bd7025a3dbb569ee4b6d61ef4533186464e5d3ae7542e851f315e"
+      "55001f6aa612d80e7f2e0a7686701b00868f3113d7c6e468d2a052e36d1cfd57"
     ],
     "support_facts": [
       {
         "passage": "measured the angles to the sun with an accuracy of 5 to 10 arc-seconds",
         "page_1based": 9,
         "chunk_ids": [
-          "4df91b95c37bd7025a3dbb569ee4b6d61ef4533186464e5d3ae7542e851f315e"
+          "55001f6aa612d80e7f2e0a7686701b00868f3113d7c6e468d2a052e36d1cfd57"
         ]
       },
       {
         "passage": "Star Cameras - Two star cameras were mounted rigidly on the optical bench",
         "page_1based": 9,
         "chunk_ids": [
-          "4df91b95c37bd7025a3dbb569ee4b6d61ef4533186464e5d3ae7542e851f315e"
+          "55001f6aa612d80e7f2e0a7686701b00868f3113d7c6e468d2a052e36d1cfd57"
         ]
       }
     ],
@@ -181,23 +181,23 @@
     "source_url": "https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V01-N03/01-03-Potemra_Geomag.pdf",
     "supporting_passage": "Vehicle Adapter - The\nactuating the bolt cutters by a stimulus from the spacecraft battery",
     "relevant_chunk_ids": [
-      "62e3df9478e7c074b9c55ede91d1cb4b1e94a2a76ed039291ec09b03cb5a5133",
-      "723a7f26e0f11ec395f8838d070ce0facdadd67d57df6eb5f12a471d968bc0fb"
+      "d743c9a683f774244c67f4c3c2ac1c65478598722cd2e2b2280f4875d79504a3",
+      "e71bc87deb7d9b4d780391f04f154e9b536890cf9a02f9478e574381a8161619"
     ],
     "support_facts": [
       {
         "passage": "Vehicle Adapter - The",
         "page_1based": 9,
         "chunk_ids": [
-          "62e3df9478e7c074b9c55ede91d1cb4b1e94a2a76ed039291ec09b03cb5a5133"
+          "d743c9a683f774244c67f4c3c2ac1c65478598722cd2e2b2280f4875d79504a3"
         ]
       },
       {
         "passage": "actuating the bolt cutters by a stimulus from the spacecraft battery",
         "page_1based": 9,
         "chunk_ids": [
-          "62e3df9478e7c074b9c55ede91d1cb4b1e94a2a76ed039291ec09b03cb5a5133",
-          "723a7f26e0f11ec395f8838d070ce0facdadd67d57df6eb5f12a471d968bc0fb"
+          "d743c9a683f774244c67f4c3c2ac1c65478598722cd2e2b2280f4875d79504a3",
+          "e71bc87deb7d9b4d780391f04f154e9b536890cf9a02f9478e574381a8161619"
         ]
       }
     ],
@@ -212,18 +212,18 @@
     "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
     "supporting_passage": "from 1 km below the World Geodetic System (WGS 84) ellipsoid surface to approximately 850 km above it / from 1 km below the WGS 84 ellipsoid surface to approximately 850 km above it / from 1 km below the WGS 84 ellipsoid surface to approximately 850 km above it",
     "relevant_chunk_ids": [
-      "1914ca7551b3a95ed8fe4fd39406cee6c16f9a64ef052ab899065a0d37c3448c",
-      "81d3b0da57dbf0c4539ed0856189e77db786dc7af4df4cb9124699ea567004e3",
-      "9a1707ad406093e14d10dd2af21e64f816119088d3176a3086a04549b7cb638d"
+      "f3fe1c082918bf56d742d2ed958bebb10fba82cbd114a7e32b02c79ffc1648ee",
+      "d72a9b551af5a72bbb86a5326becf36734f0cbd56a0e7a7999e2f2b1c4f2e407",
+      "3261ed8ba44a796f7e24589fc0ced2e8ed7b51e59b99ccf29dfa0e91d02fdca0"
     ],
     "support_facts": [
       {
         "passage": "from 1 km below the World Geodetic System (WGS 84) ellipsoid surface to approximately 850 km above it / from 1 km below the WGS 84 ellipsoid surface to approximately 850 km above it / from 1 km below the WGS 84 ellipsoid surface to approximately 850 km above it",
         "page_1based": 9,
         "chunk_ids": [
-          "1914ca7551b3a95ed8fe4fd39406cee6c16f9a64ef052ab899065a0d37c3448c",
-          "81d3b0da57dbf0c4539ed0856189e77db786dc7af4df4cb9124699ea567004e3",
-          "9a1707ad406093e14d10dd2af21e64f816119088d3176a3086a04549b7cb638d"
+          "f3fe1c082918bf56d742d2ed958bebb10fba82cbd114a7e32b02c79ffc1648ee",
+          "d72a9b551af5a72bbb86a5326becf36734f0cbd56a0e7a7999e2f2b1c4f2e407",
+          "3261ed8ba44a796f7e24589fc0ced2e8ed7b51e59b99ccf29dfa0e91d02fdca0"
         ]
       }
     ],
@@ -238,14 +238,14 @@
     "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
     "supporting_passage": "Deliberately excluded from the WMM by the data selection process and by other means",
     "relevant_chunk_ids": [
-      "cd8a48652aa5e254317801e970119dbb89799426ce542ca4dd42293d8291c386"
+      "b8e1219176021e1cef3294bcc5ae3b09e166150a012150c4e6ab27fd3f11ffc6"
     ],
     "support_facts": [
       {
         "passage": "Deliberately excluded from the WMM by the data selection process and by other means",
         "page_1based": 9,
         "chunk_ids": [
-          "cd8a48652aa5e254317801e970119dbb89799426ce542ca4dd42293d8291c386"
+          "b8e1219176021e1cef3294bcc5ae3b09e166150a012150c4e6ab27fd3f11ffc6"
         ]
       }
     ],
@@ -260,14 +260,14 @@
     "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
     "supporting_passage": "In 2020.0 the north dip pole computed from WMM2020 is located at longitude 164.04\u00b0E and geodetic latitude 86.50\u00b0N",
     "relevant_chunk_ids": [
-      "126ec4f4b37f401d075e7948e6377a3167f9d6b3b63f039b03d7ed694172af51"
+      "14541270c9767339a6a9e19d81663eda9487e8cbfde574d774556ec31420eb91"
     ],
     "support_facts": [
       {
         "passage": "In 2020.0 the north dip pole computed from WMM2020 is located at longitude 164.04\u00b0E and geodetic latitude 86.50\u00b0N",
         "page_1based": 25,
         "chunk_ids": [
-          "126ec4f4b37f401d075e7948e6377a3167f9d6b3b63f039b03d7ed694172af51"
+          "14541270c9767339a6a9e19d81663eda9487e8cbfde574d774556ec31420eb91"
         ]
       }
     ],
@@ -282,16 +282,16 @@
     "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
     "supporting_passage": "where the horizontal intensity (H) is less than 2000 nT. Each BoZ is surrounded by a Caution Zone where the horizontal intensity is less than 6000 nT / location is in the blackout zone around the magnetic pole as defined by the WMM military specification",
     "relevant_chunk_ids": [
-      "25005f7c72ccb72f75b60949e5b48bc1a30ad29b5665e934494584ab0dfe32f0",
-      "ce97fc7df73ab7f8779941791b91ef289baf79371a265b6138b1cac069f79655"
+      "52f9ea9e9a807e2dbaeaee3848794bec26d998d948c632474306fe1ff335a85d",
+      "63ade9da77f7af00ff42708f18eae0d3a9192a736f3ee00780386b54851a6786"
     ],
     "support_facts": [
       {
         "passage": "where the horizontal intensity (H) is less than 2000 nT. Each BoZ is surrounded by a Caution Zone where the horizontal intensity is less than 6000 nT / location is in the blackout zone around the magnetic pole as defined by the WMM military specification",
         "page_1based": 26,
         "chunk_ids": [
-          "25005f7c72ccb72f75b60949e5b48bc1a30ad29b5665e934494584ab0dfe32f0",
-          "ce97fc7df73ab7f8779941791b91ef289baf79371a265b6138b1cac069f79655"
+          "52f9ea9e9a807e2dbaeaee3848794bec26d998d948c632474306fe1ff335a85d",
+          "63ade9da77f7af00ff42708f18eae0d3a9192a736f3ee00780386b54851a6786"
         ]
       }
     ],
@@ -306,22 +306,22 @@
     "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
     "supporting_passage": "supersedes WMM2015 (Chulliat et al., 2015) and WMM2015v2 (Chulliat et al., 2019)\nWMM2020 is to be used from 1 January 2020, to 31 December 2024",
     "relevant_chunk_ids": [
-      "5052680fcce817b4199db2df8a1b9c20bbb94afaad545e5edd358e489661800c",
-      "94cd2d0c566fa9b90554487453799c73dba9ffe223a3bb9b9892b4270c4e24d2"
+      "6a4c5af816ddcb1bdbf15f4c2dc065777b1c8e609c451b3251787c062ee967f7",
+      "8199aa4d791c0d8d8ad595ef325f96a163a01a98617eab342fbfe649987338fc"
     ],
     "support_facts": [
       {
         "passage": "supersedes WMM2015 (Chulliat et al., 2015) and WMM2015v2 (Chulliat et al., 2019)",
         "page_1based": 29,
         "chunk_ids": [
-          "94cd2d0c566fa9b90554487453799c73dba9ffe223a3bb9b9892b4270c4e24d2"
+          "8199aa4d791c0d8d8ad595ef325f96a163a01a98617eab342fbfe649987338fc"
         ]
       },
       {
         "passage": "WMM2020 is to be used from 1 January 2020, to 31 December 2024",
         "page_1based": 29,
         "chunk_ids": [
-          "5052680fcce817b4199db2df8a1b9c20bbb94afaad545e5edd358e489661800c"
+          "6a4c5af816ddcb1bdbf15f4c2dc065777b1c8e609c451b3251787c062ee967f7"
         ]
       }
     ],
@@ -336,24 +336,24 @@
     "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
     "supporting_passage": "common types of absolute instrument are the fluxgate theodolite, for measuring D and I, and the proton precession magnetometer for measuring F\nThe third category comprises semi-absolute instruments",
     "relevant_chunk_ids": [
-      "2126dabdf91e20ab0be7477968b7556b612f91843648a788db66d4c4e0fcfe99",
-      "b93829d4f31c8c53541c04273ccce5528d8f83edd4455d3aaaab7a8d4921cdbb",
-      "f0a97f377ea8b18afe761ff0138bc28b948a10ddcd5b6aaac9b2dc66ee4fdbd3"
+      "4e182652d7bb4091c96d7a4c5439c5c58cafbf8a719d6ffe39681552b3e35a4e",
+      "8a2d75a65118efe25c0ec716643e4e0f896b563e0c012d4260ed9c358e729bd1",
+      "db7cc3212b1f85abc01778bba55ab92b91c46a1adcc805aba21740d8c81bc41c"
     ],
     "support_facts": [
       {
         "passage": "common types of absolute instrument are the fluxgate theodolite, for measuring D and I, and the proton precession magnetometer for measuring F",
         "page_1based": 40,
         "chunk_ids": [
-          "2126dabdf91e20ab0be7477968b7556b612f91843648a788db66d4c4e0fcfe99",
-          "f0a97f377ea8b18afe761ff0138bc28b948a10ddcd5b6aaac9b2dc66ee4fdbd3"
+          "4e182652d7bb4091c96d7a4c5439c5c58cafbf8a719d6ffe39681552b3e35a4e",
+          "db7cc3212b1f85abc01778bba55ab92b91c46a1adcc805aba21740d8c81bc41c"
         ]
       },
       {
         "passage": "The third category comprises semi-absolute instruments",
         "page_1based": 41,
         "chunk_ids": [
-          "b93829d4f31c8c53541c04273ccce5528d8f83edd4455d3aaaab7a8d4921cdbb"
+          "8a2d75a65118efe25c0ec716643e4e0f896b563e0c012d4260ed9c358e729bd1"
         ]
       }
     ],
@@ -368,14 +368,14 @@
     "source_url": "https://repository.library.noaa.gov/view/noaa/24390",
     "supporting_passage": "inaccuracies in the model coefficients and is often referred to as the commission error",
     "relevant_chunk_ids": [
-      "cf246d7c0a7e4e4523abf30b0d009886eb75aac65d0303c22241ae879b83e0d6"
+      "ad781318519ffafce4ffc21c340c1606499a17efee8b782d88e74c7612c204c5"
     ],
     "support_facts": [
       {
         "passage": "inaccuracies in the model coefficients and is often referred to as the commission error",
         "page_1based": 57,
         "chunk_ids": [
-          "cf246d7c0a7e4e4523abf30b0d009886eb75aac65d0303c22241ae879b83e0d6"
+          "ad781318519ffafce4ffc21c340c1606499a17efee8b782d88e74c7612c204c5"
         ]
       }
     ],

@@ -1,12 +1,19 @@
+import importlib
 import json
+import os
+import runpy
 import sys
+import tempfile
 import types
 import unittest
 from datetime import date
 from pathlib import Path
 from unittest.mock import patch, Mock
 
+from PIL import Image
+
 from agentic.apis import scientific
+from agentic.config import load_env_files
 
 
 class ScientificTests(unittest.TestCase):
@@ -167,6 +174,111 @@ class WrapperTests(unittest.TestCase):
             success3, _ = self.api.fetch_field_data('0,95', '2025-01-01')
             self.assertTrue(success3)
             request.assert_called_once()
+
+    def test_contour_map_with_base_map(self):
+        fake_image = Image.new('RGB', (8, 8), color=(120, 160, 200))
+        with tempfile.TemporaryDirectory() as tmpdir, \
+             patch.dict(os.environ, {'CGM_IMAGE_DIR': tmpdir}), \
+             patch.object(self.api, 'get_map_image', return_value=fake_image) as fetch_map:
+            output_path = self.api.contour_map(
+                x=[0.0, 1.0],
+                y=[0.0, 1.0],
+                z=[[1.0, 2.0], [3.0, 4.0]],
+                show_base_map=True,
+                extent=(0.0, 1.0, 0.0, 1.0),
+            )
+            fetch_map.assert_called_once_with((0.0, 1.0, 0.0, 1.0))
+            self.assertIsInstance(output_path, str)
+            self.assertTrue(output_path.endswith('.png'))
+            self.assertTrue(Path(output_path).is_file())
+            self.assertGreater(Path(output_path).stat().st_size, 0)
+
+    def test_dotenv_loading_for_cli_streamlit_and_precedence(self):
+        root = Path(__file__).resolve().parents[2]
+        agentic_dir = root / 'agentic'
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            env_file = Path(tmpdir) / '.env'
+            env_file.write_text(
+                'CALC_API_KEY=dotenv_calc_placeholder\n'
+                'GEOCODE_API_KEY="dotenv_geocode_placeholder"\n'
+                'MAPBOX_API_KEY=dotenv_mapbox_placeholder\n',
+                encoding='utf-8',
+            )
+            orig_cwd = os.getcwd()
+            try:
+                os.chdir(tmpdir)
+                # 1. Direct load_env_files() + exported variable precedence
+                with patch.dict(os.environ, {'CALC_API_KEY': 'exported_calc_placeholder'}, clear=True):
+                    load_env_files()
+                    self.assertEqual(os.environ['CALC_API_KEY'], 'exported_calc_placeholder')
+                    self.assertEqual(os.environ['GEOCODE_API_KEY'], 'dotenv_geocode_placeholder')
+                    self.assertEqual(os.environ['MAPBOX_API_KEY'], 'dotenv_mapbox_placeholder')
+
+                # 2. Fresh import of noaa_apis picks up .env credentials while respecting exported overrides
+                fake_tools = types.ModuleType('langchain_core.tools')
+                fake_tools.tool = lambda function: function
+                apis_pkg = sys.modules['agentic.apis']
+                orig_attr = getattr(apis_pkg, 'noaa_apis', None)
+                try:
+                    with patch.dict(os.environ, {'CALC_API_KEY': 'exported_calc_placeholder'}, clear=True), \
+                         patch.dict(sys.modules, {'langchain_core': types.ModuleType('langchain_core'), 'langchain_core.tools': fake_tools}):
+                        sys.modules.pop('agentic.apis.noaa_apis', None)
+                        if hasattr(apis_pkg, 'noaa_apis'):
+                            delattr(apis_pkg, 'noaa_apis')
+                        fresh_api = importlib.import_module('agentic.apis.noaa_apis')
+                        self.assertEqual(fresh_api.CALC_API_KEY, 'exported_calc_placeholder')
+                        self.assertEqual(fresh_api.GRID_CALC_API_KEY, 'exported_calc_placeholder')
+                        self.assertEqual(fresh_api.GEOCODE_API_KEY, 'dotenv_geocode_placeholder')
+                        self.assertEqual(fresh_api.MAPBOX_API_KEY, 'dotenv_mapbox_placeholder')
+                finally:
+                    if orig_attr is not None:
+                        setattr(apis_pkg, 'noaa_apis', orig_attr)
+
+                # 3. CLI entry point (agentic/cgmterm.py) loads .env before agent initialization
+                seen_cli = {}
+
+                class FakeCGM:
+                    @staticmethod
+                    def get_shared_resources(cfg):
+                        seen_cli['CALC_API_KEY'] = os.getenv('CALC_API_KEY')
+                        seen_cli['GEOCODE_API_KEY'] = os.getenv('GEOCODE_API_KEY')
+                        return None, None, None
+
+                    def __init__(self, cfg):
+                        pass
+
+                    def initialize(self, *args):
+                        pass
+
+                    def visualize_agent(self):
+                        pass
+
+                fake_cgm_mod = types.ModuleType('cgm')
+                fake_cgm_mod.ChatGeoMagi = FakeCGM
+                with patch.dict(os.environ, {'CALC_API_KEY': 'exported_cli_placeholder'}, clear=True), \
+                     patch.dict(sys.modules, {'cgm': fake_cgm_mod}), \
+                     patch('builtins.input', return_value='q'):
+                    runpy.run_path(str(agentic_dir / 'cgmterm.py'), run_name='__main__')
+                self.assertEqual(seen_cli['CALC_API_KEY'], 'exported_cli_placeholder')
+                self.assertEqual(seen_cli['GEOCODE_API_KEY'], 'dotenv_geocode_placeholder')
+
+                # 4. Streamlit entry point (agentic/cgmwebsite.py) loads .env on startup
+                class FakeSessionState(dict):
+                    __setattr__ = dict.__setitem__
+
+                fake_st = types.ModuleType('streamlit')
+                fake_st.session_state = FakeSessionState()
+                fake_st.cache_resource = lambda fn: fn
+                fake_torch = types.ModuleType('torch')
+                fake_torch.classes = types.SimpleNamespace(__path__=[])
+                with patch.dict(os.environ, {'CALC_API_KEY': 'exported_web_placeholder'}, clear=True), \
+                     patch.dict(sys.modules, {'streamlit': fake_st, 'torch': fake_torch}):
+                    runpy.run_path(str(agentic_dir / 'cgmwebsite.py'), run_name='test_cgmwebsite')
+                    self.assertEqual(os.environ['CALC_API_KEY'], 'exported_web_placeholder')
+                    self.assertEqual(os.environ['GEOCODE_API_KEY'], 'dotenv_geocode_placeholder')
+            finally:
+                os.chdir(orig_cwd)
 
 
 if __name__ == '__main__':

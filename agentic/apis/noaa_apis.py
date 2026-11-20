@@ -18,6 +18,13 @@ import requests
 import uuid
 import os
 
+try:
+    from config import load_env_files
+except ImportError:
+    from ..config import load_env_files
+
+load_env_files()
+
 _ACTIVE_QUESTION: contextvars.ContextVar[Optional[str]] = contextvars.ContextVar(
     "cgm_active_question", default=None
 )
@@ -367,7 +374,7 @@ def contour_map(
         if extent is None:
             return "Error: extent must be provided if show_base_map is True.", None
         try:
-            base_map, = get_map_image(extent)
+            base_map = get_map_image(extent)
             ax.imshow(base_map, extent=extent, aspect='auto', zorder=1)
         except Exception as e:
             return f"Failed to fetch base map: {str(e)}", None

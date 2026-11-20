@@ -15,6 +15,13 @@ import traceback
 import re
 import os
 
+try:
+    from config import load_env_files
+except ImportError:
+    from agentic.config import load_env_files
+
+load_env_files()
+
 iposter_url = "https://agu24.ipostersessions.com/default.aspx?s=29-F5-8A-FE-5F-2A-DB-76-CD-96-D6-C2-68-56-52-3D&guestview=true"
 
 if "chat_history" not in st.session_state:
@@ -29,8 +36,14 @@ torch.classes.__path__ = []
 def setup_engine():
     """Setup the ChatGeo-Magi engine with caching"""
     try:
-        from cgm import ChatGeoMagi
-        from config import SystemConfig
+        try:
+            from config import SystemConfig, load_env_files
+            from cgm import ChatGeoMagi
+        except ImportError:
+            from agentic.config import SystemConfig, load_env_files
+            from agentic.cgm import ChatGeoMagi
+
+        load_env_files()
         
         config = SystemConfig()
         llm, embeddings, retriever = ChatGeoMagi.get_shared_resources(config)

@@ -5,6 +5,7 @@ This script outlines the basic parameters of the agent and retrieval presets.
 from dataclasses import dataclass
 import hashlib
 import json
+import os
 from pathlib import Path
 
 STELLA_MODEL_ID = "NovaSearch/stella_en_1.5B_v5"
@@ -13,6 +14,60 @@ STELLA_S2P_QUERY_PROMPT = (
     "Instruct: Given a web search query, retrieve relevant passages that answer the query.\nQuery: "
 )
 
+
+def load_env_files() -> None:
+    """Load credentials from .env files without overriding exported environment variables."""
+    candidates = [
+        Path.cwd() / ".env",
+        Path(__file__).resolve().parent / ".env",
+        Path(__file__).resolve().parents[1] / ".env",
+    ]
+    seen = set()
+    try:
+        from dotenv import find_dotenv, load_dotenv
+
+        cwd_env = find_dotenv(usecwd=True)
+        if cwd_env:
+            resolved = Path(cwd_env).resolve()
+            seen.add(resolved)
+            load_dotenv(resolved, override=False)
+        for path in candidates:
+            if path.is_file():
+                resolved = path.resolve()
+                if resolved not in seen:
+                    seen.add(resolved)
+                    load_dotenv(resolved, override=False)
+        return
+    except ImportError:
+        pass
+
+    for path in candidates:
+        if not path.is_file():
+            continue
+        resolved = path.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        for raw_line in resolved.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            if line.startswith("export "):
+                line = line[len("export ") :].strip()
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip()
+            if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+                value = value[1:-1]
+            if key:
+                os.environ.setdefault(key, value)
+
+
+# Observed embedding dimension is 1,024 across both legacy and corrected presets.
+# Legacy presets use trust_remote_code=False (unintended causal-attention behavior),
+# unnormalized embeddings, L2 distance, and no query-specific instruction; corrected
+# presets use Stella's intended implementation, normalized embeddings, cosine distance,
+# and (for stella_s2p_cosine) the s2p query instruction.
 RETRIEVAL_PRESETS = {
     "legacy_l2": {
         "trust_remote_code": False,
