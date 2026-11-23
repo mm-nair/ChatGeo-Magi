@@ -1,7 +1,3 @@
-"""
-Helper to cgmterm.py
-"""
-
 colors = {
     "red": ["!!!", "\033[91m"],
     "blue": [">>>", "\033[96m"],

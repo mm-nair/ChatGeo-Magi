@@ -1,12 +1,3 @@
-"""
-LEGACY: Many portions of this script may be broken now,
-and is solely to demonstrate how the two-LLM architecture was
-constrcuted. No plots nor data were made from this architecture.
-
-This script has a simple inference example of the system,
-with a terminal chat interface.
-"""
-
 from config import SystemConfig
 from cgmengine import ChatGeoMagiEngine
 from printer import cprint

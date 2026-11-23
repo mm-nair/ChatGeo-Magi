@@ -1,7 +1,3 @@
-"""
-This script outlines the basic parameters of the agent and retrieval presets.
-"""
-
 from dataclasses import dataclass
 import hashlib
 import json
@@ -16,7 +12,6 @@ STELLA_S2P_QUERY_PROMPT = (
 
 
 def load_env_files() -> None:
-    """Load credentials from .env files without overriding exported environment variables."""
     candidates = [
         Path.cwd() / ".env",
         Path(__file__).resolve().parent / ".env",
@@ -63,11 +58,6 @@ def load_env_files() -> None:
                 os.environ.setdefault(key, value)
 
 
-# Observed embedding dimension is 1,024 across both legacy and corrected presets.
-# Legacy presets use trust_remote_code=False (unintended causal-attention behavior),
-# unnormalized embeddings, L2 distance, and no query-specific instruction; corrected
-# presets use Stella's intended implementation, normalized embeddings, cosine distance,
-# and (for stella_s2p_cosine) the s2p query instruction.
 RETRIEVAL_PRESETS = {
     "legacy_l2": {
         "trust_remote_code": False,

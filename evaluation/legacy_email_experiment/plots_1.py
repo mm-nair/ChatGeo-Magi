@@ -1,11 +1,3 @@
-"""
-This script is takes the json output of opik within the
-opik_evaluation_results/ directory, and generates plots
-from them.
-
-Only the hist_geval_distrobution plot is used in the paper.
-"""
-
 import json
 import glob
 import pandas as pd

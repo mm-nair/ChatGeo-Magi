@@ -1,9 +1,3 @@
-"""
-This script was run with the eval_inference.py generated CSV files.
-These results are then sent straight to Opik, which have been downloaded to opik_evaluation_results/
-for plotting purposes.
-"""
-
 import csv
 import time
 import gc
@@ -28,18 +22,13 @@ def load_goldens(path="goldens.csv"):
 
 
 def load_outputs(path, goldens):
-    """
-    Loads CSV and returns dict:
-
-      model_name -> list(sample_rows)
-    """
     rows_by_model = {}
 
     with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         header = reader.fieldnames
 
-        model_columns = header[2:]   # skip id + question
+        model_columns = header[2:]
 
         for row in reader:
             question = row["question"]
@@ -86,17 +75,11 @@ Be HARSH but FAIR. The top score possible means the answer could not be any bett
 )
 
 
-# -----------------------------
-# TASK (no model call!)
-# -----------------------------
 
 def evaluation_task(item):
     return {"output": item["model_output"]}
 
 
-# -----------------------------
-# MAIN
-# -----------------------------
 
 if __name__ == "__main__":
     goldens = load_goldens()

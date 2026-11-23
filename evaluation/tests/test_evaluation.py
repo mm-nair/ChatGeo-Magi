@@ -373,8 +373,6 @@ class EvaluationTests(unittest.TestCase):
         self.assertNotEqual(chunk_identifier("text", {}), chunk_identifier("other", {}))
 
     def test_retrieval_benchmark_chunk_ids_match_portable_chunker(self):
-        # 1. Confirm load_public_chunks produces identical portable chunk IDs across
-        # different absolute directory paths.
         class FakeDoc:
             def __init__(self, page_content, metadata):
                 self.page_content = page_content
@@ -447,7 +445,6 @@ class EvaluationTests(unittest.TestCase):
             self.assertEqual(chunks_a[0].metadata["chunk_id"], expected_id)
             self.assertEqual(chunks_b[0].metadata["chunk_id"], expected_id)
 
-        # 2. Structural and cross-benchmark portable ID consistency across all four files.
         bench_dir = ROOT / "evaluation/benchmarks"
         benchmarks = {
             name: json.loads((bench_dir / name).read_text(encoding="utf-8"))
@@ -478,8 +475,6 @@ class EvaluationTests(unittest.TestCase):
         h2 = {x["id"]: set(x["relevant_chunk_ids"]) for x in benchmarks["retrieval_heldout_2doc.json"]}
         self.assertEqual(h15, h2)
 
-        # 3. When local reconstructed corpus indexes exist, confirm 100% ID resolution
-        # and exact reproducibility of recorded 15-doc retrieval hits (22/25 and 13/14).
         ws = ROOT / "revision_workspace/final_retrieval_revision"
         index_specs = [
             ("expanded_stella_s2p_cosine", ("retrieval.json", "retrieval_heldout.json")),
@@ -701,7 +696,6 @@ class EvaluationTests(unittest.TestCase):
             self.assertEqual(meta_a["distance_metric"], "l2")
             self.assertEqual(meta_a["document_hashes"], hashes)
 
-            # Attempting to validate or strictly open legacy_l2 index with stella_s2p_cosine must fail
             cfg_c = SystemConfig.from_preset(
                 "stella_s2p_cosine",
                 data_dir=str(data_dir),
@@ -719,7 +713,6 @@ class EvaluationTests(unittest.TestCase):
                     chroma_cls=FakeChroma,
                 )
 
-            # Dimension mismatch must also fail
             emb_bad_dim = FakeEmbeddingFunction("test", dim=512)
             with self.assertRaises(ValueError):
                 ChatGeoMagi.validate_existing_index(
@@ -729,8 +722,6 @@ class EvaluationTests(unittest.TestCase):
                     chroma_cls=FakeChroma,
                 )
 
-            # setup_vector_store with changed embedding config must NOT reuse index_dir or destroy it;
-            # it must create a versioned index directory and configure retrieval_k=5
             fake_tools_mod = types.ModuleType("langchain_core.tools")
             fake_tools_mod.create_retriever_tool = lambda retriever, name, desc: {
                 "retriever": retriever,
@@ -752,7 +743,6 @@ class EvaluationTests(unittest.TestCase):
             self.assertTrue(Path(cfg_c.chroma_db_path).exists())
             self.assertEqual(tool_obj["retriever"]["search_kwargs"], {"k": 5})
 
-            # open_retriever must reject preset mismatch against manifest
             emb_dir = tmp_path / "stella_cache"
             emb_dir.mkdir()
             manifest_c = {
@@ -863,7 +853,6 @@ class EvaluationTests(unittest.TestCase):
     def test_published_results_match_manuscript_statistics(self):
         results_dir = ROOT / "evaluation/results"
 
-        # 1. Retrieval summary
         with (results_dir / "retrieval_summary.csv").open() as handle:
             ret_rows = {r["run_id"]: r for r in csv.DictReader(handle)}
         full_ret = ret_rows["expanded_stella_s2p_cosine_full25"]
@@ -874,7 +863,6 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(int(heldout_ret["hits_at_4"]), 13)
         self.assertEqual(int(heldout_ret["scored_questions"]), 14)
 
-        # 2. RAG vs. no-RAG statistical summary and per-question scores
         rag_stats = json.loads(
             (results_dir / "rag_statistical_summary.json").read_text()
         )["primary_openai_judge"]["all_25_questions"]
@@ -886,7 +874,6 @@ class EvaluationTests(unittest.TestCase):
         self.assertAlmostEqual(comp["mean_diff"], 0.116, places=6)
         self.assertEqual([comp["ci95_low"], comp["ci95_high"]], [0.024, 0.224])
 
-        # Re-verify paired bootstrap and cross-document Hit@4 directly from rag_question_scores.csv
         with (results_dir / "rag_question_scores.csv").open() as handle:
             q_rows = list(csv.DictReader(handle))
         self.assertEqual(len(q_rows), 25)
@@ -902,7 +889,6 @@ class EvaluationTests(unittest.TestCase):
         ci = [round(v, 3) for v in bootstrap(diffs, seed=20261115, resamples=100000)]
         self.assertEqual(ci, [0.024, 0.224])
 
-        # 3. Tool benchmark summary
         tool_stats = json.loads((results_dir / "tool_summary.json").read_text())
         self.assertEqual(tool_stats["tool_selection"]["passed"], 16)
         self.assertEqual(tool_stats["tool_selection"]["n"], 16)

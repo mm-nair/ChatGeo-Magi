@@ -1,9 +1,3 @@
-"""
-This script is responsible for orchestrating the full agentic chain.
-This includes loading documents into the RAG database, handling memory,
-setting up the ReAct agent, and providing inference functions.
-"""
-
 import hashlib
 import json
 import os

@@ -148,7 +148,6 @@ class WrapperTests(unittest.TestCase):
             request.assert_not_called()
 
     def test_swapped_invalid_coordinates_rejected(self):
-        # 1. Direct swap from user prompt containing invalid 95,0
         self.api.set_active_request_context('Compute declination at latitude,longitude 95,0 for 2025-01-01.')
         with patch.object(self.api, 'CALC_API_KEY', 'test-placeholder'), patch.object(self.api.requests, 'get') as request:
             success, msg = self.api.fetch_field_data('0,95', '2025-01-01')
@@ -156,7 +155,6 @@ class WrapperTests(unittest.TestCase):
             self.assertIn('Refusing to swap invalid user coordinates', msg)
             request.assert_not_called()
 
-        # 2. Retry swap after 95,0 was rejected in the same turn even without prompt text
         self.api.set_active_request_context(None)
         with patch.object(self.api, 'CALC_API_KEY', 'test-placeholder'), patch.object(self.api.requests, 'get') as request:
             success1, _ = self.api.fetch_field_data('95,0', '2025-01-01')
@@ -166,7 +164,6 @@ class WrapperTests(unittest.TestCase):
             self.assertIn('Refusing to swap invalid user coordinates', msg2)
             request.assert_not_called()
 
-        # 3. Legitimate request for 0,95 succeeds
         self.api.set_active_request_context('Compute declination at latitude,longitude 0,95 for 2025-01-01.')
         response = Mock()
         response.json.return_value = {'result': [{'date': '2025-01-01', 'declination': 0.5}], 'units': {'declination': 'degrees'}, 'model': 'WMM-2025'}
@@ -208,14 +205,12 @@ class WrapperTests(unittest.TestCase):
             orig_cwd = os.getcwd()
             try:
                 os.chdir(tmpdir)
-                # 1. Direct load_env_files() + exported variable precedence
                 with patch.dict(os.environ, {'CALC_API_KEY': 'exported_calc_placeholder'}, clear=True):
                     load_env_files()
                     self.assertEqual(os.environ['CALC_API_KEY'], 'exported_calc_placeholder')
                     self.assertEqual(os.environ['GEOCODE_API_KEY'], 'dotenv_geocode_placeholder')
                     self.assertEqual(os.environ['MAPBOX_API_KEY'], 'dotenv_mapbox_placeholder')
 
-                # 2. Fresh import of noaa_apis picks up .env credentials while respecting exported overrides
                 fake_tools = types.ModuleType('langchain_core.tools')
                 fake_tools.tool = lambda function: function
                 apis_pkg = sys.modules['agentic.apis']
@@ -235,7 +230,6 @@ class WrapperTests(unittest.TestCase):
                     if orig_attr is not None:
                         setattr(apis_pkg, 'noaa_apis', orig_attr)
 
-                # 3. CLI entry point (agentic/cgmterm.py) loads .env before agent initialization
                 seen_cli = {}
 
                 class FakeCGM:
@@ -263,7 +257,6 @@ class WrapperTests(unittest.TestCase):
                 self.assertEqual(seen_cli['CALC_API_KEY'], 'exported_cli_placeholder')
                 self.assertEqual(seen_cli['GEOCODE_API_KEY'], 'dotenv_geocode_placeholder')
 
-                # 4. Streamlit entry point (agentic/cgmwebsite.py) loads .env on startup
                 class FakeSessionState(dict):
                     __setattr__ = dict.__setitem__
 

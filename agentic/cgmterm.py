@@ -1,8 +1,3 @@
-"""
-This script is an example inferencing system that uses cgm.py
-and provides a simple chat interface in the terminal.
-"""
-
 try:
     from config import SystemConfig, load_env_files
 except ImportError:

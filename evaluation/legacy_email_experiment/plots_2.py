@@ -1,7 +1,3 @@
-"""
-This script generates the main GEval grouped bar chart (with vs without emails)
-for the paper, computing all values directly from opik_evaluation_results/.
-"""
 import json
 import glob
 import os

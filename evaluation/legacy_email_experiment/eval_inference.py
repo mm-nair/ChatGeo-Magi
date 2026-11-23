@@ -1,12 +1,3 @@
-"""
-This script was run on the system with/without the emails loaded in.
-The final dataset of each was then taken, renamed to append their version, and
-sent to Opik for evaluation.
-
-Incremental is to prevent having to re-inference everything, in case a crash happens
-in between models/configurations.
-"""
-
 import csv
 import os
 import argparse

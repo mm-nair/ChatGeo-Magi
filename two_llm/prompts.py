@@ -1,12 +1,3 @@
-"""
-LEGACY: Many portions of this script may be broken now,
-and is solely to demonstrate how the two-LLM architecture was
-constrcuted. No plots nor data were made from this architecture.
-
-This script contains the two main prompts for the system,
-as well as the prompt injection tactic for tool calls.
-"""
-
 api_prompt = (
     """
     You are a precise API routing assistant. Your job is to determine if a user query requires calling a specific API from the available tools.

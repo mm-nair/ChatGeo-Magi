@@ -1,14 +1,3 @@
-"""Generate publication figures for ChatGeo-Magi directly from checked-in result tables.
-
-Usage:
-    python evaluation/plots.py
-    python evaluation/plots.py --figure rag
-    python evaluation/plots.py --figure retrieval
-    python evaluation/plots.py --figure questions
-    python evaluation/plots.py --figure tools
-    python evaluation/plots.py --figure london
-"""
-
 import argparse
 import csv
 import json
@@ -20,9 +9,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-# ---------------------------------------------------------------------------
-# Paths and Matplotlib style configuration (edit here to customize figures)
-# ---------------------------------------------------------------------------
 EVAL_DIR = Path(__file__).resolve().parent
 RESULTS_DIR = EVAL_DIR / "results"
 OUTPUT_DIR = EVAL_DIR / "plot_outputs"
@@ -85,11 +71,7 @@ def save_figure(fig, output_stem: Path, export_png: bool = True):
     return saved
 
 
-# ---------------------------------------------------------------------------
-# Figure 1: Top-4 Retrieval Performance (Hit@4, Recall@4, Coverage@4)
-# ---------------------------------------------------------------------------
 def plot_retrieval(results_dir: Path = RESULTS_DIR, output_dir: Path = OUTPUT_DIR, export_png: bool = True):
-    """Plot final top-4 Stella retrieval performance across corpora and benchmarks."""
     apply_style()
     summary_rows = {
         row["run_id"]: row
@@ -110,7 +92,6 @@ def plot_retrieval(results_dir: Path = RESULTS_DIR, output_dir: Path = OUTPUT_DI
 
     fig, axes = plt.subplots(1, 2, figsize=FIGSIZE_RETRIEVAL, layout="constrained")
 
-    # Panel (a): Hit@4 across the primary and held-out benchmarks
     bench_labels = [
         f"15-Doc Full Corpus\nPrimary Strict\n(n={strict_15_n})",
         f"15-Doc Full Corpus\nPrimary Cross-Doc\n(n={strict_15_n})",
@@ -159,7 +140,6 @@ def plot_retrieval(results_dir: Path = RESULTS_DIR, output_dir: Path = OUTPUT_DI
     axes[0].set_title("(a) Top-4 Retrieval Hit@4 by Corpus and Benchmark")
     axes[0].grid(axis="y", linestyle="--", alpha=0.4)
 
-    # Panel (b): Multi-metric profile on the 15-document full corpus
     metric_groups = [
         f"15-Doc Primary Benchmark\n(n={strict_15_n}, 8,863 chunks)",
         f"15-Doc Held-Out Benchmark\n(n={held15['scored_questions']}, 8,863 chunks)",
@@ -212,11 +192,7 @@ def plot_retrieval(results_dir: Path = RESULTS_DIR, output_dir: Path = OUTPUT_DI
     return save_figure(fig, Path(output_dir) / "retrieval_performance", export_png=export_png)
 
 
-# ---------------------------------------------------------------------------
-# Figure 2: RAG vs. No-RAG Answer Correctness and Paired Bootstrap CIs
-# ---------------------------------------------------------------------------
 def plot_rag_comparison(results_dir: Path = RESULTS_DIR, output_dir: Path = OUTPUT_DIR, export_png: bool = True):
-    """Plot RAG vs. No-RAG GPT-4o-mini correctness scores and paired 95% bootstrap CIs."""
     apply_style()
     stats = json.loads(
         (Path(results_dir) / "rag_statistical_summary.json").read_text(encoding="utf-8")
@@ -341,11 +317,7 @@ def plot_rag_comparison(results_dir: Path = RESULTS_DIR, output_dir: Path = OUTP
     return save_figure(fig, Path(output_dir) / "rag_comparison", export_png=export_png)
 
 
-# ---------------------------------------------------------------------------
-# Figure 3: Per-Question Answer Correctness and Paired Differences (Q01-Q25)
-# ---------------------------------------------------------------------------
 def plot_question_differences(results_dir: Path = RESULTS_DIR, output_dir: Path = OUTPUT_DIR, export_png: bool = True):
-    """Plot per-question correctness scores and paired RAG gains across Q01-Q25."""
     apply_style()
     question_rows = read_csv_rows(Path(results_dir) / "rag_question_scores.csv")
 
@@ -427,11 +399,7 @@ def plot_question_differences(results_dir: Path = RESULTS_DIR, output_dir: Path 
     return save_figure(fig, Path(output_dir) / "question_differences", export_png=export_png)
 
 
-# ---------------------------------------------------------------------------
-# Figure 4: Scientific Tool-Calling Benchmark Performance
-# ---------------------------------------------------------------------------
 def plot_tool_performance(results_dir: Path = RESULTS_DIR, output_dir: Path = OUTPUT_DIR, export_png: bool = True):
-    """Plot tool-calling benchmark accuracy across supported and invalid requests."""
     apply_style()
     summary = json.loads(
         (Path(results_dir) / "tool_summary.json").read_text(encoding="utf-8")
@@ -497,11 +465,7 @@ def plot_tool_performance(results_dir: Path = RESULTS_DIR, output_dir: Path = OU
     return save_figure(fig, Path(output_dir) / "tool_performance", export_png=export_png)
 
 
-# ---------------------------------------------------------------------------
-# Figure 5: London Total Magnetic Intensity Demonstration (1999-2026)
-# ---------------------------------------------------------------------------
 def plot_london_intensity(results_dir: Path = RESULTS_DIR, output_dir: Path = OUTPUT_DIR, export_png: bool = True):
-    """Plot the London total magnetic field intensity series (1999-2026, IGRF2025)."""
     apply_style()
     rows = read_csv_rows(Path(results_dir) / "london_intensity_series.csv")
     summary = json.loads(
@@ -521,7 +485,6 @@ def plot_london_intensity(results_dir: Path = RESULTS_DIR, output_dir: Path = OU
         label=f"NOAA {summary['returned_model']} (Annual Jan 1 Estimates)",
     )
 
-    # Endpoint linear trend line for visual comparison
     endpoint_line = intensities[0] + summary["endpoint_nT_per_year"] * (years - years[0])
     ax.plot(
         years,

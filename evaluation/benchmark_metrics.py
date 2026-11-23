@@ -6,7 +6,6 @@ import numpy as np
 
 
 def bootstrap(differences, seed=20261115, resamples=100000):
-    """Calculate a paired percentile bootstrap 95% confidence interval."""
     differences = np.asarray(differences, dtype=float)
     if not len(differences) or not np.isfinite(differences).all():
         raise ValueError("Bootstrap needs finite paired observations")
@@ -17,7 +16,6 @@ def bootstrap(differences, seed=20261115, resamples=100000):
 
 
 def write_csv(path, rows):
-    """Write a sequence of dictionaries to a CSV file."""
     path = Path(path)
     if not rows:
         raise ValueError("Cannot write an empty row list to CSV")
@@ -28,7 +26,6 @@ def write_csv(path, rows):
 
 
 def summarize_paired_scores(records, seed=20261115, resamples=100000):
-    """Summarize paired condition scores (e.g., rag vs. no_rag) across all 25 questions."""
     summaries, paired = [], []
     conditions = (
         ("no_rag", "rag")

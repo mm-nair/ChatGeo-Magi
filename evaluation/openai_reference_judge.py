@@ -90,7 +90,6 @@ FORBIDDEN_PATH_TOKENS = (
 
 
 def judge_payload(row: dict) -> str:
-    """Format a question, expected reference answer, and model output for reference-aware judging."""
     return json.dumps(
         {
             "QUESTION": row["input"],

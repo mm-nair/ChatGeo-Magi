@@ -1,11 +1,3 @@
-"""
-LEGACY: Many portions of this script may be broken now,
-and is solely to demonstrate how the two-LLM architecture was
-constrcuted. No plots nor data were made from this architecture.
-
-This script has the configuration options for the two-LLM system.
-"""
-
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, List, Optional, TypedDict
 

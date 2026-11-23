@@ -1,11 +1,3 @@
-"""
-LEGACY: Many portions of this script may be broken now,
-and is solely to demonstrate how the two-LLM architecture was
-constrcuted. No plots nor data were made from this architecture.
-
-This script has the API capabilities for the two-LLM system.
-"""
-
 import matplotlib.pyplot as plt
 import numpy as np
 import time
@@ -16,7 +8,6 @@ from PIL import Image
 from io import BytesIO
 from typing import Dict, Tuple, Optional, Union, List
 
-# Constants
 BASE_URLS = {
     "calculator": "https://www.ngdc.noaa.gov/geomag-web/calculators/calculateIgrfwmm",
     "grid": "https://www.ngdc.noaa.gov/geomag-web/calculators/calculateIgrfgrid",
@@ -47,7 +38,6 @@ class GeomagneticAPI:
 
     @staticmethod
     def parse_date(time_str: Optional[str] = None) -> Tuple[int, int, int]:
-        """Convert date string to (year, month, day) tuple."""
         if not time_str or time_str.lower() in ["now", "no", ""]:
             today = date.today()
             return today.year, today.month, today.day
@@ -57,7 +47,6 @@ class GeomagneticAPI:
 
     @staticmethod
     def get_coordinates(location: str) -> Tuple[bool, Union[Tuple[float, float], str]]:
-        """Get coordinates for a location using geocoding API."""
         params = {"q": location, "api_key": GEOCODE_API_KEY}
         response = requests.get(BASE_URLS["geocode"], params=params)
         data = response.json()
@@ -69,7 +58,6 @@ class GeomagneticAPI:
     
     @staticmethod
     def remove_api_keys(urls: List[str]) -> List[str]:
-        """Remove API keys from URLs for security when displaying to the client."""
         new_urls = []
         for url in urls:
             for key in [GEOCODE_API_KEY, MAPBOX_API_KEY, CALC_API_KEY, GRID_CALC_API_KEY]:
@@ -80,14 +68,12 @@ class GeomagneticAPI:
         
 
     def get_model_type(self, year: int) -> str:
-        """Determine appropriate model type based on year."""
         if year < 1590:
             raise ValueError("Date must be after 1590 for IGRF calculations")
         return "IGRF" if year < 2025 else "WMM"
 
     def fetch_field_data(self, location: str, start_time: Optional[str] = None, 
                         end_time: Optional[str] = None) -> Tuple[bool, Union[Dict, str]]:
-        """Fetch geomagnetic field data from NOAA API."""
         success, coords, grid_url = self.get_coordinates(location)
         
         if not success:
@@ -125,7 +111,6 @@ class GeomagneticAPI:
 
     def fetch_grid_data(self, location: str, component: str, bounds: float = 5.0, 
                        start_time: Optional[str] = None) -> Tuple[bool, Union[Dict, str]]:
-        """Fetch grid data for contour plotting."""
         success, coords, grid_url = self.get_coordinates(location)
         if not success:
             return False, coords
@@ -157,7 +142,6 @@ class GeomagneticAPI:
 
     def get_map_image(self, bounding_box: Tuple[float, float, float, float], 
                      size: str = "640x480") -> Image.Image:
-        """Fetch map image from Mapbox API."""
         bbox_str = f"[{bounding_box[1]},{bounding_box[0]},{bounding_box[3]},{bounding_box[2]}]"
         params = {
             "access_token": MAPBOX_API_KEY
@@ -173,7 +157,6 @@ class GeomagneticAPI:
 api = GeomagneticAPI()
 
 def magnetic_declination(location: str, start_time: Optional[str] = None) -> str:
-    """Get magnetic declination for a location."""
     success, result, urls = api.fetch_field_data(location, start_time)
     
     if not success:
@@ -184,7 +167,6 @@ def magnetic_declination(location: str, start_time: Optional[str] = None) -> str
     return f"{abs(declination)}deg {direction}", api.remove_api_keys(urls)
 
 def magnetic_inclination(location: str, start_time: Optional[str] = None) -> str:
-    """Get magnetic inclination for a location."""
     success, result, urls = api.fetch_field_data(location, start_time)
     
     if not success:
@@ -193,7 +175,6 @@ def magnetic_inclination(location: str, start_time: Optional[str] = None) -> str
     return f"{result['result'][0]['inclination']}deg", api.remove_api_keys(urls)
 
 def total_intensity(location: str, start_time: Optional[str] = None) -> str:
-    """Get total magnetic field intensity for a location."""
     success, result, urls = api.fetch_field_data(location, start_time)
     
     if not success:
@@ -203,7 +184,6 @@ def total_intensity(location: str, start_time: Optional[str] = None) -> str:
 
 def plot(data_name: str, location: str, start_time: Optional[str] = None, 
          end_time: Optional[str] = None) -> str:
-    """Create a time series plot of magnetic field components."""
     if data_name not in FIELD_COMPONENTS:
         return "API currently does not have access to that data", None
     
@@ -230,7 +210,6 @@ def plot(data_name: str, location: str, start_time: Optional[str] = None,
     return fig, api.remove_api_keys(urls)
 
 def gridplot(data_name: str, location: str, start_time: Optional[str] = None, zoom: Optional[str] = "1.0") -> str:
-    """Create a contour plot of magnetic field components."""
     if data_name not in FIELD_COMPONENTS:
         return "API currently does not have access to that data", None
     

@@ -34,7 +34,6 @@ _REJECTED_COORDS: contextvars.ContextVar[Tuple[Tuple[float, float], ...]] = cont
 
 
 def set_active_request_context(question: Optional[str]) -> None:
-    """Record the active user prompt and reset rejected coordinates for this turn."""
     _ACTIVE_QUESTION.set(question)
     _REJECTED_COORDS.set(())
 
@@ -97,7 +96,6 @@ def save_figure_to_temp(fig):
     return path
 
 def parse_date(time_str: Optional[str] = None) -> Tuple[int, int, int]:
-    """Parse an unambiguous date, using January 1 for year-only requests."""
     parsed = scientific_date(time_str)
     return parsed.year, parsed.month, parsed.day
 
@@ -144,13 +142,11 @@ def get_coordinates(location: str) -> Tuple[bool, Union[Tuple[float, float], str
 
 
 def get_model_type(year: int) -> str:
-    """Select the supported model family for a single year."""
     return select_model(str(year))[0]
 
 
 def fetch_field_data(location: str, start_time: Optional[str] = None,
                      end_time: Optional[str] = None) -> Tuple[bool, Union[Dict, str]]:
-    """Fetch a validated range with explicit requested and returned provenance."""
     try:
         model_type, start_date, end_date = select_model(start_time, end_time)
         if not CALC_API_KEY:
@@ -178,7 +174,6 @@ def fetch_field_data(location: str, start_time: Optional[str] = None,
 
 def fetch_grid_data(location: str, component: str, bounds: float = 5.0,
                     start_time: Optional[str] = None) -> Tuple[bool, Union[Dict, str]]:
-    """Fetch a grid with the same date policy and provenance as point queries."""
     try:
         model_type, start_date, end_date = select_model(start_time)
         if component not in valid_components or not 0 < bounds <= 90:
@@ -208,7 +203,6 @@ def fetch_grid_data(location: str, component: str, bounds: float = 5.0,
 
 def get_map_image(bounding_box: Tuple[float, float, float, float], 
                     size: str = "640x480") -> Image.Image:
-    """Fetch map image from Mapbox API."""
     bbox_str = f"[{bounding_box[1]},{bounding_box[0]},{bounding_box[3]},{bounding_box[2]}]"
     params = {
         "access_token": MAPBOX_API_KEY

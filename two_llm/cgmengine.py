@@ -1,11 +1,3 @@
-"""
-LEGACY: Many portions of this script may be broken now,
-and is solely to demonstrate how the two-LLM architecture was
-constrcuted. No plots nor data were made from this architecture.
-
-This script has the creation and orchestration of the two-LLM system.
-"""
-
 from typing import Tuple, Optional, Any
 from llama_index.core import (
     VectorStoreIndex,
@@ -45,22 +37,6 @@ env = dotenv_values(".env")
 
 @dataclass
 class TracedResponse:
-    """
-    A comprehensive response tracking class that captures all aspects of the query processing.
-    
-    Attributes:
-    - original_prompt: The initial user prompt
-    - llama_response: LlamaIndex's core response object
-    - api_response: Raw API recommendation response
-    - tool_call: Optional tool call information
-    - tool_output: Output from tool execution
-    - figure_output: Optional matplotlib figure
-    - context_str: Retrieved context string
-    - appendix: Additional context or metadata
-    - error: Any error that occurred during processing
-    - sources: List of sources used in the response
-    - urls_used: List of URLs used in the response
-    """
     original_prompt: str
     llama_response: Optional[LlamaResponse] = None
     api_response: Optional[str] = None
@@ -161,7 +137,6 @@ class ChatGeoMagiEngine:
 
     @track(name="ChatGeo-Magi", capture_input=True, capture_output=True)
     def invoke(self, prompt: str, silent=False) -> TracedResponse:
-        """Main processing method that returns a TracedResponse with comprehensive tracking."""
         start_time = time.time()
         
         if not self.api_c_engine or not self.geomagi_c_engine:
@@ -220,7 +195,6 @@ class ChatGeoMagiEngine:
             return traced_response
 
     def _finalize_trace(self, response: TracedResponse, start_time: float, execution_path: str):
-        """Finalize the trace with comprehensive output and metadata."""
         execution_time = time.time() - start_time
         
         output_data = {
@@ -250,7 +224,6 @@ class ChatGeoMagiEngine:
 
     @track(name="API Recommendation Step", capture_input=True, capture_output=True)
     def _get_api_recommendation(self, prompt: str, silent=False) -> Tuple[str, Optional[str], Tuple]:
-        """Enhanced API recommendation with comprehensive step-level tracking."""
         step_start_time = time.time()
         
         try:
@@ -320,7 +293,6 @@ class ChatGeoMagiEngine:
 
     @staticmethod
     def parse_tool_response(response: str) -> Tuple[str, ...]:
-        """Parse the API response into a tuple of tool name and arguments."""
         stripped_response = response.strip().strip("()")
         
         parts = []
@@ -346,7 +318,6 @@ class ChatGeoMagiEngine:
     
     @track(name="Tool Execution Step", capture_input=True, capture_output=True)
     def _execute_tool(self, tool_name: str, tool_args: Tuple, silent=False) -> Tuple[Any, Any, bool, Optional[List[str]]]:
-        """Execute the specified tool with comprehensive execution tracking."""
         step_start_time = time.time()
         
         opik_context.update_current_span(
@@ -448,7 +419,6 @@ class ChatGeoMagiEngine:
 
     @track(name="Fallback Response - No API", capture_input=True, capture_output=True)
     def _handle_no_api(self, traced_response: TracedResponse) -> TracedResponse:
-        """Handle case where no suitable API was found with step tracking."""
         error_prompt = traced_response.original_prompt
         
         opik_context.update_current_span(
@@ -480,7 +450,6 @@ class ChatGeoMagiEngine:
     
     @track(name="Fallback Response - Failed API", capture_input=True, capture_output=True)
     def _handle_failed_api(self, traced_response: TracedResponse) -> TracedResponse:
-        """Handle case where API execution failed with step tracking."""
         error_prompt = traced_response.original_prompt + " --- API failed/is down! Mention this to the user!"
         
         opik_context.update_current_span(
@@ -521,7 +490,6 @@ class ChatGeoMagiEngine:
         tool_name: str, 
         urls_used: Optional[List[str]] = None
     ) -> TracedResponse:
-        """Generate the final response with comprehensive tracking."""
 
         traced_response.tool_call = tool_name
         
@@ -600,7 +568,6 @@ class ChatGeoMagiEngine:
         self, 
         prompt: str, 
     ) -> Tuple[LlamaResponse, Optional[str], str]:
-        """Query the ChatGeo-Magi engine with comprehensive step tracking.""" 
         
         step_start_time = time.time()
         
@@ -634,7 +601,6 @@ class ChatGeoMagiEngine:
         return response, prompt
             
     def create_evaluation_dataset(self, interactions: List[Dict], dataset_name: str = "ChatGeo-Magi-Evaluation"):
-        """Create a dataset for evaluation purposes"""
         try:
             dataset = self.opik_client.get_or_create_dataset(name=dataset_name)
             
