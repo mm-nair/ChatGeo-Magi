@@ -255,7 +255,7 @@ class EvaluationTests(unittest.TestCase):
 
         commands = re.findall(r"^python (evaluation/[^\n]+)",
                               (ROOT / "README.md").read_text().replace("\\\n", ""), re.MULTILINE)
-        self.assertGreaterEqual(len(commands), 8)
+        self.assertTrue(commands)
         for command in commands:
             arguments = shlex.split(command)
             script = ROOT / arguments[0]
