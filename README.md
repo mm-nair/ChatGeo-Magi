@@ -41,10 +41,9 @@ The evaluation directory provides two separate workflows: an offline plotting wo
 
 ### 1. Regenerate Manuscript Figures (Offline, No API Keys or GPU Required)
 
-Install the lightweight plotting dependencies and run [`evaluation/plots.py`](evaluation/plots.py) from the repository root:
+On NixOS, run `nix develop` to enter the pinned plotting environment. Otherwise, install the lightweight dependencies with `pip install -r evaluation/requirements.txt`. Then run [`evaluation/plots.py`](evaluation/plots.py) from the repository root:
 
 ```bash
-pip install -r evaluation/requirements.txt
 python evaluation/plots.py
 ```
 
