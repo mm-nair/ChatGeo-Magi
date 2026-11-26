@@ -1,0 +1,209 @@
+{
+  "case_study": "london_total_intensity_1999_2026",
+  "status": "completed",
+  "source_interface": "streamlit_website (agentic/cgmwebsite.py via ChatGeoMagi.stream_invoke)",
+  "date_utc": "2026-11-23",
+  "first_model_response_utc": "2026-11-23T22:08:06.566416949Z",
+  "final_model_response_utc": "2026-11-23T22:08:13.139174991Z",
+  "prompt": "Plot total intensity in London annually from 1999 to 2026.",
+  "thread_id": "streamlit_session_default",
+  "single_run_unmodified": true,
+  "model": {
+    "name": "gpt-oss:20b",
+    "digest": "17052f91a42e97930aa6e28a6c6c06a983e6a58dbb00434885a0cf5313e376f7",
+    "ollama_version": "ollama version is 0.22.0",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "gptoss",
+      "families": [
+        "gptoss"
+      ],
+      "parameter_size": "20.9B",
+      "quantization_level": "MXFP4"
+    },
+    "size_bytes": 13793441244,
+    "modified_at": "2026-03-08T23:23:56.43716095Z"
+  },
+  "execution_settings": {
+    "model": "gpt-oss:20b",
+    "model_digest": "17052f91a42e97930aa6e28a6c6c06a983e6a58dbb00434885a0cf5313e376f7",
+    "ollama_init": "ChatOllama(model=\"gpt-oss:20b\") (default ChatGeoMagi.get_shared_resources settings)",
+    "preset": "stella_s2p_cosine",
+    "retrieval_k": 4
+  },
+  "registered_tools": [
+    "retrieve_geomag_docs",
+    "noaa_mag_api",
+    "plot",
+    "plot_many",
+    "contour_map"
+  ],
+  "tool_calls_summary": [
+    {
+      "name": "noaa_mag_api",
+      "args": {
+        "data_name": "totalintensity",
+        "start_time": "1999-01-01",
+        "end_time": "2026-12-31",
+        "location": "51.5074,-0.1278"
+      },
+      "success": true
+    },
+    {
+      "name": "plot",
+      "args": {
+        "figsize": [
+          10,
+          6
+        ],
+        "marker": "o",
+        "title": "Annual Total Intensity at London (1999-2026)",
+        "x": [
+          1999,
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "xlabel": "Year",
+        "y": [
+          48275.9,
+          48301.7,
+          48332,
+          48362.5,
+          48392.9,
+          48423.4,
+          48454,
+          48480.1,
+          48506.3,
+          48532.6,
+          48558.9,
+          48585.2,
+          48608.1,
+          48631.1,
+          48654.2,
+          48677.3,
+          48700.5,
+          48736.1,
+          48771.7,
+          48807.4,
+          48843.2,
+          48879.1,
+          48915.9,
+          48952.9,
+          48989.9,
+          49026.9,
+          49064.1,
+          49096.5
+        ],
+        "ylabel": "Total Intensity (nT)"
+      },
+      "success": true
+    }
+  ],
+  "geomagnetic_model_metadata": [
+    {
+      "tool_call_id": "15c89494-4910-403c-a9b1-fffea9ff08ed",
+      "args": {
+        "data_name": "totalintensity",
+        "start_time": "1999-01-01",
+        "end_time": "2026-12-31",
+        "location": "51.5074,-0.1278"
+      },
+      "success": true,
+      "component": "totalintensity",
+      "units": "nanoTesla (nT)",
+      "num_values": 28,
+      "first_value": {
+        "date": 1999,
+        "value": 48275.9,
+        "model": "IGRF2025",
+        "uncertainty_metadata": {}
+      },
+      "last_value": {
+        "date": 2026,
+        "value": 49096.5,
+        "model": "IGRF2025",
+        "uncertainty_metadata": {}
+      },
+      "endpoint_average_change": {
+        "per_year": 30.39259259259254,
+        "units": "nanoTesla (nT) per year",
+        "definition": "Last minus first divided by elapsed decimal years; not a fitted slope or instantaneous secular variation"
+      },
+      "provenance": {
+        "source": "https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html",
+        "requested_model": "IGRF",
+        "returned_model": "IGRF2025",
+        "returned_model_metadata": {
+          "model": "IGRF2025"
+        },
+        "policy_validity": [
+          "1900-01-01",
+          "2029-12-31"
+        ],
+        "calculator_version": "1.2.1",
+        "epoch": "not supplied",
+        "uncertainty": "not supplied; no uncertainty inferred",
+        "requested_start": "1999-01-01",
+        "requested_end": "2026-12-31",
+        "latitude": 51.5074,
+        "longitude": -0.1278,
+        "elevation_km": 0,
+        "elevation_reference": "MSL",
+        "interpretation": "Model estimates, not observations. IGRF 2025 onward and WMM are predictive. Requested family does not establish the server model version.",
+        "calculator_url": "https://www.ngdc.noaa.gov/geomag-web/calculators/calculateIgrfwmm"
+      }
+    }
+  ],
+  "agent_plot": {
+    "produced": true,
+    "original_filename": "a1bc3905dbc849679c6822b0605ad7f0.png",
+    "sha256": "befea49e970a0063819bf85aa8fea3e9efc0184d5dcb9debb39f839e86447c15",
+    "bytes": 38636
+  },
+  "repository": {
+    "branch": "revision-clean",
+    "commit": "6a106be1530c70841a00df015d6691536103f9b6",
+    "dirty": false
+  },
+  "retriever_index": {
+    "preset": "stella_s2p_cosine",
+    "embedding_model": "NovaSearch/stella_en_1.5B_v5",
+    "embedding_dimension": 1024,
+    "distance_metric": "cosine",
+    "chunk_count": 8863,
+    "document_count": 15,
+    "public_only": true,
+    "config_hash": "f5f9416fdc093febc22a8c9bfc453c71e5cce799b37f88a1371bf74b646e81ef"
+  },
+  "environment": {
+    "python": "3.11.2",
+    "platform": "Linux-6.1.0-55-cloud-amd64-x86_64-with-glibc2.36",
+    "gpu": "NVIDIA A100-SXM4-40GB, 40960 MiB, 575.57.08"
+  }
+}

@@ -16,7 +16,7 @@ cd agentic
 python cgmterm.py
 ```
 
-For the web interface, use `streamlit run cgmwebsite.py` instead.
+For the web interface, use `streamlit run cgmwebsite.py`.
 
 ## Evaluation Data
 
@@ -27,32 +27,27 @@ For the web interface, use `streamlit run cgmwebsite.py` instead.
 
 ## Reproducing Figures
 
-From the repository root:
+If using Nix, you can simply use `nix develop` to enter a development environment with dependencies installed. Otherwise from the repository root:
 
 ```bash
 pip install -r evaluation/requirements.txt
-python evaluation/plots.py
 ```
 
-Nix users can enter the plotting environment with `nix develop` instead of installing dependencies. No credentials, model inference, GPU, or private workspace are required.
-
-For a single figure:
+Then you can use `plots.py` to generate figures.
 
 ```bash
-python evaluation/plots.py --figure rag
+python evaluation/plots.py # Generates all of them
+python evaluation/plots.py --figure rag # Specify a certain one
 ```
 
-Other choices are `retrieval`, `questions`, `tools`, and `london`. Outputs are saved to `evaluation/plot_outputs/`.
+Other choices are `retrieval` and `questions`. Outputs are saved to `evaluation/plot_outputs/`.
 
 ## Rerunning Experiments
 
-Install `agentic/requirements.txt` and `evaluation/requirements.txt`. Use the exact model and retrieval settings in the [experimental configuration](evaluation/results/experimental_configuration.json), a cached local Stella model, and the documents identified by the [public-corpus manifest](evaluation/benchmarks/public_corpus_manifest.json). Some documents require publisher access. Model inference was performed on a 40 GB A100 using Ollama; reference judging additionally requires `OPENAI_API_KEY`.
+Install `agentic/requirements.txt` and `evaluation/requirements.txt`. Use the exact model and retrieval settings in the [experimental configuration](evaluation/results/experimental_configuration.json), a cached local Stella model, and the documents identified by the [public corpus manifest](evaluation/benchmarks/public_corpus_manifest.json). Some documents require publisher access. Model inference was done on a 40 GB A100 using Ollama, and reference judging additionally requires `OPENAI_API_KEY`.
 
 The evaluation scripts provide their arguments through `--help`:
-
 - [Retrieval evaluation](evaluation/build_public_index.py): build and evaluate the public-only index.
 - [Model inference](evaluation/run_revision_inference.py): run RAG/no-RAG or tool-calling experiments.
 - [Reference judging](evaluation/openai_reference_judge.py): score public-corpus answers against references.
 - [Tool scoring](evaluation/score_live_tools.py): compare saved tool traces with independent NOAA references.
-
-Save new runs separately from the published results. Private support emails are unavailable and must not be included in new experiments or external judging.

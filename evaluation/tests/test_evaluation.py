@@ -913,7 +913,17 @@ class EvaluationTests(unittest.TestCase):
                 results_dir=ROOT / "evaluation/results",
                 output_dir=out_dir,
             )
-            self.assertEqual(len(written), 10)
+            self.assertEqual(
+                {path.name for path in written},
+                {
+                    "retrieval_performance.pdf",
+                    "retrieval_performance.png",
+                    "rag_comparison.pdf",
+                    "rag_comparison.png",
+                    "question_differences.pdf",
+                    "question_differences.png",
+                },
+            )
             for path in written:
                 self.assertTrue(path.exists())
                 self.assertGreater(path.stat().st_size, 1000)

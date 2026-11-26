@@ -1,0 +1,14 @@
+Below is a plot of the annual **Total Magnetic Intensity (TMI)** at London (51.5074 ° N, –0.1278 ° E) from 1999 through 2026.  
+
+* **Model**: IGRF‑2025 (the NOAA IGRF‑WMM calculator uses IGRF 2025 for years 2025‑2029, and IGRF 2023 for earlier years).  
+* **Units**: nanoTesla (nT).  
+* **Data source**: NOAA National Centers for Environmental Information – Geomagnetism web calculator (https://www.ngdc.noaa.gov/geomag/calculators/help/igrfwmmHelp.html).  
+* **Epoch**: 2024 CE (the calculator uses the most recent epoch available).  
+
+<img src="/tempimages/a1bc3905dbc849679c6822b0605ad7f0.png" alt="Annual Total Intensity at London (1999-2026)"/>
+
+**Interpretation**
+
+The TMI shows a steady secular‑variation trend of roughly **+30 nT / yr** during this period, consistent with the gradual intensification of the field at the North Atlantic.  This is in line with the predicted secular‑variation from the IGRF‑2025 model, which forecasts a continued increase of about 30 nT per year for the 2025‑2029 decade.  
+
+Feel free to let me know if you’d like a deeper analysis (e.g., linear fit, comparison to neighboring sites, or a map of the variation).
