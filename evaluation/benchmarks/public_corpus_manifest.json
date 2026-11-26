@@ -25,9 +25,9 @@
     {
       "filename": "GEOMAGNETISM - A BRIEF HISTORICAL REVIEW.pdf",
       "path": "GEOMAGNETISM - A BRIEF HISTORICAL REVIEW.pdf",
-      "title": "Geomagnetism - A Brief Historical Review",
+      "title": "Geomagnetism - A Historical Review",
       "source_url": "https://hal.science/hal-02901860v1",
-      "publication_info": "HAL Open Science Archive preprint hal-02901860v1 (2020).",
+      "publication_info": "Rapeti, S. (2020). Geomagnetism - A Historical Review. HAL preprint hal-02901860v1.",
       "identical_to_original": true,
       "bytes": 552495,
       "sha256": "485ce389a505c2f1343b2483e1dc47c09aaf03ef5383cd3827a4c7eca97cb543"
@@ -36,8 +36,8 @@
       "filename": "GeomagnetismTutorial_Reeve.pdf",
       "path": "GeomagnetismTutorial_Reeve.pdf",
       "title": "Geomagnetism Tutorial",
-      "source_url": "https://www.reeve.com/Documents/SAM/GeomagnetismTutorial_Reeve.pdf",
-      "publication_info": "Reeve, W. D. (2010). Reeve Observatory Technical Tutorial.",
+      "source_url": "https://reeve.com/Documents/SAM/GeomagnetismTutorial.pdf",
+      "publication_info": "Reeve, W. D. (2015). Geomagnetism Tutorial. Reeve Observatory, revision 1.7 (originally published 2010).",
       "identical_to_original": true,
       "bytes": 2658202,
       "sha256": "7dafed1dd56a99285d1f1798038ada9512c23928066ecbb59913bf10aeb6024d"
@@ -45,9 +45,9 @@
     {
       "filename": "Geomagnetism_applications_Campbell.pdf",
       "path": "Geomagnetism_applications_Campbell.pdf",
-      "title": "Introduction to Geomagnetic Fields - Applications",
-      "source_url": "https://www.cambridge.org/core/books/introduction-to-geomagnetic-fields/6E1B8B9C7C8A6D4A1F9E2A8B5C4D3E2F",
-      "publication_info": "Campbell, W. H. (2003). Cambridge University Press.",
+      "title": "Geomagnetism Applications",
+      "source_url": "https://www.usgs.gov/publications/geomagnetism-applications",
+      "publication_info": "Campbell, W. H. (1995). Geomagnetism Applications. U.S. Geological Survey Circular 1109.",
       "identical_to_original": true,
       "bytes": 7142875,
       "sha256": "63c41c0d8627e19724ec7caf89fb45679167f783acf952e5318196807e84837d"
@@ -55,9 +55,9 @@
     {
       "filename": "Geomagnetism_history.pdf",
       "path": "Geomagnetism_history.pdf",
-      "title": "A Millennium of Geomagnetism",
-      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2000RG000097",
-      "publication_info": "Stern, D. P. (2002). Reviews of Geophysics, 40(3), 1007.",
+      "title": "Geomagnetism: Theories of Since 1900",
+      "source_url": "http://www.agu.org/history/mf/articles/Geomag20.html",
+      "publication_info": "Parkinson, W. D. (1999). Geomagnetism: Theories of Since 1900. American Geophysical Union, Geophysics History Project.",
       "identical_to_original": true,
       "bytes": 470407,
       "sha256": "8947a15f5cdb83d53e8579d2e932407d399ea15cd5416123e9dfa182c4ae607c"
@@ -85,9 +85,9 @@
     {
       "filename": "geomag_2020_ipgp.pdf",
       "path": "geomag_2020_ipgp.pdf",
-      "title": "SIO229: Gravity and Geomagnetism Lecture Notes",
-      "source_url": "https://igppweb.ucsd.edu/~cconstab/SIO229/",
-      "publication_info": "Constable, C. (2020). Scripps Institution of Oceanography, UCSD / IPGP.",
+      "title": "SIO229 Part II: Geomagnetism",
+      "source_url": "https://igppweb.ucsd.edu/~cathy/Classes/SIO229/geomag_2020.pdf",
+      "publication_info": "Constable, C. (2020). SIO229 Part II: Geomagnetism. Scripps Institution of Oceanography, UC San Diego.",
       "identical_to_original": true,
       "bytes": 7316756,
       "sha256": "640d92bb1e3b900cc4c8b0efdcc14df598d7a0896b698fd82372dec28f94d884"
@@ -96,7 +96,7 @@
       "filename": "geomag_chap01.pdf",
       "path": "geomag_chap01.pdf",
       "title": "Paleomagnetism: Magnetic Domains to Geologic Terranes - Chapter 1: Introduction to Geomagnetism",
-      "source_url": "https://www.geo.arizona.edu/Paleomag/",
+      "source_url": "https://openlibrary.org/books/OL1533825M/Paleomagnetism",
       "publication_info": "Butler, R. F. (1992). Blackwell Scientific Publications.",
       "identical_to_original": true,
       "bytes": 186978,
@@ -105,8 +105,8 @@
     {
       "filename": "geomag_chap03.pdf",
       "path": "geomag_chap03.pdf",
-      "title": "Paleomagnetism: Magnetic Domains to Geologic Terranes - Chapter 3: Origin of Natural Remanent Magnetization",
-      "source_url": "https://www.geo.arizona.edu/Paleomag/",
+      "title": "Paleomagnetism: Magnetic Domains to Geologic Terranes - Chapter 3: Origins of Natural Remanent Magnetism",
+      "source_url": "https://openlibrary.org/books/OL1533825M/Paleomagnetism",
       "publication_info": "Butler, R. F. (1992). Blackwell Scientific Publications.",
       "identical_to_original": true,
       "bytes": 290265,
@@ -116,7 +116,7 @@
       "filename": "geomag_chap07.pdf",
       "path": "geomag_chap07.pdf",
       "title": "Paleomagnetism: Magnetic Domains to Geologic Terranes - Chapter 7: Paleomagnetic Poles",
-      "source_url": "https://www.geo.arizona.edu/Paleomag/",
+      "source_url": "https://openlibrary.org/books/OL1533825M/Paleomagnetism",
       "publication_info": "Butler, R. F. (1992). Blackwell Scientific Publications.",
       "identical_to_original": true,
       "bytes": 379754,
@@ -125,9 +125,9 @@
     {
       "filename": "geomagnetism_ncei.pdf",
       "path": "geomagnetism_ncei.pdf",
-      "title": "Geomagnetism at NOAA's National Centers for Environmental Information",
-      "source_url": "https://www.ncei.noaa.gov/products/geomagnetic-data",
-      "publication_info": "NOAA NCEI Public Fact Sheet.",
+      "title": "Geomagnetism: Magnetic Modeling & Navigation",
+      "source_url": "https://www.ncei.noaa.gov/sites/default/files/2022-03/geomagnetism.pdf",
+      "publication_info": "NOAA National Centers for Environmental Information (2016). Geomagnetism: Magnetic Modeling & Navigation. NOAA fact sheet.",
       "identical_to_original": true,
       "bytes": 847545,
       "sha256": "b631023c9283f3c9c8b815a858e998beca4ee83949145f2881650617f339f368"
@@ -136,8 +136,8 @@
       "filename": "state_report.pdf",
       "path": "state_report.pdf",
       "title": "State of the Geomagnetic Field (December 2023)",
-      "source_url": "https://www.ncei.noaa.gov/products/world-magnetic-model",
-      "publication_info": "NOAA NCEI & British Geological Survey (2023). Annual World Magnetic Model State Report.",
+      "source_url": "https://www.ncei.noaa.gov/sites/default/files/2023-12/WMM_Annual_Report_2023.pdf",
+      "publication_info": "NOAA National Centers for Environmental Information and British Geological Survey (2023). State of the Geomagnetic Field (December 2023). DOI: 10.25923/cww1-sc35.",
       "identical_to_original": true,
       "bytes": 6473030,
       "sha256": "333360974d8669564855a68ba021e3bc6e87264f4c54bf18882e9dddf3496ee2"
@@ -145,9 +145,9 @@
     {
       "filename": "wmm_25.txt",
       "path": "wmm_25.txt",
-      "title": "World Magnetic Model 2025 (WMM2025) Public Technical Summary",
+      "title": "World Magnetic Model (WMM) - NOAA NCEI Product Page",
       "source_url": "https://www.ncei.noaa.gov/products/world-magnetic-model",
-      "publication_info": "NOAA NCEI & British Geological Survey (2024).",
+      "publication_info": "NOAA National Centers for Environmental Information. World Magnetic Model (WMM) product webpage (saved text, 2025).",
       "identical_to_original": true,
       "bytes": 21950,
       "sha256": "546a8ebaf2a3979810432b1f94b5c9425e3be0268544299bb35ddaee2215aca7"
